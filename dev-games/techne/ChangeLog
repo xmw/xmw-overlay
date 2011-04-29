@@ -1,0 +1,16 @@
+# ChangeLog for dev-games/techne
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*techne-0.2.1 (29 Apr 2011)
+
+  29 Apr 2011; Michael Weber <xmw@gentoo.org> +techne-0.1.ebuild,
+  +techne-0.2.1.ebuild, +metadata.xml:
+  Version bump, build system works now, added mirror://
+
+*techne-0.1 (29 Apr 2011)
+
+  29 Apr 2011; Michael Weber <xmw@gentoo.org> +techne-0.1.ebuild,
+  +metadata.xml:
+  Initial import (bug 301423)
+
