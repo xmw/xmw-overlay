@@ -1,0 +1,12 @@
+# ChangeLog for www-client/google-chrome
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*google-chrome-12.0.742.12-r83281 (02 May 2011)
+*google-chrome-11.0.696.57-r82915 (02 May 2011)
+
+  02 May 2011; Michael Weber <xmw@gentoo.org>
+  +google-chrome-11.0.696.57-r82915.ebuild,
+  +google-chrome-12.0.742.12-r83281.ebuild, +metadata.xml:
+  Initial import, bug 272805
+
