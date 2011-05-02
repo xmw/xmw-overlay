@@ -15,9 +15,8 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE="doc static-libs"
 
-RDEPEND=""
+RDEPEND="net-libs/libparserutils"
 DEPEND="${RDEPEND}
-	net-libs/libparserutils
 	virtual/libiconv
 	doc? ( app-doc/doxygen )
 	test? ( dev-lang/perl
@@ -47,13 +46,12 @@ src_compile() {
 # json_object_get_string_len does not exist!
 src_test() {
 	return
-	emake test || die
 }
 
 src_install() {
-	emake DESTDIR="${D}" PREFIX=/usr COMPONENT_TYPE=lib-shared install || die
+	emake COMPONENT_TYPE=lib-shared DESTDIR="${D}" PREFIX=/usr install || die
 	if use static-libs ; then
-		emake DESTDIR="${D}" PREFIX=/usr COMPONENT_TYPE=lib-static install || die
+		emake COMPONENT_TYPE=lib-static DESTDIR="${D}" PREFIX=/usr install || die
 	fi
 	dodoc README || die
 	if use doc ; then
