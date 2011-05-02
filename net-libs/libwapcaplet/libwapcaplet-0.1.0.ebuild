@@ -13,7 +13,7 @@ SRC_URI="http://www.netsurf-browser.org/projects/releases/${P}-src.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="test"
+IUSE="test static-libs"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -28,7 +28,17 @@ src_configure() {
 		-i ${PN}.pc.in || die
 }
 
+src_compile() {
+	emake COMPONENT_TYPE=lib-shared || die
+	if use static-libs ; then
+		emake COMPONENT_TYPE=lib-static || die
+	fi
+}
+
 src_install() {
-	emake DESTDIR="${D}" PREFIX=/usr install || die
+	emake COMPONENT_TYPE=lib-shared DESTDIR="${D}" PREFIX=/usr install || die
+	if use static-libs ; then
+		emake COMPONENT_TYPE=lib-static DESTDIR="${D}" PREFIX=/usr install || die
+	fi
 	dodoc README || die
 }
