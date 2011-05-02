@@ -43,7 +43,7 @@ src_compile() {
 }
 
 src_test() {
-	emake test || die
+	emake COMPONENT_TYPE=lib-shared test || die
 }
 
 src_install() {
