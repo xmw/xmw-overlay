@@ -8,5 +8,5 @@ inherit netsurf
 
 DESCRIPTION="decoding library for the GIF image file format, written in C"
 
-IUSE=""
+IUSE="static-libs"
 KEYWORDS="~amd64 ~x86"
