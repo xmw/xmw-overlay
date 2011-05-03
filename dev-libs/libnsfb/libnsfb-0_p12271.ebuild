@@ -10,7 +10,7 @@ DESCRIPTION="framebuffer abstraction library, written in C"
 SRC_URI="http://xmw.de/mirror/${PN}/${P}-src.tar.gz"
 
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="static-libs"
 
 RDEPEND=""
 DEPEND="dev-util/pkgconfig"
