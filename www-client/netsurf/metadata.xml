@@ -6,6 +6,12 @@
 <email>xmw@gentoo.org</email>
 <name>Michael Weber</name>
 </maintainer>
+<use>
+  <flag name='bmp'>enable bmp bitmap support</flag>
+  <flag name='rosprite'>enable RISC OS Sprite bitmap support</flag>
+  <flag name='svgtiny'>enable svg support via media-libs/svgatiny</flag>
+  <flag name='webp'>enable WebP image support</flag>
+</use>
 <longdescription lang="en">
 NetSurf is a free, open source web browser. It is written in C, has its own layout and rendering engine entirely written from scratch. It is small and capable of handling many of the web standards in use today.
 </longdescription>
