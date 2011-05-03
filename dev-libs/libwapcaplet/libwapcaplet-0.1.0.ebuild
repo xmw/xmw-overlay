@@ -9,7 +9,7 @@ inherit flag-o-matic netsurf
 DESCRIPTION="string internment library, written in C"
 
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="static-libs"
 
 RDEPEND=""
 DEPEND="dev-util/pkgconfig
