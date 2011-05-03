@@ -14,6 +14,7 @@ IUSE=""
 RDEPEND="dev-libs/libparserutils
 	dev-libs/libwapcaplet"
 DEPEND="${RDEPEND}
+	dev-util/pkgconfig
 	test? (	dev-lang/perl )"
 
 DOCS=( README )
