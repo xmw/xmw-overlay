@@ -9,7 +9,7 @@ inherit flag-o-matic netsurf
 DESCRIPTION="library for building efficient parsers, written in C"
 
 KEYWORDS="~amd64 ~x86"
-IUSE="doc iconv"
+IUSE="doc iconv static-libs"
 
 RDEPEND=""
 DEPEND="doc? ( app-doc/doxygen )
