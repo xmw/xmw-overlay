@@ -8,6 +8,7 @@ inherit eutils netsurf
 
 DESCRIPTION="a free, open source web browser"
 HOMEPAGE="http://www.netsurf-browser.org"
+SRC_URI="http://www.netsurf-browser.org/downloads/releases/${P}-src.tar.gz"
 
 LICENSE="MIT GPL-2"
 KEYWORDS="~amd64 ~x86"
