@@ -9,7 +9,7 @@ inherit multilib netsurf
 DESCRIPTION="HTML5 compliant parsing library, written in C"
 
 KEYWORDS="~amd64 ~x86"
-IUSE="doc"
+IUSE="doc static-libs"
 
 RDEPEND="dev-libs/libparserutils"
 DEPEND="${RDEPEND}
