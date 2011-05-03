@@ -4,57 +4,24 @@
 
 EAPI=3
 
-inherit multilib
+inherit multilib netsurf
 
 DESCRIPTION="HTML5 compliant parsing library, written in C"
-HOMEPAGE="http://www.netsurf-browser.org/projects/hubbub"
-SRC_URI="http://www.netsurf-browser.org/projects/releases/${P}-src.tar.gz"
 
-LICENSE="MIT"
-SLOT="0"
-KEYWORDS="~amd64"
-IUSE="doc static-libs"
+KEYWORDS="~amd64 ~x86"
+IUSE="doc"
 
-RDEPEND="net-libs/libparserutils"
+RDEPEND="dev-libs/libparserutils"
 DEPEND="${RDEPEND}
+	dev-util/pkgconfig
 	virtual/libiconv
 	doc? ( app-doc/doxygen )
 	test? ( dev-lang/perl
-		dev-libs/json-c
-		dev-util/pkgconfig )"
+		dev-libs/json-c )"
 
 S=${WORKDIR}/${P}-src
 
-src_configure() {
-	sed -e "/^INSTALL_ITEMS/s:/lib:/$(get_libdir):g" \
-		-e "s:-Werror::" \
-		-i Makefile || die
-	sed -e "/^libdir/s:/lib:/$(get_libdir):g" \
-		-i libhubbub.pc.in || die
-}
-
-src_compile() {
-	emake COMPONENT_TYPE=lib-shared || die
-	if use static-libs ; then
-		emake COMPONENT_TYPE=lib-static || die
-	fi
-	if use doc ; then
-		emake docs || die
-	fi
-}
-
 # json_object_get_string_len does not exist!
-src_test() {
-	return
-}
+RESTRICT="test"
 
-src_install() {
-	emake COMPONENT_TYPE=lib-shared DESTDIR="${D}" PREFIX=/usr install || die
-	if use static-libs ; then
-		emake COMPONENT_TYPE=lib-static DESTDIR="${D}" PREFIX=/usr install || die
-	fi
-	dodoc README || die
-	if use doc ; then
-		dohtml build/docs/html/* || die
-	fi
-}
+NETSURF_PC_FILE=lib${PN}.pc.in
