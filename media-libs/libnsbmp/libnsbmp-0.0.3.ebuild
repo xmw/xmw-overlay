@@ -8,5 +8,5 @@ inherit netsurf
 
 DESCRIPTION="decoding library for BMP and ICO image file formats, written in C"
 
-IUSE=""
+IUSE="static-libs"
 KEYWORDS="~amd64 ~x86"

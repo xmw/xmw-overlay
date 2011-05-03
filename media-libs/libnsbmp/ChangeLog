@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 May 2011; Michael Weber <xmw@gentoo.org> libnsbmp-0.0.3.ebuild:
+  explicit USE=static-libs
+
   02 May 2011; Michael Weber <xmw@gentoo.org> libnsbmp-0.0.3.ebuild:
   moved to netsurf.eclass
 
