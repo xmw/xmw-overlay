@@ -9,7 +9,7 @@ inherit netsurf
 DESCRIPTION="CSS parser and selection engine, written in C"
 
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="static-libs"
 
 RDEPEND="dev-libs/libparserutils
 	dev-libs/libwapcaplet"

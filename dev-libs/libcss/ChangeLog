@@ -3,6 +3,9 @@
 # $Header: $
 
   03 May 2011; Michael Weber <xmw@gentoo.org> libcss-0.1.0.ebuild:
+  explicit USE=static-libs
+
+  03 May 2011; Michael Weber <xmw@gentoo.org> libcss-0.1.0.ebuild:
   needs dev-util/pkgconfig
 
   03 May 2011; Michael Weber <xmw@gentoo.org> +libcss-0.1.0.ebuild,
