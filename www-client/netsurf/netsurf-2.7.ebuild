@@ -17,6 +17,7 @@ IUSE="bmp fbcon gif gtk jpeg mng pdf png rosprite svg svgtiny truetype webp"
 RDEPEND="media-fonts/dejavu
 	dev-libs/libcss
 	dev-libs/libxml2
+	net-libs/hubbub
 	bmp? ( media-libs/libnsbmp )
 	fbcon? ( dev-libs/libnsfb )
 	gif? ( media-libs/libnsgif )
@@ -31,7 +32,6 @@ RDEPEND="media-fonts/dejavu
 	webp? ( media-libs/libwebp )"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
-	net-libs/hubbub
 	rosprite? ( media-libs/librosprite )"
 
 S=${WORKDIR}/${PN}

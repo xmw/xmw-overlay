@@ -3,6 +3,9 @@
 # $Header: $
 
   03 May 2011; Michael Weber <xmw@gentoo.org> netsurf-2.7.ebuild:
+  net-libs/hubbub is RDEP, too
+
+  03 May 2011; Michael Weber <xmw@gentoo.org> netsurf-2.7.ebuild:
   fixed SRC_URI
 
   03 May 2011; Michael Weber <xmw@gentoo.org> netsurf-2.7.ebuild:
