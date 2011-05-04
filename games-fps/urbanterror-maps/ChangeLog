@@ -1,0 +1,10 @@
+# ChangeLog for games-fps/urbanterror-maps
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*urbanterror-maps-20110504 (04 May 2011)
+
+  04 May 2011; Michael Weber <xmw@gentoo.org>
+  +urbanterror-maps-20110504.ebuild, +metadata.xml:
+  games-fps/urbanterror-maps initial import
+
