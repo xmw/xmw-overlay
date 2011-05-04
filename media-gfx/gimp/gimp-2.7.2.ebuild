@@ -18,7 +18,7 @@ KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 IUSE="alsa aalib altivec curl dbus debug doc exif gnome hal jpeg lcms mmx mng pdf png python smp sse svg tiff webkit wmf"
 
 RDEPEND=">=dev-libs/glib-2.28.1:2
-	>=x11-libs/gtk+-2.20.0:2
+	>=x11-libs/gtk+-2.24.3:2
 	>=x11-libs/pango-1.20.1
 	x11-libs/libXpm
 	>=media-libs/freetype-2.1.7
