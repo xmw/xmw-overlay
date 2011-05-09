@@ -6,8 +6,6 @@
 <email>maintainer-wanted@gentoo.org</email>
 </maintainer>
 <use>
-<flag name="linguas_es_419">esperanto</flag>
-<flag name="linguas_fil">language fil</flag>
 <flag name="plugins-symlink">symlink plugins</flag>
 </use>
 </pkgmetadata>
