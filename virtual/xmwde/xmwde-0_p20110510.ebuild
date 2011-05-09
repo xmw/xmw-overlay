@@ -22,6 +22,7 @@ RDEPEND="
 	app-text/llpp
 	app-text/mupdf
 	app-text/paps
+	gnome-base/gnome-keyring
 	gnome-extra/gnome-utils
 	media-fonts/dina
 	media-fonts/terminus-font
