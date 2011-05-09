@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 May 2011; Michael Weber <xmw@gentoo.org> xmwde-0_p20110510.ebuild:
+  Added x11 tools
+
 *xmwde-0_p20110510 (09 May 2011)
 
   09 May 2011; Michael Weber <xmw@gentoo.org> -xmwde-0_p20110502.ebuild,

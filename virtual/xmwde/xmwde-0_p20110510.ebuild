@@ -40,5 +40,8 @@ RDEPEND="
 	x11-terms/gnome-terminal
 	x11-terms/rxvt-unicode
 	x11-wm/cwm
+	x11-apps/xset
+	x11-apps/xkill
+	x11-apps/xev
 	"
 
