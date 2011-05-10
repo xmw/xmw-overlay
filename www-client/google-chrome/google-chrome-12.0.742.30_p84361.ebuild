@@ -11,8 +11,8 @@ inherit eutils toolchain-funcs versionator
 
 DESCRIPTION="A browser that combines a minimal design with sophisticated technology (binary only)"
 HOMEPAGE="http://www.google.com/chrome"
-CHAN="stable"
-MY_P="${PN}-${CHAN}_${PVR}"
+CHAN="unstable"
+MY_P="${PN}-${CHAN}_${PV/_p/-r}"
 SRC_BASE="http://dl.google.com/linux/chrome/deb/pool/main/${PN:0:1}/${PN}-${CHAN}/"
 SRC_URI="amd64? ( ${SRC_BASE}${MY_P}_amd64.deb )
 	x86? ( ${SRC_BASE}${MY_P}_i386.deb )"
