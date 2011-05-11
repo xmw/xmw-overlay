@@ -43,5 +43,6 @@ RDEPEND="
 	x11-apps/xset
 	x11-apps/xkill
 	x11-apps/xev
+	x11-misc/alock
 	"
 
