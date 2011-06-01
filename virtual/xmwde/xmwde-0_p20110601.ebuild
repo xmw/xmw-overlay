@@ -5,10 +5,8 @@
 EAPI=3
 
 DESCRIPTION="xmws desktop environment"
-HOMEPAGE="http://xmw.de"
 SRC_URI=""
 
-LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
@@ -44,5 +42,5 @@ RDEPEND="
 	x11-apps/xkill
 	x11-apps/xev
 	x11-misc/alock
+	x11-misc/wmname
 	"
-
