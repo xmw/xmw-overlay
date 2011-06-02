@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*google-chrome-13.0.782.1_p87465 (02 Jun 2011)
+
+  02 Jun 2011; Michael Weber <xmw@gentoo.org>
+  -google-chrome-13.0.772.0_p86192.ebuild,
+  +google-chrome-13.0.782.1_p87465.ebuild:
+  Automated version bump
+
 *google-chrome-13.0.772.0_p86192 (27 May 2011)
 
   27 May 2011; Michael Weber <xmw@gentoo.org>
