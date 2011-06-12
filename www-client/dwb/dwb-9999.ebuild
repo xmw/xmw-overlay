@@ -13,7 +13,7 @@ EHG_REPO_URI="https://bitbucket.org/portix/dwb"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE=""
 
 RDEPEND="net-libs/webkit-gtk:2
