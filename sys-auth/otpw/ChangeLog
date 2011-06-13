@@ -1,0 +1,10 @@
+# ChangeLog for sys-auth/otpw
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*otpw-1.3 (13 Jun 2011)
+
+  13 Jun 2011; Michael Weber <xmw@gentoo.org> +otpw-1.3.ebuild,
+  +files/otpw-1.3-buildsystem.patch, +metadata.xml:
+  Initial import
+

@@ -1,0 +1,35 @@
+--- otpw/Makefile
++++ otpw/Makefile
+@@ -8,17 +8,19 @@
+ 
+ VERSION=1.3
+ 
+-CC=gcc
+-CFLAGS=-O -ggdb -W -Wall
++CC?=gcc
++CFLAGS?=-O -ggdb -W -Wall
++LD?=ld
++LDFLAGS?=
+ 
+ TARGETS=otpw-gen demologin pam_otpw.so
+ 
+ all: $(TARGETS)
+ 
+ otpw-gen: otpw-gen.o rmd160.o md.o
+-	$(CC) -o $@ $+
++	$(CC) $(LDFLAGS) -o $@ $+
+ demologin: demologin.o otpw.o rmd160.o md.o
+-	$(CC) -o $@ $+ -lcrypt
++	$(CC) $(LDFLAGS) -o $@ $+ -lcrypt
+ 
+ otpw-gen.o: otpw-gen.c md.h conf.h
+ otpw.o: otpw.c otpw.h md.h conf.h
+@@ -27,7 +29,7 @@
+ otpw-l.o: otpw-l.c otpw.c otpw.h md.h conf.h
+ pam_otpw.o: pam_otpw.c otpw.h md.h conf.h
+ pam_otpw.so: pam_otpw.o otpw-l.o rmd160.o md.o
+-	ld --shared -o $@ $+ -lcrypt -lpam -lpam_misc
++	$(LD) $(LDFLAGS) --shared -o $@ $+ -lcrypt -lpam -lpam_misc
+ 
+ ship: all clean
+ 	ci -sRel -l RCS/*
