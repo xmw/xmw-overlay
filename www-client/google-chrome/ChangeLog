@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*google-chrome-12.0.742.112_p90304 (29 Jun 2011)
+
+  29 Jun 2011; Michael Weber <xmw@gentoo.org>
+  -google-chrome-12.0.742.100_p88853.ebuild,
+  +google-chrome-12.0.742.112_p90304.ebuild:
+  Automated version bump
+
 *google-chrome-14.0.803.0_p90483 (28 Jun 2011)
 
   28 Jun 2011; Michael Weber <xmw@gentoo.org>
