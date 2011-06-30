@@ -1,0 +1,24 @@
+# ChangeLog for games-simulation/flightgear-aircrafts
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*flightgear-aircrafts-20100516 (30 Jun 2011)
+
+  30 Jun 2011; Michael Weber <xmw@gentoo.org>
+  +flightgear-aircrafts-20100516.ebuild, +metadata.xml:
+  Moved to new overlay
+
+  17 May 2010; Michael Weber (xmw) <gentoo@xmw.de>
+  -flightgear-aircrafts-20090524.ebuild,
+  +flightgear-aircrafts-20100516.ebuild, -metadata.xml:
+  updated list of aircrafts
+
+*games-simulation/flightgear-aircrafts-20090524 (21 06 2009)
+  21 06 2009 ; Michael Weber <gentoo@xmw.de> -files/README, flightgear-aircrafts-20090524.ebuild:
+  shorter and cleaner ebuild.
+
+  02 06 2009 ; Michael Weber <gentoo@xmw.de> all files:
+  Initial import.  Ebuild submitted by Michael Weber <gentoo@xmw.de>.
+  this version includes all aircrafts from 
+  http://www.flightgear.org/Downloads/aircraft/
+  except that ones bundled with flightgear 1.9.1.
