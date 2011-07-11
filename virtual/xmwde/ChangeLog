@@ -2,6 +2,11 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*xmwde-0_p20110711 (11 Jul 2011)
+
+  11 Jul 2011; Michael Weber <xmw@gentoo.org> +xmwde-0_p20110711.ebuild:
+  Added app-misc/hddled
+
 *xmwde-0_p20110601 (01 Jun 2011)
 
   01 Jun 2011; Michael Weber <xmw@gentoo.org> -xmwde-0_p20110511.ebuild,
