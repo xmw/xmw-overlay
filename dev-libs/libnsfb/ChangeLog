@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*libnsfb-0_p12597 (11 Jul 2011)
+
+  11 Jul 2011; Michael Weber <xmw@gentoo.org> libnsfb-0_p12271.ebuild,
+  +libnsfb-0_p12597.ebuild:
+  version bump, added <x11-libs/xcb-util-0.3.8 dependency
+
   03 May 2011; Michael Weber <xmw@gentoo.org> libnsfb-0_p12271.ebuild:
   explicit USE=static-libs
 
