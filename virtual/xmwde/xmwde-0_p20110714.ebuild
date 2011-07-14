@@ -4,7 +4,7 @@
 
 EAPI=3
 
-DESCRIPTION="xmws desktop environment"
+DESCRIPTION="Michael Weber (xmw) desktop environment"
 SRC_URI=""
 
 SLOT="0"
@@ -15,6 +15,7 @@ RDEPEND="
 	app-admin/conky
 	app-admin/conkyforecast
 	app-editors/gvim
+	app-misc/hddled[X]
 	app-shells/zsh
 	app-text/evince
 	app-text/llpp
@@ -34,6 +35,7 @@ RDEPEND="
 	x11-misc/trayer
 	x11-misc/x2x
 	x11-misc/xbindkeys
+	x11-misc/xclip
 	x11-misc/xscreensaver
 	x11-terms/gnome-terminal
 	x11-terms/rxvt-unicode
@@ -43,4 +45,5 @@ RDEPEND="
 	x11-apps/xev
 	x11-misc/alock
 	x11-misc/wmname
+	x11-misc/xdotool
 	"
