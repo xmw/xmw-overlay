@@ -1,0 +1,9 @@
+# ChangeLog for net-p2p/ncdc
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*ncdc-9999 (16 Jul 2011)
+
+  16 Jul 2011; Michael Weber <xmw@gentoo.org> +ncdc-9999.ebuild, +metadata.xml:
+  Initial import
+
