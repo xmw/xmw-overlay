@@ -12,11 +12,18 @@ SRC_URI="http://www.hwaci.com/sw/mkhdr/makeheaders.c"
 
 LICENSE="BSD-2"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND=""
 RDEPEND=""
+
+src_unpack() {
+	local my_a
+	for my_a in ${A} ; do
+		cp -v "${DISTDIR}"/"${my_a}" . || die
+	done
+}
 
 src_compile() {
 	$(tc-getCC) ${CFLAGS} -o ${PN} ${PN}.c ${LDFLAGS} || die
