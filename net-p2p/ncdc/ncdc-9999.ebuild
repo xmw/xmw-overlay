@@ -17,11 +17,14 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-RDEPEND=""
+RDEPEND="app-arch/bzip2
+	dev-libs/glib
+	dev-libs/libxml2
+	sys-libs/gdbm
+	sys-libs/ncurses"
 DEPEND="${RDEPEND}
-	dev-ruby/pkg-config
-	sys-devel/makeheaders
-"
+	dev-util/pkgconfig
+	sys-devel/makeheaders"
 
 src_prepare() {
 	eautoreconf
