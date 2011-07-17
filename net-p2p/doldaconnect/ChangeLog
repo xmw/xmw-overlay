@@ -1,0 +1,10 @@
+# ChangeLog for net-p2p/doldaconnect
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*doldaconnect-1.3 (17 Jul 2011)
+
+  17 Jul 2011; Michael Weber <xmw@gentoo.org> +doldaconnect-1.3.ebuild,
+  +metadata.xml:
+  Initial import, thanks to Daniel Lin for the work on bug 135274
+
