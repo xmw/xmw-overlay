@@ -16,8 +16,8 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-RDEPEND="net-libs/webkit-gtk:2
-	x11-libs/gtk+:2"
+RDEPEND="net-libs/webkit-gtk:3
+	x11-libs/gtk+:3"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
@@ -27,6 +27,10 @@ src_prepare() {
 		-i src/Makefile
 	sed -e '1iFLAGS=$(CFLAGS)' \
 		-e '/^FLAGS += -Wall/d' \
+		-e '/^LIBS  += gtk+-2.0$/d' \
+		-e '/^LIBS  += webkit-1.0$/d' \
+		-e '/^#LIBS  += gtk+-3.0$/s:#::' \
+		-e '/^#LIBS  += webkitgtk-3.0$/s:#::' \
 		-i config.mk
 }
 
