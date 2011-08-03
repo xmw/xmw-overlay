@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  03 Aug 2011; Michael Weber <xmw@gentoo.org> ncdc-9999.ebuild:
+  dep update
+
   16 Jul 2011; Michael Weber <xmw@gentoo.org> ncdc-9999.ebuild:
   fixed deps
 

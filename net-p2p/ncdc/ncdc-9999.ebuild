@@ -24,7 +24,7 @@ RDEPEND="app-arch/bzip2
 	sys-libs/ncurses"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
-	sys-devel/makeheaders"
+	dev-util/makeheaders"
 
 src_prepare() {
 	eautoreconf
