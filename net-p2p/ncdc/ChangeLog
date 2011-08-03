@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*ncdc-0.5 (03 Aug 2011)
+
+  03 Aug 2011; Michael Weber <xmw@gentoo.org> +ncdc-0.5.ebuild,
+  ncdc-9999.ebuild:
+  Added regular upstream tarball and install ChangeLog
+
   03 Aug 2011; Michael Weber <xmw@gentoo.org> ncdc-9999.ebuild:
   dep update
 

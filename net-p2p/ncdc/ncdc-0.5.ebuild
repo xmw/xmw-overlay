@@ -4,17 +4,15 @@
 
 EAPI=3
 
-EGIT_REPO_URI="git://g.blicky.net/ncdc.git"
-
-inherit autotools git-2
+inherit autotools
 
 DESCRIPTION="ncurses directconnect client"
 HOMEPAGE="http://dev.yorhel.nl/ncdc"
-SRC_URI=""
+SRC_URI="http://dev.yorhel.nl/download/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="app-arch/bzip2
