@@ -8,7 +8,8 @@ inherit toolchain-funcs
 
 DESCRIPTION="simple utility that will automatically generate header files"
 HOMEPAGE="http://www.hwaci.com/sw/mkhdr/"
-SRC_URI="http://www.hwaci.com/sw/mkhdr/makeheaders.c"
+SRC_URI="http://www.hwaci.com/sw/mkhdr/makeheaders.c -> ${P}.c
+	http://www.hwaci.com/sw/mkhdr/makeheaders.html -> ${P}.html"
 
 LICENSE="BSD-2"
 SLOT="0"
@@ -26,9 +27,10 @@ src_unpack() {
 }
 
 src_compile() {
-	$(tc-getCC) ${CFLAGS} -o ${PN} ${PN}.c ${LDFLAGS} || die
+	$(tc-getCC) ${CFLAGS} -o ${PN} ${P}.c ${LDFLAGS} || die
 }
 
 src_install() {
 	dobin ${PN} || die
+	dohtml ${P}.html || die
 }
