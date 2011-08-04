@@ -4,8 +4,6 @@
 
 EAPI=3
 
-inherit autotools
-
 DESCRIPTION="ncurses directconnect client"
 HOMEPAGE="http://dev.yorhel.nl/ncdc"
 SRC_URI="http://dev.yorhel.nl/download/${P}.tar.gz"
@@ -21,12 +19,7 @@ RDEPEND="app-arch/bzip2
 	sys-libs/gdbm
 	sys-libs/ncurses"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
-	dev-util/makeheaders"
-
-src_prepare() {
-	eautoreconf
-}
+	dev-util/pkgconfig"
 
 src_install() {
 	emake DESTDIR="${D}" install || die
