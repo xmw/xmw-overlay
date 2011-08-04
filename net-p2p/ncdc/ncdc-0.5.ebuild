@@ -10,7 +10,7 @@ SRC_URI="http://dev.yorhel.nl/download/${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="~amd64 ~ppc ~sparc ~x86"
 IUSE=""
 
 RDEPEND="app-arch/bzip2

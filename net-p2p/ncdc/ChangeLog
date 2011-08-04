@@ -3,6 +3,9 @@
 # $Header: $
 
   04 Aug 2011; Michael Weber <xmw@gentoo.org> ncdc-0.5.ebuild:
+  Adding ~ppc ~sparc keywords
+
+  04 Aug 2011; Michael Weber <xmw@gentoo.org> ncdc-0.5.ebuild:
   remove eautoreconf from release ebuild
 
 *ncdc-0.5 (03 Aug 2011)
