@@ -2,6 +2,9 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  07 Aug 2011; Michael Weber <xmw@gentoo.org> rssdler-0.4.2.ebuild:
+  Add install tips and doc files
+
 *rssdler-0.4.2 (07 Aug 2011)
 
   07 Aug 2011; Michael Weber <xmw@gentoo.org> +rssdler-0.4.2.ebuild,

@@ -22,3 +22,12 @@ RDEPEND="dev-python/feedparser"
 DEPEND="${RDEPEND}"
 
 S=${WORKDIR}/${PN}${PV//./}
+
+src_install() {
+	distutils_src_install
+	elog "Place the output of \"rssdler --comment-config\""
+	elog "as ~/.rssdler/config.txt for a first setup."
+
+	dodoc README userFunctions.py || die
+	elog "Take a look at /usr/share/doc/${PF}/{README,userFunctions.py}"
+}
