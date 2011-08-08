@@ -12,7 +12,7 @@ DESCRIPTION="parallel, indexing version of XZ"
 HOMEPAGE="https://github.com/vasi/pixz"
 SRC_URI=""
 
-LICENSE="as-is"
+LICENSE="BSD-2"
 SLOT="0"
 KEYWORDS=""
 IUSE=""
