@@ -6,7 +6,7 @@ EAPI=3
 
 EGIT_REPO_URI="https://github.com/sargon/trayer-srg.git"
 
-inherit git-2 toolchain-funcs
+inherit eutils git-2 toolchain-funcs
 
 DESCRIPTION="trayer fork with multi monitor support, cleaned up codebase and other fancy stuff"
 HOMEPAGE="https://github.com/sargon/trayer-srg"
@@ -25,15 +25,11 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 src_prepare() {
-	sed -e 's:$(LIBS) $(OBJ) -o $@:$(OBJ) -o $@ $(LIBS):' \
-		-i Makefile || die
+	epatch "${FILESDIR}"/${PN}-1.1.2-{as-needed,cflags,panel_height}.patch
 }
 
 src_compile() {
-	emake \
-		DEVEL=1 TARGET=${PN} \
-		CC="$(tc-getCC)" CFLAGS="${CFLAGS}" \
-		|| die
+	emake DEVEL=1 TARGET=${PN} CC="$(tc-getCC)" || die
 }
 
 src_install() {

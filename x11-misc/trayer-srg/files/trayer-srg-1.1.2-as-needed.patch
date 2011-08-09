@@ -1,0 +1,13 @@
+https://github.com/sargon/trayer-srg/issues/4
+
+--- trayer-srg-1.1.2/Makefile
++++ trayer-srg-1.1.2/Makefile
+@@ -19,7 +19,7 @@
+ 
+ TARGET = trayer
+ $(TARGET): $(OBJ) 
+-	$(CC) $(LDFLAGS) $(LIBS) $(OBJ) -o $@
++	$(CC) $(LDFLAGS) $(OBJ) -o $@ $(LIBS)
+ ifeq (,$(DEVEL))
+ 	strip $@
+ endif
