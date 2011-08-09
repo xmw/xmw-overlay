@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*ncdc-0.6 (09 Aug 2011)
+
+  09 Aug 2011; Michael Weber <xmw@gentoo.org> -ncdc-0.5.ebuild,
+  +ncdc-0.6.ebuild, ncdc-9999.ebuild:
+  Version bump, inherit base for src_install + DOCS
+
   04 Aug 2011; Michael Weber <xmw@gentoo.org> ncdc-0.5.ebuild:
   Adding ~ppc ~sparc keywords
 

@@ -6,7 +6,7 @@ EAPI=3
 
 EGIT_REPO_URI="git://g.blicky.net/ncdc.git"
 
-inherit autotools git-2
+inherit autotools base git-2
 
 DESCRIPTION="ncurses directconnect client"
 HOMEPAGE="http://dev.yorhel.nl/ncdc"
@@ -26,11 +26,8 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	dev-util/makeheaders"
 
+DOCS=( ChangeLog README )
+
 src_prepare() {
 	eautoreconf
-}
-
-src_install() {
-	emake DESTDIR="${D}" install || die
-	dodoc ChangeLog README || die
 }

@@ -4,6 +4,8 @@
 
 EAPI=3
 
+inherit base
+
 DESCRIPTION="ncurses directconnect client"
 HOMEPAGE="http://dev.yorhel.nl/ncdc"
 SRC_URI="http://dev.yorhel.nl/download/${P}.tar.gz"
@@ -21,7 +23,4 @@ RDEPEND="app-arch/bzip2
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
-src_install() {
-	emake DESTDIR="${D}" install || die
-	dodoc ChangeLog README || die
-}
+DOCS=( ChangeLog README )
