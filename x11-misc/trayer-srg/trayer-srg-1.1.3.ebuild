@@ -8,7 +8,7 @@ inherit eutils toolchain-funcs
 
 DESCRIPTION="trayer fork with multi monitor support, cleaned up codebase and other fancy stuff"
 HOMEPAGE="https://github.com/sargon/trayer-srg"
-SRC_URI="https://github.com/sargon/trayer-srg/tarball/trayer-1.1.2 -> ${P}.tar.gz"
+SRC_URI="https://github.com/sargon/${PN}/tarball/${P/-srg/} -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
@@ -25,10 +25,6 @@ DEPEND="${RDEPEND}
 src_unpack() {
 	unpack ${A}
 	mv *-${PN}-* ${P} || die
-}
-
-src_prepare() {
-	epatch "${FILESDIR}"/${P}-{as-needed,cflags,panel_height}.patch
 }
 
 src_compile() {

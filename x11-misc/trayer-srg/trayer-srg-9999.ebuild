@@ -4,7 +4,7 @@
 
 EAPI=3
 
-EGIT_REPO_URI="https://github.com/sargon/trayer-srg.git"
+EGIT_REPO_URI="https://github.com/sargon/${PN}.git"
 
 inherit eutils git-2 toolchain-funcs
 
@@ -23,10 +23,6 @@ RDEPEND="x11-libs/gdk-pixbuf:2
 	x11-libs/libXmu"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
-
-src_prepare() {
-	epatch "${FILESDIR}"/${PN}-1.1.2-{as-needed,cflags,panel_height}.patch
-}
 
 src_compile() {
 	emake DEVEL=1 TARGET=${PN} CC="$(tc-getCC)" || die
