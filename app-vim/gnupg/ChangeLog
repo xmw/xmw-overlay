@@ -1,9 +1,0 @@
-# ChangeLog for app-vim/gnupg
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-*gnupg-2.0 (29 Jul 2011)
-
-  29 Jul 2011; Michael Weber <xmw@gentoo.org> +gnupg-2.0.ebuild, +metadata.xml:
-  Initial import, thanks to Hendrik for the ebuild.
-
