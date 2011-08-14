@@ -2,6 +2,13 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*google-chrome-15.0.849.0_p96325 (14 Aug 2011)
+
+  14 Aug 2011; Michael Weber <xmw@gentoo.org>
+  -google-chrome-14.0.835.35_p96116.ebuild,
+  +google-chrome-15.0.849.0_p96325.ebuild:
+  Automated version bump
+
 *google-chrome-14.0.835.35_p96116 (11 Aug 2011)
 
   11 Aug 2011; Michael Weber <xmw@gentoo.org>
