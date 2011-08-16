@@ -32,7 +32,7 @@ RDEPEND="
 	x11-apps/xrandr
 	x11-base/xorg-server
 	x11-misc/dmenu
-	x11-misc/trayer
+	|| ( x11-misc/trayer-srg x11-misc/trayer-srg )
 	x11-misc/x2x
 	x11-misc/xbindkeys
 	x11-misc/xclip
