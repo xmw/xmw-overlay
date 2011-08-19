@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*xmwde-0_p20110819 (19 Aug 2011)
+
+  19 Aug 2011; Michael Weber <xmw@gentoo.org> -xmwde-0_p20110816.ebuild,
+  +xmwde-0_p20110819.ebuild:
+  removed gnome-terminal
+
 *xmwde-0_p20110816 (16 Aug 2011)
 
   16 Aug 2011; Michael Weber <xmw@gentoo.org> -xmwde-0_p20110714.ebuild,

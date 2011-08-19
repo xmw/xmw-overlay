@@ -37,7 +37,6 @@ RDEPEND="
 	x11-misc/xbindkeys
 	x11-misc/xclip
 	x11-misc/xscreensaver
-	x11-terms/gnome-terminal
 	x11-terms/rxvt-unicode
 	x11-wm/cwm
 	x11-apps/xset
