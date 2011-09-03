@@ -18,10 +18,10 @@ KEYWORDS=""
 IUSE=""
 
 RDEPEND="app-arch/bzip2
-	dev-libs/glib
-	dev-libs/libxml2
+	dev-libs/glib:2
+	dev-libs/libxml2:2
 	sys-libs/gdbm
-	sys-libs/ncurses"
+	sys-libs/ncurses:5"
 DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	dev-util/makeheaders"
