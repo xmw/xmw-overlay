@@ -1,0 +1,60 @@
+#!/bin/zsh
+# trivdm by Christian Neukirchen, Michael Weber root@fs.lmu.de
+# wget http://xmw.de/tmp/trivdm -O /usr/local/bin/trivdm
+# c7:2345:respawn:/usr/bin/openvt -c 7 -f -w /usr/local/bin/trivdm
+# symlinks to /usr/local/bin/{gdmflexiserver,w} and /etc/local.d/trivdm.start
+# groupadd --system trivdm ; useradd --system -g trivdm -G wheel trivdm 
+# chmod u+s /usr/bin/chvt
+
+NAME=$(basename $0) ; USER=trivdm ; LANG=C
+log() { echo "$@" | logger -s -t $NAME }
+trap 'read -s -k -t 10 "?Press any key to continue ..." ; exit -1 ' ZERR
+w() { ps haxo ruser,tty,comm | grep -v $USER | egrep -v "agetty|login$" | \
+    awk '{ if ( $3 == "X" || $2 != "?" ) print $1" "$2 }' | sort -u | \
+    awk '{ ORS="" ; if ( u != $1 ) { u=$1 ; print "\n"u"\t" } ; print $2"," }' \
+    | sed -e '1d ; s:,$:: ; $a\' }
+
+case $NAME in
+    gdmflexiserver)
+	[ "$1" = "-ls" ] && exec chvt 7 || exec /usr/bin/gdmflexiserver $@ ;;
+    trivdm.start)
+	chvt 7 ; exec setfont sun12x22 ;;
+    w)
+	w ; exec /usr/bin/w $@ ;;
+    *)
+	[ "$1" = "update" ] && exec wget http://xmw.de/tmp/$NAME -O $0
+	[ "$(id -un)" = "$USER" ] || exec su -c $0 $USER ;;
+esac
+
+clear
+toilet --gay -f mono9 $(hostname -f | sed 's:^[^\.]*\.::')
+print -n "Usage:  <username>[/<session type>]
+	<session type> in ~/.xinitrc (default), Gnome (fallback),\n\t"
+find /etc/X11/Sessions -type f ! -name Gnome | \
+    awk -F / 'BEGIN { ORS=", " } { print $5 }' | sed 's:, $:\n\n:'
+print "connected users:\n$({ w | grep '' || print '<none>'} | sed 's:^:\t:')\n"
+read "login?$(hostname)/tty7 x11 login: "
+
+case $login in
+    "") 
+	exit ;;
+    */*) 
+	xclient=$(find /etc/X11/Sessions -iname "*${login#*/}*" -type f | \
+	    sort | head -n 1)
+	[ -n "$xclient" ] || { log invalid session ; [ ] }
+	login=${login%/*} ;;
+    *) xclient="~/.xinitrc" ;;
+esac
+
+id "$login" 2>&1 >/dev/null | sed "s|^id:|$NAME:|"
+id "$login" 2>/dev/null >/dev/null 
+
+tty=$(ps h -eo ruser,tty,comm | grep "^$login " | awk '$3=="X" {print $2}')
+[ "$tty" ] && { log switching to console $tty ; chvt "${tty#tty}" ; [ ] }
+
+dpy=0 ; while [ -e /tmp/.X11-unix/X$dpy ] ; do (( dpy += 1 )) done
+su -l -c "export xclient=$xclient ; 
+    [ -x \"\$xclient\" ] || xclient=/etc/X11/Sessions/Gnome ; 
+    /usr/sbin/daemonize -a -e ~/.xorg-stderr -o ~/.xorg-stdout -c ~ \
+        /usr/bin/startx \$xclient -- :$dpy -retro" $login 
+[ ]
