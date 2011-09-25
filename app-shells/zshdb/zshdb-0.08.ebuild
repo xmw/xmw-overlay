@@ -4,20 +4,21 @@
 
 EAPI=3
 
-EGIT_REPO_URI="https://github.com/rocky/${PN}.git"
-inherit autotools git-2
+inherit autotools
 
 DESCRIPTION="Debugger for zsh"
 HOMEPAGE="https://github.com/rocky/zshdb"
-SRC_URI=""
+SRC_URI="https://github.com/rocky/zshdb/tarball/release-0.08 -> ${P}.tar.gz"
 
 LICENSE="as-is"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
 IUSE=""
 
 RDEPEND="app-shells/zsh"
 DEPEND="${RDEPEND}"
+
+S=${WORKDIR}/rocky-zshdb-47f9ada
 
 src_prepare() {
 	sed -e '/test-run.sh/s:\\::' \
