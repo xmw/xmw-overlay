@@ -2,6 +2,12 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*trivdm-0_p20110927 (27 Sep 2011)
+
+  27 Sep 2011; Michael Weber <xmw@gentoo.org> +files/trivdm-0_p20110927,
+  +trivdm-0_p20110927.ebuild:
+  Version bump, added CONFIG_PROTECT
+
 *trivdm-0_p20110921 (23 Sep 2011)
 
   23 Sep 2011; Michael Weber <xmw@gentoo.org> +files/trivdm-0_p20110921,
