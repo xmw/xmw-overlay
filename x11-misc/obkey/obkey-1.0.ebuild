@@ -23,7 +23,7 @@ RDEPEND="${DEPEND}
 	dev-python/pygtk"
 
 src_install() {
-	distutils-src_install
+	distutils_src_install
 	insinto /usr/share/applications
-	doins ${PN}.desktop || die
+	doins misc/${PN}.desktop || die
 }
