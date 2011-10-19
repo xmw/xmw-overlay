@@ -1,0 +1,11 @@
+--- Makefile.orig	2011-10-19 22:58:41.692800717 +0200
++++ Makefile	2011-10-19 23:04:57.708099876 +0200
+@@ -56,7 +56,7 @@
+ 	$(INSTALL_DATA) etc/Xresources $(DESTDIR)$(sysconfdir)/xlsh
+ 
+ installdirs:
+-	$(INSTALL_DIR) $(DESTDIR)$(sbindir) $(DESTDIR)$(sysconfdir)/xlsh
++	$(INSTALL_DIR) $(DESTDIR)$(sbindir) $(DESTDIR)$(sysconfdir)/xlsh $(DESTDIR)$(sysconfdir)/pam.d
+ 
+ uninstall:
+ 	rm -f ${DESTDIR}$(sbindir)/xlsh

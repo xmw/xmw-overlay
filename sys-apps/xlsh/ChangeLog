@@ -1,0 +1,10 @@
+# ChangeLog for sys-apps/xlsh
+# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*xlsh-9999 (19 Oct 2011)
+
+  19 Oct 2011; Michael Weber <xmw@gentoo.org> +xlsh-9999.ebuild,
+  +files/xlsh-Makefile.patch, +metadata.xml:
+  Initial import
+
