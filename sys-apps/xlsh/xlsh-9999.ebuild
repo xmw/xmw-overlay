@@ -5,7 +5,7 @@
 EAPI=3
 
 EGIT_REPO_URI="https://github.com/Nadrin/xlsh.git"
-inherit eutils git-2 pam toolchain-funcs
+inherit git-2 pam toolchain-funcs
 
 DESCRIPTION="eXtended Login Shell"
 HOMEPAGE="https://github.com/Nadrin/xlsh"
@@ -19,10 +19,6 @@ IUSE=""
 RDEPEND="sys-libs/pam
 	sys-libs/readline"
 DEPEND="${RDEPEND}"
-
-src_prepare() {
-	epatch "${FILESDIR}"/${PN}-Makefile.patch || die
-}
 
 src_compile() {
 	emake CC="$(tc-getCC)" CFLAGS="${CFLAGS}" || die
