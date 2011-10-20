@@ -12,8 +12,5 @@
 	<flag name='smp'>
 		Enable support for multiprocessors
 	</flag>
-	<flag name='hal'>
-		Enable support for hal
-	</flag>
 </use>
 </pkgmetadata>
