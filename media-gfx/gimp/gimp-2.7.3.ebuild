@@ -28,8 +28,8 @@ RDEPEND=">=dev-libs/glib-2.28.1:2
 	dev-libs/libxslt
 	x11-misc/xdg-utils
 	x11-themes/hicolor-icon-theme
-	>=media-libs/gegl-0.1.2
-	>=media-libs/babl-0.1.2
+	>=media-libs/gegl-0.1.6
+	>=media-libs/babl-0.1.4
 	aalib? ( media-libs/aalib )
 	alsa? ( media-libs/alsa-lib )
 	curl? ( net-misc/curl )
@@ -40,7 +40,7 @@ RDEPEND=">=dev-libs/glib-2.28.1:2
 	exif? ( >=media-libs/libexif-0.6.15 )
 	lcms? ( >=media-libs/lcms-1.16:0 )
 	mng? ( media-libs/libmng )
-	pdf? ( >=app-text/poppler-0.12.3-r3[cairo] )
+	pdf? ( >=app-text/poppler-0.12.4[cairo] )
 	png? ( >=media-libs/libpng-1.2.37 )
 	python?	( >=dev-python/pygtk-2.10.4 )
 	tiff? ( >=media-libs/tiff-3.5.7 )

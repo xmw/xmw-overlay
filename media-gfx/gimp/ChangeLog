@@ -2,6 +2,15 @@
 # Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Oct 2011; Michael Weber <xmw@gentoo.org> gimp-2.7.1.ebuild,
+  gimp-2.7.2.ebuild, +gimp-2.7.3.ebuild:
+  removed hal USE flag and dependency
+
+*gimp-2.7.3 (20 Oct 2011)
+
+  20 Oct 2011; Michael Weber <xmw@gentoo.org> +gimp-2.7.3.ebuild:
+  Version bump
+
   04 May 2011; Michael Weber <xmw@gentoo.org> gimp-2.7.2.ebuild:
   adjusted DEPENDS
 

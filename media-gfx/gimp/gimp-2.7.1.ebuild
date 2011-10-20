@@ -15,7 +15,7 @@ LICENSE="GPL-3"
 SLOT="2"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
 
-IUSE="alsa aalib altivec curl dbus debug doc exif gnome hal jpeg lcms mmx mng pdf png python smp sse svg tiff webkit wmf"
+IUSE="alsa aalib altivec curl dbus debug doc exif gnome jpeg lcms mmx mng pdf png python smp sse svg tiff webkit wmf"
 
 RDEPEND=">=dev-libs/glib-2.24.0
 	>=x11-libs/gtk+-2.20.0
@@ -34,7 +34,6 @@ RDEPEND=">=dev-libs/glib-2.24.0
 	alsa? ( media-libs/alsa-lib )
 	curl? ( net-misc/curl )
 	dbus? ( dev-libs/dbus-glib )
-	hal? ( sys-apps/hal )
 	gnome? ( gnome-base/gvfs )
 	webkit? ( net-libs/webkit-gtk )
 	jpeg? ( >=media-libs/jpeg-6b-r2:0 )
@@ -63,7 +62,6 @@ pkg_setup() {
 		$(use_enable altivec) \
 		$(use_with curl libcurl) \
 		$(use_with dbus) \
-		$(use_with hal) \
 		$(use_with gnome gvfs) \
 		--without-gnomevfs \
 		$(use_with webkit) \
