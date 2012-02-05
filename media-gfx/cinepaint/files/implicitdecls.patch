@@ -1,0 +1,30 @@
+--- cinepaint/app/app_procs.c
++++ cinepaint/app/app_procs.c
+@@ -23,6 +23,7 @@
+ #include "../lib/version.h"
+ #include "../lib/wire/datadir.h"
+ #include "libgimp/gimpintl.h"
++#include "store_frame_manager.h"
+ 
+ #ifdef WIN32
+ 
+--- cinepaint/app/gdisplay.c
++++ cinepaint/app/gdisplay.c
+@@ -48,6 +48,7 @@
+ #include "tools.h"
+ #include "undo.h"
+ #include "base_frame_manager.h"
++#include "store_frame_manager.h"
+ 
+ #include "layer_pvt.h"			/* ick. */
+ 
+--- cinepaint/app/look_profile.c
++++ cinepaint/app/look_profile.c
+@@ -4,6 +4,7 @@
+ #include "../lib/version.h"
+ #include "actionarea.h"
+ #include "base_frame_manager.h"
++#include "store_frame_manager.h"
+ #include "cms.h"
+ #include "drawable.h"
+ #include "floating_sel.h"
