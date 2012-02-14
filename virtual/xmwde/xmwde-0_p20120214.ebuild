@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -16,6 +16,7 @@ RDEPEND="
 	app-admin/conkyforecast
 	app-editors/gvim
 	app-misc/hddled[X]
+	app-misc/pystopwatch
 	app-shells/zsh
 	app-text/evince
 	app-text/llpp
@@ -27,22 +28,23 @@ RDEPEND="
 	media-fonts/terminus-font
 	media-gfx/feh
 	net-misc/hotot
+	virtual/xmwce
 	x11-apps/setxkbmap
+	x11-apps/xev
+	x11-apps/xkill
 	x11-apps/xmodmap
 	x11-apps/xrandr
+	x11-apps/xset
 	x11-base/xorg-server
+	x11-misc/alock
 	x11-misc/dmenu
-	|| ( x11-misc/trayer-srg x11-misc/trayer-srg )
+	x11-misc/trayer-srg
+	x11-misc/wmname
 	x11-misc/x2x
 	x11-misc/xbindkeys
 	x11-misc/xclip
+	x11-misc/xdotool
 	x11-misc/xscreensaver
 	x11-terms/rxvt-unicode
 	x11-wm/cwm
-	x11-apps/xset
-	x11-apps/xkill
-	x11-apps/xev
-	x11-misc/alock
-	x11-misc/wmname
-	x11-misc/xdotool
 	"

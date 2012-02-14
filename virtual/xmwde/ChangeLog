@@ -1,6 +1,12 @@
 # ChangeLog for virtual/xmwde
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*xmwde-0_p20120214 (14 Feb 2012)
+
+  14 Feb 2012; Michael Weber <xmw@gentoo.org> -xmwde-0_p20110819.ebuild,
+  +xmwde-0_p20120214.ebuild:
+  Version bump to include virtual/xmwce
 
 *xmwde-0_p20110819 (19 Aug 2011)
 
