@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  14 Feb 2012; Michael Weber <xmw@gentoo.org> xmwce-0_p20120214.ebuild:
+  Add app-vim/gnupg
+
 *xmwce-0_p20120214 (14 Feb 2012)
 
   14 Feb 2012; Michael Weber <xmw@gentoo.org> +xmwce-0_p20120214.ebuild,

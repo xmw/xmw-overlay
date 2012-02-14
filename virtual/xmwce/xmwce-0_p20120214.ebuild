@@ -24,6 +24,7 @@ RDEPEND="
 	app-shells/zsh
 	app-shells/zsh-completion
 	app-text/wgetpaste
+	app-vim/gnupg
 	dev-util/strace
 	dev-vcs/git
 	media-gfx/exif
