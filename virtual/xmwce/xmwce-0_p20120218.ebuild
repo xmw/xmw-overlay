@@ -17,6 +17,7 @@ RDEPEND="
 	app-arch/zip
 	app-editors/vim
 	app-misc/screen
+	app-misc/when
 	app-portage/eix
 	app-portage/genlop
 	app-portage/layman[git]
