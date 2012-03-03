@@ -1,0 +1,10 @@
+# ChangeLog for media-radio/linpsk
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*linpsk-1.1 (03 Mar 2012)
+
+  03 Mar 2012; Michael Weber <xmw@gentoo.org> +linpsk-1.1.ebuild,
+  +metadata.xml:
+  Initial import.
+
