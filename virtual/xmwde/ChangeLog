@@ -2,6 +2,12 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*xmwde-0_p20120304 (04 Mar 2012)
+
+  04 Mar 2012; Michael Weber <xmw@gentoo.org> -xmwde-0_p20120214.ebuild,
+  +xmwde-0_p20120304.ebuild:
+  Add USE 256-color,xft to x11-terms/rxvt-unicode.
+
 *xmwde-0_p20120214 (14 Feb 2012)
 
   14 Feb 2012; Michael Weber <xmw@gentoo.org> -xmwde-0_p20110819.ebuild,

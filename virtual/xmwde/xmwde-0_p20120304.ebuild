@@ -45,6 +45,6 @@ RDEPEND="
 	x11-misc/xclip
 	x11-misc/xdotool
 	x11-misc/xscreensaver
-	x11-terms/rxvt-unicode
+	x11-terms/rxvt-unicode[256-color,xft]
 	x11-wm/cwm
 	"
