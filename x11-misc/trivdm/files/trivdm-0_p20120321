@@ -27,7 +27,7 @@ case $NAME in
 esac
 
 clear
-toilet --font mono9 --gay $(hostname -f | sed 's:^[^\.]*\.::') | awk \
+toilet --font mono9 --gay $(hostname) | awk \
     '{a[NR%8]=a[NR%8] $0} END {for (i=1;i<=NR;i++) print a[i];print a[0]}' \
     | sed 's/ *$//g;/^$/d'
 print -n "Usage:  <username>[/<session type>]|!halt|!reboot
