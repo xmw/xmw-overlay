@@ -1,0 +1,21 @@
+--- mosh-9999/configure.ac
++++ mosh-9999/configure.ac
+@@ -61,10 +61,18 @@
+ AM_CONDITIONAL([BUILD_EXAMPLES], [test x"$build_examples" != xno])
+ 
+ # Checks for libraries.
++AC_MSG_CHECKING(--enable-utempter argument)
++AC_ARG_ENABLE(utempter,
++  [AS_HELP_STRING([--enable-utempter], [include libutempter supprt])],
++  [enable_utempter=$enableval],
++  [enable_utempter="no"])
++AC_MSG_RESULT($enable_utempter)
++if test "$enable_utempter" = "yes"; then
+ AC_SEARCH_LIBS([utempter_remove_added_record], [utempter],
+   [AC_DEFINE([HAVE_UTEMPTER], [1],
+      [Define if libutempter is available.])],
+   [AC_MSG_WARN([Unable to find libutempter; utmp entries will not be made.])])
++fi
+ AC_SEARCH_LIBS([compress], [z], , [AC_MSG_ERROR([Unable to find zlib.])])
+ AX_BOOST_BASE(, , [AC_MSG_ERROR([Unable to find boost libraries.])])
+ 
