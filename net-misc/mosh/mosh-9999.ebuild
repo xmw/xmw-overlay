@@ -21,6 +21,7 @@ RDEPEND="dev-lang/perl
 	virtual/ssh
 	utempter? ( sys-apps/utempter )"
 DEPEND="${RDEPEND}
+	dev-libs/boost
 	dev-util/pkgconfig"
 
 src_prepare() {
