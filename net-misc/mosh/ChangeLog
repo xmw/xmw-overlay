@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  28 Mar 2012; Michael Weber <xmw@gentoo.org> mosh-9999.ebuild:
+  Fix deps, drop keyword on LiveVCS
+
 *mosh-9999 (28 Mar 2012)
 
   28 Mar 2012; Michael Weber <xmw@gentoo.org> +mosh-9999.ebuild,

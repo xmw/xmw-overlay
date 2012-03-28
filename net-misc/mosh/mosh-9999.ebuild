@@ -12,14 +12,18 @@ HOMEPAGE="http://mosh.mit.edu"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE="+client examples +server +utempter"
 
-RDEPEND="dev-lang/perl
+RDEPEND="
 	dev-libs/protobuf
 	sys-libs/ncurses:5
 	virtual/ssh
-	utempter? ( sys-apps/utempter )"
+	client? (
+		dev-lang/perl
+		dev-perl/IO-Tty
+	)
+	utempter? ( || ( sys-libs/libutempter sys-apps/utempter ) )"
 DEPEND="${RDEPEND}
 	dev-libs/boost
 	dev-util/pkgconfig"
