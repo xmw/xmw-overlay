@@ -5,7 +5,7 @@
 EAPI=4
 EGIT_REPO_URI="https://github.com/keithw/mosh.git"
 
-inherit autotools eutils git-2
+inherit autotools git-2
 
 DESCRIPTION="remote terminal supporting intermittent connectivity, roaming, and speculative local echo"
 HOMEPAGE="http://mosh.mit.edu"
@@ -29,7 +29,6 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-buildsystem.patch
 	eautoreconf
 }
 
@@ -38,7 +37,7 @@ src_configure() {
 		$(use_enable client) \
 		$(use_enable server) \
 		$(use_enable examples) \
-		$(use_enable utempter)
+		$(use_with utempter)
 }
 
 src_install() {
