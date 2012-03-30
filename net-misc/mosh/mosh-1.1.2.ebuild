@@ -3,16 +3,16 @@
 # $Header: $
 
 EAPI=4
-EGIT_REPO_URI="https://github.com/keithw/mosh.git"
 
-inherit autotools git-2 toolchain-funcs
+inherit autotools toolchain-funcs
 
 DESCRIPTION="Mobile shell that supports roaming and intelligent local echo"
 HOMEPAGE="http://mosh.mit.edu"
+SRC_URI="https://github.com/keithw/mosh/tarball/mosh-1.1.2 -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="+client examples +server +utempter"
 REQUIRED_USE="|| ( client server )
 	examples? ( client )"
@@ -26,6 +26,11 @@ RDEPEND="dev-libs/protobuf
 DEPEND="${RDEPEND}
 	dev-libs/boost
 	dev-util/pkgconfig"
+
+src_unpack() {
+	default
+	mv *-${PN}-* ${P} || die
+}
 
 src_prepare() {
 	echo 'char const * PROG = "mosh-client" ;' >> src/frontend/mosh-client.cc
