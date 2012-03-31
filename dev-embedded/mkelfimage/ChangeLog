@@ -1,0 +1,10 @@
+# ChangeLog for dev-embedded/mkelfimage
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*mkelfimage-9999 (31 Mar 2012)
+
+  31 Mar 2012; Michael Weber <xmw@gentoo.org> +mkelfimage-9999.ebuild,
+  +metadata.xml:
+  Initial import
+
