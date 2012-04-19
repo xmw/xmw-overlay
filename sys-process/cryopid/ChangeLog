@@ -1,0 +1,10 @@
+# ChangeLog for sys-process/cryopid
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*cryopid-0.5.9.1 (19 Apr 2012)
+
+  19 Apr 2012; Michael Weber <xmw@gentoo.org> +cryopid-0.5.9.1.ebuild,
+  +files/cryopid-0.5.9.1.patch, +metadata.xml:
+  sys-process/cryopid: Initial import, doesn't work yet.
+
