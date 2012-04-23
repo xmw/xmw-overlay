@@ -4,7 +4,7 @@
 
 EAPI=4
 
-DESCRIPTION="some multiplexing stuff"
+DESCRIPTION="script to let you control all major multimedia applications with one hotkey/remote"
 HOMEPAGE="http://www.remoot.org/"
 SRC_URI="mirror://sourceforge/${PN}/${PN}/${PV}/${P}.tar.bz2"
 
