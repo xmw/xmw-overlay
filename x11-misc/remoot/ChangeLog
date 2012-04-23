@@ -1,0 +1,10 @@
+# ChangeLog for x11-misc/remoot
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*remoot-0.9 (23 Apr 2012)
+
+  23 Apr 2012; Michael Weber <xmw@gentoo.org> +remoot-0.9.ebuild,
+  +metadata.xml:
+  Initial import (bug 412779)
+
