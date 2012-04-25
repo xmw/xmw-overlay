@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  25 Apr 2012; Michael Weber <xmw@gentoo.org> -trivdm-0_p20120321.ebuild:
+  Remove old version
+
 *trivdm-0_p20120423 (23 Apr 2012)
 
   23 Apr 2012; Michael Weber <xmw@gentoo.org> +files/trivdm-0_p20120423,
