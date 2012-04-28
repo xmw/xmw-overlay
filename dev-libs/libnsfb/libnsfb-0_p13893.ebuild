@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -7,7 +7,7 @@ EAPI=3
 inherit flag-o-matic netsurf
 
 DESCRIPTION="framebuffer abstraction library, written in C"
-SRC_URI="http://xmw.de/mirror/${PN}/${P}-src.tar.gz"
+SRC_URI="http://xmw.de/mirror/${PN}/${P}.tar.gz"
 
 KEYWORDS="~amd64 ~x86"
 IUSE="static-libs"
