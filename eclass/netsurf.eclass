@@ -26,8 +26,6 @@ IUSE=""
 RDEPEND=""
 DEPEND=""
 
-S=${WORKDIR}/${P}-src
-
 DOCS=( )
 
 # TODO doc
