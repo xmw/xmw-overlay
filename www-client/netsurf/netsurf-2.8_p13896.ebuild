@@ -1,29 +1,31 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI=4
 
-inherit eutils netsurf
+inherit eutils netsurf toolchain-funcs
 
 DESCRIPTION="a free, open source web browser"
 HOMEPAGE="http://www.netsurf-browser.org"
-SRC_URI="http://www.netsurf-browser.org/downloads/releases/${P}-src.tar.gz"
+SRC_URI="http://xmw.de/mirror/${PN}/${P}.tar.gz"
 
 LICENSE="MIT GPL-2"
 KEYWORDS="~amd64 ~x86"
 IUSE="bmp fbcon gif gtk jpeg mng pdf png rosprite svg svgtiny truetype webp"
+REQUIRED_USE="|| ( fbcon gtk )"
 
-RDEPEND="media-fonts/dejavu
-	dev-libs/libcss
+RDEPEND="dev-libs/libcss
 	dev-libs/libxml2
+	media-fonts/dejavu
 	net-libs/hubbub
+	net-libs/libdom
 	bmp? ( media-libs/libnsbmp )
 	fbcon? ( dev-libs/libnsfb )
 	gif? ( media-libs/libnsgif )
 	gtk? ( x11-libs/gtk+:2 )
 	jpeg? ( virtual/jpeg )
-	pdf? ( media-libs/libharu:2 )
+	pdf? ( media-libs/libharu )
 	png? ( media-libs/libpng )
 	svg? (
 		!svgtiny? ( gnome-base/librsvg:2 )
@@ -34,22 +36,20 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig
 	rosprite? ( media-libs/librosprite )"
 
-S=${WORKDIR}/${PN}
-
-pkg_setup() {
-	if ! use fbcon && ! use gtk ; then
-		die "either enable fbcon or gtk use flags"
-	fi
-}
-
 src_prepare() {
 	netsurf_src_prepare
+	mv Makefile.config.override Makefile.config || die
 	sed -e "/cp nsgtk/s:netsurf:nsgtk.real:" \
 		-e "/cp -v/s:netsurf:nsfb.real:" \
 		-e "s:\@cp:cp:" \
 		-i Makefile || die
 	sed -e "/DEJAVU_PATH/s:truetype/ttf-::" \
 		-i framebuffer/font_freetype.c || die
+	sed -e '/^GTKCFLAGS/,+12s:--cflags openssl:--cflags openssl librsvg-2.0:' \
+		-i gtk/Makefile.target || die
+	sed -e '/CFLAGS/s:--cflags libcurl:--cflags libcurl librsvg-2.0 libwebp:' \
+		-e '/LDFLAGS/s:--libs libcss:--libs libcss librsvg-2.0 libwebp:' \
+		-i framebuffer/Makefile.target || die
 }
 
 src_configure() {
@@ -81,34 +81,34 @@ src_configure() {
 }
 
 src_compile() {
-	use gtk && { emake TARGET=gtk || die ; }
-	use fbcon && { emake TARGET=framebuffer || die ; }
+	use gtk && emake TARGET=gtk
+	use fbcon && emake TARGET=framebuffer
 }
 
 src_install() {
 	if use gtk ; then
-		emake TARGET=gtk PREFIX="${ED}usr" install || die
+		emake TARGET=gtk PREFIX="${ED}usr" install
 
 		echo "#!/bin/sh" > nsgtk || die
 		echo "NETSURFRES=${EPREFIX}/usr/share/netsurf ${EPREFIX}/usr/bin/nsgtk.real \"\$@\"" >> nsgtk || die
-		dobin nsgtk || die
+		dobin nsgtk
 
 		insinto /usr/share/pixmaps
-		doins gtk/res/netsurf.xpm || die
+		doins gtk/res/netsurf.xpm
 		make_desktop_entry /usr/bin/nsgtk NetSurf-gtk netsurf "Network;WebBrowser"
 	fi
 
 	if use fbcon ; then
-		emake TARGET=framebuffer PREFIX="${ED}usr" install || die
+		emake TARGET=framebuffer PREFIX="${ED}usr" install
 
 		echo "#!/bin/sh" > nsfb || die
 		echo "NETSURFRES=${EPREFIX}/usr/share/netsurf ${EPREFIX}/usr/bin/nsfb.real \"\$@\"" >> nsfb || die
-		dobin nsfb || die
+		dobin nsfb
 
 		insinto /usr/share/pixmaps
-		doins gtk/res/netsurf.xpm || die
+		doins gtk/res/netsurf.xpm
 		make_desktop_entry /usr/bin/nsfb NetSurf-fb netsurf "Network;WebBrowser"
 	fi
 
-	dodoc ChangeLog README || die
+	dodoc README
 }
