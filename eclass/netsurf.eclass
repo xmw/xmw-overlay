@@ -40,6 +40,9 @@ netsurf_src_prepare() {
 		sed -e "/^libdir/s:/lib:/$(get_libdir):g" \
 			-i ${NETSURF_PC_FILE} || die
 	fi
+	echo "Q := " >> Makefile.config.override || die
+	echo "CC := $(tc-getCC)" >> Makefile.config.override || die
+	echo "AR := $(tc-getAR)" >> Makefile.config.override || die
 }
 
 netsurf_src_compile() {
