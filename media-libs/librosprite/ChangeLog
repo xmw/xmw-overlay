@@ -1,6 +1,12 @@
 # ChangeLog for media-libs/librosprite
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*librosprite-0_p13896 (29 Apr 2012)
+
+  29 Apr 2012; Michael Weber <xmw@gentoo.org> -librosprite-0_p12271.ebuild,
+  +librosprite-0_p13896.ebuild:
+  Version bump
 
 *librosprite-0_p12271 (03 May 2011)
 
