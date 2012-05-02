@@ -1,0 +1,10 @@
+# ChangeLog for app-misc/ledcontrol
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*ledcontrol-0.5.2 (02 May 2012)
+
+  02 May 2012; Michael Weber <xmw@gentoo.org> +ledcontrol-0.5.2.ebuild,
+  +metadata.xml:
+  Test import
+
