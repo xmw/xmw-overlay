@@ -9,7 +9,7 @@ SRC_URI=""
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="+dev"
 
 RDEPEND="
 	app-admin/makepasswd
@@ -47,5 +47,11 @@ RDEPEND="
 	sys-fs/sshfs-fuse
 	sys-process/htop
 	sys-process/iotop
+	dev? (
+		app-portage/eix
+		app-portage/gentoolkit
+		app-portage/gentoolkit-dev
+		app-portage/pfl
+	)
 	"
 DEPEND=""

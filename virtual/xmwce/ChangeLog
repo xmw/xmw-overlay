@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*xmwce-0_p20120505 (05 May 2012)
+
+  05 May 2012; Michael Weber <xmw@gentoo.org> +xmwce-0_p20120505.ebuild:
+  Version bump
+
 *xmwce-0_p20120218 (18 Feb 2012)
 
   18 Feb 2012; Michael Weber <xmw@gentoo.org> -xmwce-0_p20120214.ebuild,
