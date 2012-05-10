@@ -9,7 +9,7 @@ SRC_URI=""
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="+dev minimal"
 
 RDEPEND="
 	app-admin/makepasswd
@@ -34,6 +34,7 @@ RDEPEND="
 	net-analyzer/tcpdump
 	net-dns/bind-tools
 	net-firewall/iptables
+	net-misc/mosh
 	net-misc/openssh
 	net-misc/whois
 	sys-apps/iproute2
@@ -47,5 +48,14 @@ RDEPEND="
 	sys-fs/sshfs-fuse
 	sys-process/htop
 	sys-process/iotop
+	dev? (
+		app-portage/eix
+		app-portage/gentoolkit
+		app-portage/gentoolkit-dev
+		app-portage/pfl
+	)
+	!minimal? (
+		app-misc/ompload
+	)
 	"
 DEPEND=""
