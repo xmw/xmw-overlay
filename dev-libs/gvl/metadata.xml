@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer>
+<email>xmw@gentoo.org</email>
+<name>Michael Weber</name>
+</maintainer>
+<longdescription lang="en">
+A collection of versatile support libraries for C++, consisting of generic containers, I/O stream framework, random number generators, cryptography, socket abstraction, OS abstraction and a reproducible numerical library. 
+</longdescription>
+</pkgmetadata>
+
