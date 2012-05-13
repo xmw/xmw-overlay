@@ -43,7 +43,7 @@ src_compile() {
 }
 
 src_install() {
-	insinto ${GAMES_DATADIR}/${PN}
+	insinto "${GAMES_DATADIR}"/${PN}
 	doins ../liero-1.35b2-bundle/{LIERO.{CHR,DAT,EXE,SND},NAMES.DAT} || die
 
 	exeinto "$(games_get_libdir)"
@@ -53,7 +53,7 @@ src_install() {
 		"${GAMES_DATADIR}"/${PN}
 
 	dodoc ../liero-1.35b2-bundle/{changes.txt,LIEROENG.TXT} || die
- 	prepgamesdirs
+	prepgamesdirs
 }
 
 pkg_postinst() {

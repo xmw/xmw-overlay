@@ -3,6 +3,9 @@
 # $Header: $
 
   13 May 2012; Michael Weber <xmw@gentoo.org> liero-9999.ebuild:
+  repoman issues
+
+  13 May 2012; Michael Weber <xmw@gentoo.org> liero-9999.ebuild:
   Add needed games data files.
 
 *liero-9999 (12 May 2012)
