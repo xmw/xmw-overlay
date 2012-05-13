@@ -9,8 +9,9 @@ inherit eutils games mercurial
 
 DESCRIPTION="Almost exact clone of Liero"
 HOMEPAGE="http://code.google.com/p/liero/"
+SRC_URI="http://www.liero.be/download/liero-1.35b2-bundle.zip"
 
-LICENSE="BSD"
+LICENSE="BSD freedist WTFPL-2"
 SLOT="0"
 KEYWORDS=""
 IUSE=""
@@ -21,7 +22,14 @@ DEPEND="${RDEPEND}
 	dev-libs/gvl
 	dev-util/ftjam"
 
+RESTRICT="fetch"
+
 S=${WORKDIR}/${PN}
+
+src_unpack() {
+	unpack ${A}
+	mercurial_src_unpack
+}
 
 src_prepare() {
 	sed -e '/^SubInclude TOP gvl/d' \
@@ -35,8 +43,17 @@ src_compile() {
 }
 
 src_install() {
-	newgamesbin _bin/openliero ${PN} || die
-	prepgamesdirs
+	insinto ${GAMES_DATADIR}/${PN}
+	doins ../liero-1.35b2-bundle/{LIERO.{CHR,DAT,EXE,SND},NAMES.DAT} || die
+
+	exeinto "$(games_get_libdir)"
+	newexe _bin/openliero ${PN} || die
+
+	games_make_wrapper ${PN} "$(games_get_libdir)"/${PN} \
+		"${GAMES_DATADIR}"/${PN}
+
+	dodoc ../liero-1.35b2-bundle/{changes.txt,LIEROENG.TXT} || die
+ 	prepgamesdirs
 }
 
 pkg_postinst() {
