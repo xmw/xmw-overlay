@@ -55,9 +55,3 @@ src_install() {
 	dodoc ../liero-1.35b2-bundle/{changes.txt,LIEROENG.TXT} || die
 	prepgamesdirs
 }
-
-pkg_postinst() {
-	elog "${PN} requires the original Liero files in order to run properly."
-	elog "Visit http://www.liero.be/ and download a Liero package. Unpack it"
-	elog "and run ${PN} inside a directory with Liero."
-}
