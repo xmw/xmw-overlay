@@ -1,6 +1,13 @@
 # ChangeLog for media-gfx/qlc
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*qlc-3.2.2 (23 May 2012)
+
+  23 May 2012; Michael Weber <xmw@gentoo.org> -qlc-3.1.0.ebuild,
+  -qlc-3.2.0.ebuild, +qlc-3.2.2.ebuild,
+  +files/qlc-3.2.2-fixtureeditor-Werror.patch, +files/qlc-3.2.2-unistd.patch:
+  Version bump
 
 *qlc-3.2.0 (11 May 2011)
 *qlc-3.1.0 (11 May 2011)

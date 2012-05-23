@@ -1,0 +1,62 @@
+--- qlc-3.2.2/engine/src/qlcfile.cpp
++++ qlc-3.2.2/engine/src/qlcfile.cpp
+@@ -24,6 +24,7 @@
+ 
+ #ifndef WIN32
+ #   include <sys/types.h>
++#   include <unistd.h>
+ #   include <pwd.h>
+ #else
+ #   include <windows.h>
+--- qlc-3.2.2/engine/src/qlcfixturedefcache.cpp
++++ qlc-3.2.2/engine/src/qlcfixturedefcache.cpp
+@@ -26,6 +26,8 @@
+ 
+ #ifdef WIN32
+ #   include <windows.h>
++#else
++#   include <unistd.h>
+ #endif
+ 
+ #include "qlcfixturedefcache.h"
+--- qlc-3.2.2/engine/src/inputmap.cpp
++++ qlc-3.2.2/engine/src/inputmap.cpp
+@@ -30,6 +30,8 @@
+ 
+ #ifdef WIN32
+ #   include <windows.h>
++#else
++#   include <unistd.h>
+ #endif
+ 
+ #include "qlcinputchannel.h"
+--- qlc-3.2.2/engine/src/mastertimer.cpp
++++ qlc-3.2.2/engine/src/mastertimer.cpp
+@@ -25,6 +25,7 @@
+ #   include "mastertimer-win32.h"
+ #else
+ #   include "mastertimer-unix.h"
++#   include <unistd.h>
+ #endif
+ 
+ #include "universearray.h"
+--- qlc-3.2.2/plugins/hidinput/hideventdevice.cpp
++++ qlc-3.2.2/plugins/hidinput/hideventdevice.cpp
+@@ -21,6 +21,7 @@
+ 
+ #include <linux/input.h>
+ #include <errno.h>
++#include <unistd.h>
+ 
+ #include <QApplication>
+ #include <QObject>
+--- qlc-3.2.2/plugins/hidinput/hidjsdevice.cpp
++++ qlc-3.2.2/plugins/hidinput/hidjsdevice.cpp
+@@ -22,6 +22,7 @@
+ #include <linux/joystick.h>
+ #include <linux/input.h>
+ #include <errno.h>
++#include <unistd.h>
+ 
+ #include <QApplication>
+ #include <QObject>

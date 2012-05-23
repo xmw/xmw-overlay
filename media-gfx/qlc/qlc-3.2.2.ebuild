@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI=4
 
-inherit multilib qt4-r2
+inherit eutils multilib qt4-r2
 
 DESCRIPTION="cross-platform application to control DMX or analog lighting systems"
 HOMEPAGE="http://qlc.sourceforge.net/"
@@ -16,7 +16,7 @@ KEYWORDS="~amd64"
 IUSE=""
 
 RDEPEND="dev-embedded/libftdi
-	dev-libs/libusb:0
+	virtual/libusb:0
 	media-libs/alsa-lib
 	sys-libs/glibc:2.2
 	x11-libs/libX11
@@ -25,9 +25,16 @@ RDEPEND="dev-embedded/libftdi
 	x11-libs/qt-gui:4"
 DEPEND="${DEPEND}"
 
-S=${WORKDIR}/${PN}
-
 src_prepare() {
+	epatch "${FILESDIR}/${P}-fixtureeditor-Werror.patch"
+	epatch "${FILESDIR}/${P}-unistd.patch"
+	
+	#fix parallel build
+	sed -e '1iCONFIG += ordered' \
+		-e "1iINSTALL_ROOT = ${D}" \
+		-e "1iINSTALLROOT = ${D}" \
+		-i variables.pri || die
+
 	sed -e "/^Categories/s:Lighting:Education:" \
 		-i etc/qlc{,-fixtureeditor}.desktop	|| die
 
@@ -37,10 +44,15 @@ src_prepare() {
 	# fix multilib and install directory (i. e. ui/src/Makefile)
 	sed -e "/^unix:!macx:LIBSDIR/s:lib:$(get_libdir):" \
 		-i variables.pri || die
-	export INSTALL_ROOT="${D}"
-	export INSTALLROOT="${D}"
 }
 
-src_compile() {
-	qt4-r2_src_compile -j1
+src_install() {
+	sed -e 's:image/ /usr:image/usr:g' \
+		-i ui/src/Makefile \
+		-i fixtureeditor/Makefile \
+		-i plugins/enttecdmxusbout/src/Makefile \
+		-i plugins/peperoniout/unix/Makefile \
+		-i plugins/udmxout/src/Makefile \
+		-i midiout/alsa/Makefile || die
+	qt4-r2_src_install
 }

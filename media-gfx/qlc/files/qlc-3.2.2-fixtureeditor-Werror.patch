@@ -1,0 +1,25 @@
+https://sourceforge.net/apps/trac/qlc/changeset/2445
+
+Index: trunk/fixtureeditor/fixtureeditor.cpp
+===================================================================
+--- a/trunk/fixtureeditor/fixtureeditor.cpp
++++ b/trunk/fixtureeditor/fixtureeditor.cpp
+@@ -742,17 +742,6 @@
+                               QMessageBox::Yes, QMessageBox::No) == QMessageBox::Yes)
+     {
+-        QTreeWidgetItem* item;
+-        QTreeWidgetItem* next;
+-
+-        item = m_modeList->currentItem();
+-        if (m_modeList->itemBelow(item) != NULL)
+-            next = m_modeList->itemBelow(item);
+-        else if (m_modeList->itemAbove(item) != NULL)
+-            next = m_modeList->itemAbove(item);
+-        else
+-            next = NULL;
+-
+         m_fixtureDef->removeMode(mode);
+-        delete item;
++        delete m_modeList->currentItem();
+         setModified();
+     }
