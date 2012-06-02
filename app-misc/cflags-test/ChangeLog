@@ -1,0 +1,9 @@
+# ChangeLog for app-misc/cflags-test
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*cflags-test-0 (02 Jun 2012)
+
+  02 Jun 2012; Michael Weber <xmw@gentoo.org> +cflags-test-0.ebuild:
+  Initial commit
+
