@@ -19,8 +19,8 @@ DEPEND=""
 RDEPEND="${DEPEND}"
 
 pkg_setup() {
-	echo ${CFLAGS}
+	einfo CFLAGS before ${CFLAGS}
 	append-cflags -m32
-	echo ${CFLAGS}
+	einfo CFLAGS after ${CFLAGS}
 }
 
