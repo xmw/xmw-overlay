@@ -8,8 +8,8 @@ inherit mercurial
 
 DESCRIPTION="collection of versatile support libraries for C++"
 HOMEPAGE="http://code.google.com/p/gvl/"
-#EHG_REPO_URI="https://code.google.com/p/gvl/"
-EHG_REPO_URI="https://code.google.com/r/martinerikwerner-gvl/"
+#EHG_REPO_URI="https://code.google.com/p/gvl/" #oiginal
+EHG_REPO_URI="https://code.google.com/r/martinerikwerner-gvl/" #fork for gcc
 
 LICENSE="BSD"
 SLOT="0"
@@ -21,11 +21,6 @@ DEPEND="${RDEPEND}
 	dev-util/ftjam"
 
 S=${WORKDIR}/${PN}
-
-#src_unpack() {
-#	mercurial_src_unpack
-#	rm -r ${PN}/.hg || die
-#}
 
 src_compile() {
 	jam -qa || die

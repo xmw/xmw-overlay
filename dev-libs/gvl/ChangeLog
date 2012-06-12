@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  12 Jun 2012; Michael Weber <xmw@gentoo.org> gvl-9999.ebuild:
+  Ebuild cleanup
+
 *gvl-9999 (12 May 2012)
 
   12 May 2012; Michael Weber <xmw@gentoo.org> +gvl-9999.ebuild, +metadata.xml:
