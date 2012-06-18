@@ -10,7 +10,7 @@ DESCRIPTION="Raspberry PI precompiled kernel and modules"
 HOMEPAGE="https://github.com/raspberrypi/firmware"
 SRC_URI="http://xmw.de/mirror/raspberrypi-firmware/${P}.tar.xz"
 
-LICENSE="GPL-2 rbpi-vc-bin"
+LICENSE="GPL-2 rbpi-videocore-bin"
 SLOT="0"
 KEYWORDS="~arm -*"
 IUSE=""
