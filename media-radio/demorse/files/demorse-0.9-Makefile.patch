@@ -1,0 +1,28 @@
+--- demorse-0.9/Makefile
++++ demorse-0.9/Makefile
+@@ -4,18 +4,21 @@
+ PROJECT = demorse
+ BINDIR  = /usr/local/bin
+ DOCDIR  = /usr/local/share/
+-CC      = gcc -Wall -O2 -march=native
++CC      = gcc 
++CFLAGS  ?= -Wall -O2 -march=native
++LDFLAGS ?=
+ 
+ objects = decode.o demorse.o detect.o sound.o
+ 
+ $(PROJECT) : $(objects)
+-	$(CC) -o $(PROJECT) -lm $(objects)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $(PROJECT) -lm $(objects)
+ 
+ $(objects) : $(PROJECT).h
+ 
+ install : $(PROJECT)
+-	install -m 755 --strip $(PROJECT) $(BINDIR)
+-	install -m 644 doc/$(PROJECT).html $(DOCDIR)
++	install -m 755 -d $(DESTDIR)$(BINDIR) $(DESTDIR)$(DOCDIR)
++	install -m 755 --strip $(PROJECT) $(DESTDIR)$(BINDIR)
++	install -m 644 doc/$(PROJECT).html $(DESTDIR)$(DOCDIR)
+ 
+ uninstall :
+ 	rm $(BINDIR)/$(PROJECT)

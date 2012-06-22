@@ -1,0 +1,6 @@
+*demorse-0.9 (22 Jun 2012)
+
+  22 Jun 2012; Michael Weber <xmw@gentoo.org> +demorse-0.9.ebuild,
+  +files/demorse-0.9-Makefile.patch, +metadata.xml:
+  media-radio/demorse: Initial import
+
