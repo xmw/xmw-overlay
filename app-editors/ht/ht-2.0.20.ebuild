@@ -6,7 +6,7 @@ EAPI=4
 
 DESCRIPTION="file viewer, editor and analyzer for text, binary, and (especially) executable files"
 HOMEPAGE="http://hte.sourceforge.net/"
-SRC_URI="mirror://sourceforge/hte/${PN}-source/${PN}-2.0.20.tar.gz"
+SRC_URI="mirror://sourceforge/hte/${PN}-source/${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
