@@ -1,10 +1,10 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=2
 
-inherit autotools base games
+inherit base games
 
 DESCRIPTION="A general purpose, programmable physical simulator and renderer"
 HOMEPAGE="http://www.nongnu.org/techne"
@@ -21,18 +21,14 @@ RDEPEND="dev-games/ode
 	media-libs/freetype:2
 	media-libs/libpng
 	media-libs/openal
+	net-libs/libmicrohttpd
+	net-libs/webkit-gtk
 	sys-devel/gcc[objc]
-	virtual/opengl"
+	virtual/opengl
+	x11-libs/gtkglext"
 DEPEND="${RDEPEND}"
 
 DOCS=( AUTHORS ChangeLog NEWS README )
-
-src_prepare() {
-	# Fix configure.ac for lua
-	sed -i -e "s/lua5.1/lua/" -e "s/luac\]\]/luac]/" \
-		configure.ac || die
-	eautoreconf
-}
 
 src_install() {
 	base_src_install
