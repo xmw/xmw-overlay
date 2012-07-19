@@ -1,16 +1,14 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2012 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=3
+EAPI=4
 
-EGIT_REPO_URI="https://github.com/sargon/${PN}.git"
-
-inherit eutils git-2 toolchain-funcs
+inherit git-2 toolchain-funcs
 
 DESCRIPTION="trayer fork with multi monitor support, cleaned up codebase and other fancy stuff"
 HOMEPAGE="https://github.com/sargon/trayer-srg"
-SRC_URI=""
+EGIT_REPO_URI="https://github.com/sargon/${PN}.git"
 
 LICENSE="MIT"
 SLOT="0"
@@ -25,10 +23,10 @@ DEPEND="${RDEPEND}
 	dev-util/pkgconfig"
 
 src_compile() {
-	emake DEVEL=1 TARGET=${PN} CC="$(tc-getCC)" || die
+	emake DEVEL=1 TARGET=${PN} CC="$(tc-getCC)"
 }
 
 src_install() {
-	dobin ${PN} || die
-	dodoc CHANGELOG CREDITS README TODO || die
+	dobin ${PN}
+	dodoc CHANGELOG CREDITS README TODO
 }
