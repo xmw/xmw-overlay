@@ -20,7 +20,7 @@ RDEPEND="x11-libs/gdk-pixbuf:2
 	x11-libs/libX11
 	x11-libs/libXmu"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig"
+	virtual/pkgconfig"
 
 src_compile() {
 	emake DEVEL=1 TARGET=${PN} CC="$(tc-getCC)"
