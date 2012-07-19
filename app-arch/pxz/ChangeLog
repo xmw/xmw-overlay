@@ -1,9 +1,0 @@
-# ChangeLog for app-arch/pxz
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-*pxz-9999 (08 Aug 2011)
-
-  08 Aug 2011; Michael Weber <xmw@gentoo.org> +pxz-9999.ebuild, +metadata.xml:
-  Initial import.
-
