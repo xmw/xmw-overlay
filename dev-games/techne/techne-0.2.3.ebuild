@@ -22,7 +22,8 @@ RDEPEND="dev-games/ode
 	media-libs/libpng
 	media-libs/openal
 	net-libs/libmicrohttpd
-	net-libs/webkit-gtk
+	net-libs/webkit-gtk:2
+	sci-libs/plplot
 	sys-devel/gcc[objc]
 	virtual/opengl
 	x11-libs/gtkglext"
