@@ -1,0 +1,16 @@
+# ChangeLog for sys-kernel/raspberrypi-image
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*raspberrypi-image-3.1.9_p20120722 (23 Jul 2012)
+
+  23 Jul 2012; Michael Weber <xmw@gentoo.org>
+  +raspberrypi-image-3.1.9_p20120722.ebuild, +metadata.xml:
+  Version bump
+
+*rbpi-image-3.1.9_p20120617 (18 Jun 2012)
+
+  18 Jun 2012; Michael Weber <xmw@gentoo.org>
+  +rbpi-image-3.1.9_p20120617.ebuild, +metadata.xml:
+  Initial import
+
