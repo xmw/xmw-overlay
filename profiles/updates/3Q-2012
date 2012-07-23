@@ -1,0 +1,3 @@
+move sys-boot/rbpi-loader sys-boot/raspberrypi-loader
+move media-libs/rbpi-videocore-bin media-libs/raspberrypi-videocore-bin
+move sys-kernel/rbpi-image sys-kernel/raspberrypi-image
