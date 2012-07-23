@@ -16,7 +16,7 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="dev-libs/libpcre
-	media-libs/rbpi-videocore-bin
+	media-libs/raspberrypi-videocore-bin
 	media-video/ffmpeg"
 RDEPEND="${RDEPEND}
 	sys-apps/fbset"
