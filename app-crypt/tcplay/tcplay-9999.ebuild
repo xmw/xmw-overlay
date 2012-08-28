@@ -33,6 +33,7 @@ src_compile() {
 
 src_install() {
 	dobin ${PN}
+	dolib lib${PN}.so
 	doman ${PN}.{3,8}
 	dodoc README.md
 }
