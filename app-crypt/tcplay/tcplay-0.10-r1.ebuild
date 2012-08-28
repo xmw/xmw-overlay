@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit toolchain-funcs vcs-snapshot
+inherit eutils toolchain-funcs vcs-snapshot
 
 DESCRIPTION="Free and simple TrueCrypt Implementation based on dm-crypt"
 HOMEPAGE="https://github.com/bwalex/tc-play"
@@ -24,17 +24,16 @@ src_prepare() {
 	sed -e '/CFLAGS+= -O3/d' \
 		-e '/$(CC)/s:$: $(LDFLAGS):' \
 		-i Makefile || die
+	epatch "${FILESDIR}"/${P}-library.patch
 }
 
 src_compile() {
 	tc-export CC
-	emake SYSTEM=linux PBKDF_BACKEND=gcrypt program
-	#emake ${myconf} lib
+	emake SYSTEM=linux PBKDF_BACKEND=gcrypt program lib
 }
 
 src_install() {
 	dobin ${PN}
-	doman ${PN}.8
-	#doman ${PN}.3
+	doman ${PN}.{3,8}
 	dodoc README
 }
