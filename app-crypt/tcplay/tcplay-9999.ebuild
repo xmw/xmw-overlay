@@ -28,13 +28,11 @@ src_prepare() {
 
 src_compile() {
 	tc-export CC
-	emake SYSTEM=linux PBKDF_BACKEND=gcrypt program
-	#emake ${myconf} lib
+	emake SYSTEM=linux PBKDF_BACKEND=gcrypt program lib
 }
 
 src_install() {
 	dobin ${PN}
-	doman ${PN}.8
-	#doman ${PN}.3
-	dodoc README
+	doman ${PN}.{3,8}
+	dodoc README.md
 }
