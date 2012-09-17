@@ -2,6 +2,13 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*xmwde-0_p20120510-r1 (17 Sep 2012)
+*xmwde-0_p20120918 (17 Sep 2012)
+
+  17 Sep 2012; Michael Weber <xmw@gentoo.org> +xmwde-0_p20120510-r1.ebuild,
+  +xmwde-0_p20120918.ebuild, -Manifest, -xmwde-0_p20120510.ebuild:
+  Version bump optional mplayer2, no conkyforecast
+
 *xmwde-0_p20120510 (10 May 2012)
 
   10 May 2012; Michael Weber <xmw@gentoo.org> -xmwde-0_p20120304.ebuild,
@@ -81,4 +88,3 @@
   02 May 2011; Michael Weber <xmw@gentoo.org> +xmwde-0_p20110502.ebuild,
   +metadata.xml:
   Initial import
-

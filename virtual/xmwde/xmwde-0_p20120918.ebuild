@@ -8,12 +8,11 @@ DESCRIPTION="Michael Weber (xmw) desktop environment"
 SRC_URI=""
 
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 IUSE="minimal"
 
 RDEPEND="
 	app-admin/conky
-	app-admin/conkyforecast
 	app-editors/gvim
 	app-misc/hddled[X]
 	app-misc/pystopwatch
@@ -39,6 +38,7 @@ RDEPEND="
 	x11-misc/alock
 	x11-misc/dmenu[xft]
 	x11-misc/trayer-srg
+	x11-misc/trivdm
 	x11-misc/wmname
 	x11-misc/x2x
 	x11-misc/xbindkeys
@@ -56,10 +56,16 @@ RDEPEND="
 		media-sound/audacity
 		media-sound/baudline
 		media-video/avidemux
-		media-video/mplayer
+		|| ( media-video/mplayer media-video/mplayer2 )
 		net-im/pidgin
 		net-p2p/qbittorrent
+		sci-astronomy/stellarium
+		sci-electronics/geda
 		sci-electronics/osqoop
+		sci-geosciences/googleearth
 		www-client/firefox
+		www-client/google-chrome:unstable
+		www-client/opera
+		www-plugins/adobe-flash
 		x11-terms/xterm
 	)"
