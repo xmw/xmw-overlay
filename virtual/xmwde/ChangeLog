@@ -2,6 +2,9 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  19 Sep 2012; Michael Weber <xmw@gentoo.org> xmwde-0_p20120919.ebuild:
+  fix conky use-depends.
+
 *xmwde-0_p20120919 (19 Sep 2012)
 
   19 Sep 2012; Michael Weber <xmw@gentoo.org> +xmwde-0_p20120919.ebuild:

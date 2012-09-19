@@ -12,7 +12,7 @@ KEYWORDS=""
 IUSE="minimal"
 
 RDEPEND="
-	app-admin/conky[metar,mpd,thinkpad,weather]
+	app-admin/conky[weather-metar,thinkpad,mpd,wifi,hddtemp,thinkpad]
 	app-editors/gvim
 	app-misc/hddled[X]
 	app-misc/pystopwatch
