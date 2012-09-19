@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*xmwde-0_p20120919 (19 Sep 2012)
+
+  19 Sep 2012; Michael Weber <xmw@gentoo.org> +xmwde-0_p20120919.ebuild:
+  Version bump, conly with mpd,metar,weather,thinkpad.
+
 *xmwde-0_p20120510-r1 (17 Sep 2012)
 *xmwde-0_p20120918 (17 Sep 2012)
 
