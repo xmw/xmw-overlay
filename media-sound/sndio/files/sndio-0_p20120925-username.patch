@@ -1,0 +1,22 @@
+--- sndio/aucat/aucat.c
++++ sndio/aucat/aucat.c
+@@ -50,7 +50,7 @@
+ /*
+  * unprivileged user name
+  */
+-#define SNDIO_USER	"_sndio"
++#define SNDIO_USER	"sndio"
+ 
+ /*
+  * priority when run as root
+--- sndio/sndiod/sndiod.c
++++ sndio/sndiod/sndiod.c
+@@ -46,7 +46,7 @@
+ /*
+  * unprivileged user name
+  */
+-#define SNDIO_USER	"_sndio"
++#define SNDIO_USER	"sndio"
+ 
+ /*
+  * priority when run as root

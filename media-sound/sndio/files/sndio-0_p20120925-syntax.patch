@@ -1,0 +1,11 @@
+--- sndio/aucat/aucat.c
++++ sndio/aucat/aucat.c
+@@ -326,7 +326,7 @@
+ 		errx(1, "unknown user %s", SNDIO_USER);
+ 	if (stat(pw->pw_dir, &sb) < 0)
+ 		err(1, "stat(\"%s\")", pw->pw_dir);
+-	if (sb.st_uid != 0 || (sb.st_mode & 022) != 0)
++	if ((sb.st_uid != 0) || ((sb.st_mode & 022) != 0))
+ 		errx(1, "%s has wrong permissions", pw->pw_dir);
+ 	if (setpriority(PRIO_PROCESS, 0, SNDIO_PRIO) < 0)
+ 		err(1, "setpriority");

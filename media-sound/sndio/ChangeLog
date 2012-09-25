@@ -1,0 +1,13 @@
+# ChangeLog for media-sound/sndio
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sndio-0_p20120925 (25 Sep 2012)
+
+  25 Sep 2012; Michael Weber <xmw@gentoo.org> +sndio-0_p20120925.ebuild,
+  +files/sndio-0_p20120925-configure.patch,
+  +files/sndio-0_p20120925-syntax.patch,
+  +files/sndio-0_p20120925-username.patch, sndio-9999.ebuild,
+  -files/sndio-9999-configure.patch:
+  Initial import
+
