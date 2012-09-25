@@ -1,0 +1,10 @@
+# ChangeLog for media-sound/aucatctl
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*aucatctl-0.1 (25 Sep 2012)
+
+  25 Sep 2012; Michael Weber <xmw@gentoo.org> +aucatctl-0.1.ebuild,
+  +metadata.xml:
+  Initial import
+
