@@ -46,6 +46,8 @@ src_configure() {
 src_install() {
 	default
 	dodir /var/lib/sndio
+	newinitd "${FILESDIR}"/initd ${PN}d
+	newconfd "${FILESDIR}"/confd ${PN}d
 }
 
 pkg_postinst() {
