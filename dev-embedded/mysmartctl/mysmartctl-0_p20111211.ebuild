@@ -4,15 +4,15 @@
 
 EAPI=4
 
-inherit autotools git-2
+inherit autotools vcs-snapshot
 
 DESCRIPTION="controller and terminal for the mySmartUSB"
 HOMEPAGE="https://github.com/b52/mysmartctl"
-EGIT_REPO_URI="https://github.com/b52/mysmartctl.git"
+SRC_URI="https://github.com/b52/mysmartctl/tarball/8cb2da38 -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="sys-libs/ncurses"
