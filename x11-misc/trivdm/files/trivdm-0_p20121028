@@ -27,11 +27,11 @@ case $NAME in
 esac
 
 clear
-toilet --font mono9 --gay $(hostname) | awk \
+toilet --font mono9 --metal $(hostname) | awk \
     '{a[NR%8]=a[NR%8] $0} END {for (i=1;i<=NR;i++) print a[i];print a[0]}' \
-    | sed 's/ *$//g;/^$/d'
-echo ; uname -srp ; echo
-print -n "Usage:  <username>[/<session type>]|!halt|!reboot
+    | sed 's/ *$//g;/^$/d' ; echo
+( uname -srp ; echo "  (" ; date +%H:%M:%S ; echo ")" ) | tr -d '\n'
+print -n "\n\nUsage:  <username>[/<session type>]|!halt|!reboot
 	<session type> in ~/.xinitrc (default), Gnome (fallback),\n\t"
 find /etc/X11/Sessions -type f ! -name Gnome | \
     awk -F / 'BEGIN { ORS=", " } { print $5 }' | sed 's:, $:\n\n:'
