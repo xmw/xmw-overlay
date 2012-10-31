@@ -2,6 +2,11 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*xmwce-0_p20121031 (31 Oct 2012)
+
+  31 Oct 2012; Michael Weber <xmw@gentoo.org> +xmwce-0_p20121031.ebuild:
+  Tools suggested by lorem_ipsum, happy halloween.
+
 *xmwce-0_p20120510 (10 May 2012)
 
   10 May 2012; Michael Weber <xmw@gentoo.org> -xmwce-0_p20120218.ebuild,
