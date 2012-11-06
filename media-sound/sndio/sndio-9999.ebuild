@@ -32,8 +32,6 @@ pkg_setup() {
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-0_p20120925-configure.patch
-	epatch "${FILESDIR}"/${PN}-0_p20120925-username.patch
-	epatch "${FILESDIR}"/${PN}-0_p20120925-syntax.patch
 }
 
 src_configure() {
@@ -51,5 +49,5 @@ src_install() {
 }
 
 pkg_postinst() {
-	enewuser ${PN} -1 -1 /var/lib/${PN} audio
+	enewuser ${PN}d -1 -1 /var/lib/${PN} audio
 }
