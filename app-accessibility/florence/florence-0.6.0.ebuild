@@ -13,35 +13,35 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~arm ~x86"
-IUSE="accessibility doc gnome +libnotify +xtst"
+IUSE="doc"
 
-RDEPEND="
+RDEPEND="app-accessibility/at-spi2-core
 	dev-libs/glib:2
 	dev-libs/libxml2:2
-	gnome-base/gconf:2
-	gnome-base/libglade:2.0
-	gnome-base/librsvg:2
+	gnome-extra/at-spi:2
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2
-	x11-libs/gtk+:2
+	x11-libs/gtk+:3
 	x11-libs/libX11
-	accessibility? ( gnome-extra/at-spi:1 )
-	gnome? ( gnome-base/gnome-panel )
-	libnotify? ( x11-libs/libnotify )
-	xtst? ( x11-libs/libXtst )"
+	x11-libs/libXext
+	x11-libs/libXtst
+	x11-libs/libnotify
+	x11-libs/pango"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
-	dev-util/intltool
 	app-text/scrollkeeper
+	dev-util/intltool
 	sys-devel/gettext
+	virtual/pkgconfig
 	doc? ( gnome-base/libgnome )"
 DOCS="AUTHORS ChangeLog NEWS README"
 
+#minimal xtst or at-spi
 src_configure() {
-	econf --with-xkb \
-		$(use_with accessibility at-spi) \
+	econf \
 		$(use_with doc docs) \
-		$(use_with gnome panelapplet) \
-		$(use_with notify notification) \
-		$(use_with xtst)
+		--with-notification \
+		--with-xtst \
+		--with-xrecord \
+		--with-panelapplet \
+		--with-at-spi
 }
