@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit cvs eutils toolchain-funcs
+inherit cvs eutils toolchain-funcs user
 
 DESCRIPTION="small audio and MIDI framework part of the OpenBSD project"
 HOMEPAGE="http://www.sndio.org/"
@@ -23,6 +23,8 @@ RDEPEND="alsa? ( media-libs/alsa-lib )"
 DEPEND="${REPEND}"
 
 S=${WORKDIR}/${PN}
+
+RESTRICT="test"
 
 pkg_setup() {
 	if ! use alsa ; then

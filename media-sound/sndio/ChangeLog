@@ -2,6 +2,10 @@
 # Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  04 Dec 2012; Michael Weber <xmw@gentoo.org> sndio-0_p20120925.ebuild,
+  sndio-9999.ebuild:
+  inherit user for enewuser, restrict test phase
+
   06 Nov 2012; Michael Weber <xmw@gentoo.org> sndio-9999.ebuild:
   Update live build
 

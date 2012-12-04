@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit eutils toolchain-funcs
+inherit eutils toolchain-funcs user
 
 DESCRIPTION="small audio and MIDI framework part of the OpenBSD project"
 HOMEPAGE="http://www.sndio.org/"
