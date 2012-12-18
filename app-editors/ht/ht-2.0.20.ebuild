@@ -17,4 +17,3 @@ RDEPEND="dev-libs/lzo
 	sys-libs/ncurses
 	x11-libs/libX11"
 DEPEND="${RDEPEND}"
-
