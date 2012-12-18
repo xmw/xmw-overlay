@@ -1,6 +1,11 @@
 # ChangeLog for x11-misc/dispad
-# Copyright 1999-2011 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*dispad-0.3 (18 Dec 2012)
+
+  18 Dec 2012; Michael Weber <xmw@gentoo.org> +dispad-0.3.ebuild:
+  Version bump
 
 *dispad-0.1 (27 May 2011)
 
