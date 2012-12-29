@@ -1,0 +1,20 @@
+From http://launchpadlibrarian.net/80358432/linpsk_1.1-1_1.1-1ubuntu1.diff.gz
+
+--- linpsk-1.1.orig/src/linpsk.cpp
++++ linpsk-1.1/src/linpsk.cpp
+@@ -685,12 +685,14 @@ void LinPSK::setRxMode()
+     Menu.setParameter ( *Param );
+   if ( Menu.exec() != 0 )
+   {
++    ExtraParameter mParam;
+     Mode rxmode = ( Mode ) Menu.selectedMode();
+     settings.ActChannel->setMode ( rxmode );
+     RxDisplay->RxFreq->setAfcDisplayMode ( settings.ActChannel->AfcProperties() );
+     RxDisplay->RxFreq->setAfcMode ( settings.ActChannel->getAfcMode() );
+     Control->Display->setPhasePointer ( settings.ActChannel->getPhasePointer() );
+-    settings.ActChannel->setParameter ( Extra, &Menu.getParameter() );
++    mParam = Menu.getParameter();
++    settings.ActChannel->setParameter ( Extra, &mParam );
+   }
+   if ( settings.ActChannel != 0 )
+     switch ( settings.ActChannel->getModulationType() )

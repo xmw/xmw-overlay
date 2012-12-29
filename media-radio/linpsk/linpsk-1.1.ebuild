@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit qt4-r2
+inherit eutils qt4-r2
 
 DESCRIPTION="PSK31 encoder/decoder using alsa and qt4"
 HOMEPAGE="http://linpsk.sourceforge.net/"
@@ -23,6 +23,8 @@ DEPEND="${RDEPEND}"
 S=${WORKDIR}/${PN}
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-gcc-4.6.patch
+
 	sed -e '/^target.path/s:local/::' \
 		-i src/src.pro || die
 }
