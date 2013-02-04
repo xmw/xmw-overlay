@@ -1,0 +1,22 @@
+# Copyright 1999-2013 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+EAPI=5
+
+PYTHON_COMPAT=( python2_7 )
+inherit git-2 distutils-r1
+
+DESCRIPTION="Python wrapper for librtlsdr (a driver for Realtek RTL2832U based SDR's)"
+HOMEPAGE="https://github.com/roger-/pyrtlsdr"
+EGIT_REPO_URI="git://github.com/roger-/pyrtlsdr.git"
+
+LICENSE="as-is"
+SLOT="0"
+KEYWORDS=""
+IUSE=""
+
+RDEPEND="dev-python/numpy
+	net-wireless/rtl-sdr"
+RDEPEND=""
+
