@@ -45,5 +45,5 @@ src_install() {
 }
 
 pkg_postinst() {
-	enewuser ${PN} -1 -1 /var/lib/${PN} audio
+	enewuser ${PN}d -1 -1 /var/lib/${PN} audio
 }
