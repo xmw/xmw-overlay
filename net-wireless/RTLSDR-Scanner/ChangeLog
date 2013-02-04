@@ -1,0 +1,10 @@
+# ChangeLog for net-wireless/RTLSDR-Scanner
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*RTLSDR-Scanner-9999 (04 Feb 2013)
+
+  04 Feb 2013; Michael Weber <xmw@gentoo.org> +RTLSDR-Scanner-9999.ebuild,
+  +metadata.xml:
+  Initial import
+
