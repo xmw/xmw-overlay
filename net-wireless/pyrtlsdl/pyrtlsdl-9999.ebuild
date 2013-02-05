@@ -11,7 +11,7 @@ DESCRIPTION="Python wrapper for librtlsdr (a driver for Realtek RTL2832U based S
 HOMEPAGE="https://github.com/roger-/pyrtlsdr"
 EGIT_REPO_URI="git://github.com/roger-/pyrtlsdr.git"
 
-LICENSE="as-is"
+LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS=""
 IUSE=""
@@ -19,4 +19,3 @@ IUSE=""
 RDEPEND="dev-python/numpy
 	net-wireless/rtl-sdr"
 RDEPEND=""
-
