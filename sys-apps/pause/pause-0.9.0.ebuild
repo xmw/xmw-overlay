@@ -4,15 +4,15 @@
 
 EAPI=5
 
-inherit flag-o-matic git-2 toolchain-funcs
+inherit flag-o-matic toolchain-funcs vcs-snapshot
 
 DESCRIPTION="pause forever"
 HOMEPAGE="https://github.com/chneukirchen/ignite"
-EGIT_REPO_URI="https://github.com/chneukirchen/ignite.git"
+SRC_URI="https://github.com/chneukirchen/ignite/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="public-domain"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND=""
