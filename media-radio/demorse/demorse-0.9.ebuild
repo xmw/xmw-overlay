@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -33,8 +33,8 @@ src_compile() {
 }
 
 src_install() {
-	emake DESTDIR="${D}" BINDIR=${ROOT}usr/bin \
-		DOCDIR=${ROOT}usr/share/doc/${PF} install
+	emake DESTDIR="${D}" BINDIR="${ROOT}"usr/bin \
+		DOCDIR="${ROOT}"usr/share/doc/${PF} install
 
 	dodoc doc/Morsecode.txt
 	dohtml doc/${PN}.html
