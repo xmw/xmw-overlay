@@ -1,0 +1,5 @@
+*gtimeutils-9999 (08 May 2013)
+
+  08 May 2013; Michael Weber <xmw@gentoo.org>
+  +files/gtimeutils-9999-Makefile.patch, +gtimeutils-9999.ebuild, +metadata.xml:
+  Initial import
