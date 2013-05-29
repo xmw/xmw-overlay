@@ -4,15 +4,15 @@
 
 EAPI=5
 
-inherit eutils git-2 toolchain-funcs
+inherit eutils toolchain-funcs vcs-snapshot
 
 DESCRIPTION="simple stopwatch and timer, written in GTK3"
 HOMEPAGE="https://github.com/Unia/gtimeutils"
-EGIT_REPO_URI="git://github.com/Unia/${PN}.git"
+SRC_URI="https://github.com/Unia/${PN}/tarball/da49c34 -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="media-libs/libcanberra
@@ -21,7 +21,7 @@ RDEPEND="media-libs/libcanberra
 DEPEND="${RDEPEND}"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-0_p20130520-Makefile.patch
+	epatch "${FILESDIR}"/${P}-Makefile.patch
 	tc-export CC
 }
 

@@ -1,0 +1,33 @@
+--- gtimeutils-9999/Makefile
++++ gtimeutils-9999/Makefile
+@@ -1,6 +1,6 @@
+-CC       = gcc
++CC       ?= gcc
+ GTK     ?= 3
+-CFLAGS   = -std=c99 -Wall -Wextra -DGTK${GTK}
++CFLAGS   += -std=c99 -Wall -Wextra -DGTK${GTK}
+ 
+ LIBS_TIMER = $(shell pkg-config --cflags --libs gtk+-${GTK}.0 libnotify libcanberra)
+ LIBS_STOPW = $(shell pkg-config --cflags --libs gtk+-${GTK}.0 libnotify libcanberra)
+@@ -8,17 +8,17 @@
+ PREFIX   ?= /usr/local
+ BINPREFIX = $(PREFIX)/bin
+ 
+-all: CFLAGS += -Os
++all: CFLAGS +=
+ all: gstopwatch gtimer
+ 
+-debug: CFLAGS += -O0 -g -pedantic -DDEBUG
++debug: CFLAGS += -g -pedantic -DDEBUG
+ debug: all
+ 
+ gstopwatch: gstopwatch.c
+-	$(CC) gstopwatch.c -o gstopwatch $(CFLAGS) $(LIBS_STOPW)
++	$(CC) gstopwatch.c -o gstopwatch $(CFLAGS) $(LIBS_STOPW) $(LDFLAGS)
+ 
+ gtimer: gtimer.c
+-	$(CC) gtimer.c -o gtimer $(CFLAGS) $(LIBS_TIMER)
++	$(CC) gtimer.c -o gtimer $(CFLAGS) $(LIBS_TIMER) $(LDFLAGS)
+ 
+ install:
+ 	mkdir -p $(DESTDIR)/$(BINPREFIX)
