@@ -1,0 +1,5 @@
+*LavaRnd-0.1.3 (29 May 2013)
+
+  29 May 2013; Michael Weber <xmw@gentoo.org> +LavaRnd-0.1.3.ebuild,
+  +files/LavaRnd-0.1.3-Makefile.patch, +metadata.xml:
+  test ebuild
