@@ -1,0 +1,13 @@
+--- birdie-9999/icons/CMakeLists.txt
++++ birdie-9999/icons/CMakeLists.txt
+@@ -24,10 +24,3 @@
+ install(FILES 64x64/apps/birdie.svg DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/64x64/apps)
+ install(FILES 128x128/apps/birdie.svg DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/128x128/apps)
+ install(FILES twitter-verified.png DESTINATION ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor/22x22/emblems)
+-
+-install(
+-    CODE
+-        "execute_process (COMMAND gtk-update-icon-cache -t -f ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor)"
+-    CODE
+-        "message (STATUS \"Updated icon cache in ${CMAKE_INSTALL_PREFIX}/share/icons/hicolor\")"
+-)

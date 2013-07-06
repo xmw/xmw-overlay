@@ -1,0 +1,7 @@
+*birdie-9999 (06 Jul 2013)
+
+  06 Jul 2013; Michael Weber <xmw@gentoo.org> +birdie-9999.ebuild,
+  +files/birdie-9999-no-desktop-database-update.patch,
+  +files/birdie-9999-no-icon-cache-update.patch,
+  +files/birdie-9999-schemas.patch, +metadata.xml:
+  Initial import.
