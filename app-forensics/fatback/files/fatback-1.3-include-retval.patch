@@ -1,0 +1,34 @@
+by rpoisel submitted to http://sourceforge.net/p/fatback/patches/1/
+
+--- fatback-1.3/cmd_cp.c
++++ fatback-1.3/cmd_cp.c
+@@ -7,6 +7,7 @@
+ #include <stdlib.h>
+ #include <unistd.h>
+ #include <limits.h>
++#include <string.h>
+ #include "getopt.h"
+ #include "interface_data.h"
+ #include "interface.h"
+--- fatback-1.3/cmd_ls.c
++++ fatback-1.3/cmd_ls.c
+@@ -7,6 +7,7 @@
+ #include <stdlib.h>
+ #include <assert.h>
+ #include <time.h>
++#include <string.h>
+ #include "interface.h"
+ #include "interface_data.h"
+ #include "dirtree.h"
+--- fatback-1.3/recovery.c
++++ fatback-1.3/recovery.c
+@@ -68,7 +68,7 @@
+      } else if (strcmp(fname, filename) != 0)
+           display(VERBOSE, log_nametaken, filename, cluster, fname);
+ 
+-     if ((file = open(fname, O_WRONLY|O_CREAT|O_EXCL, S_IRUSR|S_IRGRP|S_IROTH|S_IWUSR)) == NULL) {
++     if ((file = open(fname, O_WRONLY|O_CREAT|O_EXCL, S_IRUSR|S_IRGRP|S_IROTH|S_IWUSR)) < 0) {
+           perror("Error");
+           free(fname);
+           return -1;
+

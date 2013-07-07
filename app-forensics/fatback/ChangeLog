@@ -1,0 +1,5 @@
+*fatback-1.3 (07 Jul 2013)
+
+  07 Jul 2013; Michael Weber <xmw@gentoo.org> +fatback-1.3.ebuild,
+  +files/fatback-1.3-include-retval.patch, +metadata.xml:
+  Initial import.
