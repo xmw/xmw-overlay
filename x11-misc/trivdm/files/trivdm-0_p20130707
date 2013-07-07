@@ -6,10 +6,10 @@
 # groupadd --system trivdm ; useradd --system -g trivdm -G wheel trivdm 
 # chmod u+s /usr/bin/chvt
 
-NAME=$(basename $0) ; USER=trivdm ; LANG=C
+NAME=$(basename $0) ; USER=trivdm ; LANG=C ; TTYNUM=7
 log() { echo "$@" | logger -s -t $NAME }
 trap 'read -s -k -t 10 "?Press any key to continue ..." ; exit -1 ' ZERR
-w() { ps haxo ruser,tty,comm | grep -v $USER | egrep -v "agetty|login$" | \
+w() { ps haxo ruser,tty,comm | egrep -v "$USER|tty${TTYNUM}|agetty|login$" | \
     awk '{ if ( $3 == "X" || $2 != "?" ) print $1" "$2 }' | sort -u | \
     awk '{ ORS="" ; if ( u != $1 ) { u=$1 ; print "\n"u"\t" } ; print $2"," }' \
     | sed -e '1d ; s:,$:: ; $a\' }
@@ -18,7 +18,7 @@ case $NAME in
     gdmflexiserver)
 	[ "$1" = "-ls" ] && exec chvt 7 || exec /usr/bin/gdmflexiserver $@ ;;
     trivdm.start)
-	chvt 7 ; exec setfont sun12x22 ;;
+	chvt ${TTYNUM} ; exec setfont sun12x22 ;;
     w)
 	w ; exec /usr/bin/w $@ ;;
     *)

@@ -1,6 +1,13 @@
 # ChangeLog for x11-misc/trivdm
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*trivdm-0_p20130707 (07 Jul 2013)
+
+  07 Jul 2013; Michael Weber <xmw@gentoo.org> +files/trivdm-0_p20130707,
+  +trivdm-0_p20130707.ebuild, -files/trivdm-0_p20121028,
+  -trivdm-0_p20121028.ebuild:
+  Version bump
 
 *trivdm-0_p20121028 (28 Oct 2012)
 
@@ -44,4 +51,3 @@
   23 Sep 2011; Michael Weber <xmw@gentoo.org> +files/trivdm-0_p20110921,
   +trivdm-0_p20110921.ebuild, +metadata.xml:
   Initial import
-
