@@ -1,6 +1,16 @@
 # ChangeLog for sys-boot/raspberrypi-loader
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*raspberrypi-loader-0_p20130705 (10 Jul 2013)
+
+  10 Jul 2013; Michael Weber <xmw@gentoo.org>
+  +files/raspberrypi-loader-0_p20130705-cmdline.txt,
+  +files/raspberrypi-loader-0_p20130705-config.txt,
+  +files/raspberrypi-loader-0_p20130705-envd,
+  +raspberrypi-loader-0_p20130705.ebuild:
+  Version bump, include proper config.txt and cmdline.txt templates,
+  CONFIG_PROTECT.
 
 *raspberrypi-loader-0_p20121105 (07 Nov 2012)
 
@@ -19,4 +29,3 @@
   18 Jun 2012; Michael Weber <xmw@gentoo.org> +rbpi-loader-0_p20120617.ebuild,
   +metadata.xml:
   Initial import
-
