@@ -18,9 +18,7 @@ IUSE=""
 
 S=${WORKDIR}
 
-QA_PRESTRIPPED="boot/start.elf
-	boot/start_cd.elf
-	boot/start_x.elf"
+RESTRICT=binchecks
 
 src_install() {
 	insinto /boot
