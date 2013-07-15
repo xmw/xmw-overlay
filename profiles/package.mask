@@ -1,3 +1,11 @@
 # Michael Weber xmw@gentoo.org 13 Mar 2013
 # segfault in snprintf
 =media-radio/ebook2cw-0.8.2
+
+# Michael Weber xmw@gentoo.org 15 Jul 2013
+# replaced by sys-kernel/raspberrypi-image::gentoo
+sys-kernel/raspberrypi-image
+
+# Michael Weber xmw@gentoo.org 15 Jul 2013
+# replaced by sys-boot/raspberrypi-firmware::gentoo
+sys-boot/raspberrypi-loader
