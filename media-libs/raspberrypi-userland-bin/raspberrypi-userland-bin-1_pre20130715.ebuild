@@ -33,10 +33,10 @@ src_install() {
 
 	insinto /opt/vc
 	doins -r include
-	into /opt/bin
+	into /opt
 	dobin bin/*
 	dobin sbin/*
-	into /opt/vc/lib
+	into /opt/vc
 	dolib.so lib/*
 
 	insinto /usr/share/doc/${PF}/examples
