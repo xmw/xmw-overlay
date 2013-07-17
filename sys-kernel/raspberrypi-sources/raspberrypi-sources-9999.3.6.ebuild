@@ -7,19 +7,22 @@ EAPI=5
 ETYPE=sources
 K_DEFCONFIG="bcmrpi_cutdown_defconfig"
 K_SECURITY_UNSUPPORTED=1
-UNIPATCH_LIST="${DISTDIR}/${PF}.patch.xz"
-CKV="3.6.11"
+EXTRAVERSION="-${PN}/-*"
 inherit kernel-2
 detect_version
 detect_arch
 
+inherit git-2 versionator
+EGIT_REPO_URI=https://github.com/raspberrypi/linux.git
+EGIT_PROJECT="raspberrypi-linux.git"
+EGIT_BRANCH="rpi-$(get_version_component_range 2-3).y"
+
 DESCRIPTION="Raspberry PI kernel sources"
 HOMEPAGE="https://github.com/raspberrypi/linux"
-# from github.com/rasperrypi/firmware/extra/git_hash
-# MY_COMMIT="245f716a0b"
-# https://github.com/raspberrypi/linux/tarball/${MY_COMMIT} ->
-#		raspberrypi-sources-${MY_COMMIT}.tar.gz
-SRC_URI="${KERNEL_URI}
-	http://dev.gentoo.org/~xmw/${PN}/${PF}.patch.xz"
 
-KEYWORDS="~arm"
+KEYWORDS=""
+
+src_unpack() {
+	git-2_src_unpack
+	unpack_set_extraversion
+}
