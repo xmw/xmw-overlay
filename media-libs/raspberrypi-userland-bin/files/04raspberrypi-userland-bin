@@ -1,2 +1,1 @@
-PATH='/opt/vc/bin:/opt/vc/sbin'
 LDPATH='/opt/vc/lib'

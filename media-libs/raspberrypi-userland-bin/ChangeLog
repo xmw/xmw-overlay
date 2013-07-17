@@ -1,3 +1,6 @@
+  17 Jul 2013; Michael Weber <xmw@gentoo.org> files/04raspberrypi-userland-bin:
+  Fix envd file
+
   17 Jul 2013; Michael Weber <xmw@gentoo.org> files/04raspberrypi-userland-bin,
   raspberrypi-userland-bin-0_p20130711.ebuild,
   raspberrypi-userland-bin-1_pre20130715.ebuild:
