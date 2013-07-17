@@ -1,0 +1,5 @@
+*raspberrypi-sources-3.6.11-r20130711 (17 Jul 2013)
+
+  17 Jul 2013; Michael Weber <xmw@gentoo.org> +metadata.xml,
+  +raspberrypi-sources-3.6.11-r20130711.ebuild:
+  Initial import
