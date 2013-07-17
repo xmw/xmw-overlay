@@ -15,24 +15,33 @@ SRC_URI="https://github.com/raspberrypi/firmware/tarball/${MY_COMMIT} ->
 LICENSE="BSD GPL-2 raspberrypi-videocore-bin"
 SLOT="0"
 KEYWORDS="~arm -*"
-IUSE="+hardfp"
+IUSE="+hardfp examples"
 
 RDEPEND="!media-libs/raspberrypi-userland"
 DEPEND="${DEPEND}"
 
 S=${WORKDIR}/raspberrypi-firmware-${MY_COMMIT}
 
-#RESTRICT="binchecks"
+RESTRICT="binchecks"
 
 src_prepare() {
 	rm {,hardfp/}opt/vc/LICENCE || die
 }
 
 src_install() {
-	if use hardfp ; then
-		mv hardfp/opt "${D}" || die
-	else
-		mv opt "${D}" || die
-	fi
+	cd $(usex hardfp hardfp/ "")opt/vc || die
+
+	insinto /opt/vc
+	doins -r include
+	into /opt/vc/bin
+	dobin bin/*
+	into /opt/vc/sbin
+	dobin sbin/*
+	into /opt/vc/lib
+	dolib.so lib/*
+
+	insinto /usr/share/doc/${PF}/examples
+	use examples && doins -r src/hello_pi
+
 	doenvd "${FILESDIR}"/04${PN}
 }
