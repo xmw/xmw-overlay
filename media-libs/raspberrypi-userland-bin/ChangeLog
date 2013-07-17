@@ -1,0 +1,7 @@
+*raspberrypi-userland-bin-0_p20130711 (17 Jul 2013)
+*raspberrypi-userland-bin-1_pre20130715 (17 Jul 2013)
+
+  17 Jul 2013; Michael Weber <xmw@gentoo.org> +files/04raspberrypi-userland-bin,
+  +metadata.xml, +raspberrypi-userland-bin-0_p20130711.ebuild,
+  +raspberrypi-userland-bin-1_pre20130715.ebuild:
+  Initial import
