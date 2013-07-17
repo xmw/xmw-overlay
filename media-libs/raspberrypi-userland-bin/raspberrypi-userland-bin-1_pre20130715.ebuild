@@ -33,9 +33,8 @@ src_install() {
 
 	insinto /opt/vc
 	doins -r include
-	into /opt/vc/bin
+	into /opt/bin
 	dobin bin/*
-	into /opt/vc/sbin
 	dobin sbin/*
 	into /opt/vc/lib
 	dolib.so lib/*
