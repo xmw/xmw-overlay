@@ -1,8 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
 
 inherit eutils flag-o-matic git-2 toolchain-funcs
 
@@ -16,14 +16,14 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="dev-libs/libpcre
-	media-libs/raspberrypi-videocore-bin
+	media-libs/raspberrypi-userland-bin
 	media-video/ffmpeg"
 RDEPEND="${RDEPEND}
 	sys-apps/fbset"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-Makefile.patch
-	epatch "${FILESDIR}"/${P}-wrapper.patch
+	epatch "${FILESDIR}"/${P}-Makefile.patch \
+		"${FILESDIR}"/${P}-wrapper.patch
 	tc-export CXX
 	filter-ldflags -Wl,--as-needed
 }
