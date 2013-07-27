@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -18,6 +18,7 @@ RDEPEND="
 	app-editors/vim
 	app-misc/screen
 	app-misc/when
+	app-portage/eix
 	app-portage/eix
 	app-portage/genlop
 	app-portage/layman[git]
@@ -55,7 +56,6 @@ RDEPEND="
 	sys-process/iotop
 	sys-process/parallel
 	dev? (
-		app-portage/eix
 		app-portage/gentoolkit
 		app-portage/gentoolkit-dev
 	)

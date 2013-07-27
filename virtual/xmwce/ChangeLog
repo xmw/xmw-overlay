@@ -1,6 +1,12 @@
 # ChangeLog for virtual/xmwce
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*xmwce-0_p20130727 (27 Jul 2013)
+
+  27 Jul 2013; Michael Weber <xmw@gentoo.org> +xmwce-0_p20130727.ebuild,
+  -xmwce-0_p20121031.ebuild:
+  version bump
 
   31 Oct 2012; Michael Weber <xmw@gentoo.org> -xmwce-0_p20120510.ebuild:
   Drop old
@@ -35,4 +41,3 @@
   14 Feb 2012; Michael Weber <xmw@gentoo.org> +xmwce-0_p20120214.ebuild,
   +metadata.xml:
   Initial import
-
