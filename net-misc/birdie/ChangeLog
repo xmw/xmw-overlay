@@ -1,3 +1,9 @@
+*birdie-0.3 (28 Jul 2013)
+
+  28 Jul 2013; Michael Weber <xmw@gentoo.org> +birdie-0.3.ebuild,
+  birdie-9999.ebuild, metadata.xml:
+  Add 0.3 release
+
 *birdie-9999 (06 Jul 2013)
 
   06 Jul 2013; Michael Weber <xmw@gentoo.org> +birdie-9999.ebuild,

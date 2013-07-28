@@ -5,21 +5,21 @@
 EAPI=5
 VALA_MIN_API_VERSION=0.16
 
-inherit bzr cmake-utils eutils fdo-mime gnome2-utils vala
+inherit cmake-utils fdo-mime gnome2-utils vala
 
-DESCRIPTION="Twitter client for elementary OS"
+DESCRIPTION="Twitter client for Linux"
 HOMEPAGE="http://www.ivonunes.net/birdie"
-EBZR_REPO_URI="lp:birdie"
+SRC_URI="https://github.com/ivonunes/birdie/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="granite"
 
 RDEPEND="dev-db/sqlite:3
 	dev-libs/glib:2
 	dev-libs/json-glib
-	dev-libs/libdbusmenu:3[introspection]
+	dev-libs/libdbusmenu:3
 	dev-libs/libgee:0
 	media-libs/libcanberra
 	net-im/pidgin
@@ -36,12 +36,13 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 src_prepare() {
+	sed \
+		-e '/ggdb/d' \
+		-e 's:gtk-update-icon-cache:true:g' \
+		-e 's:update-desktop-database:true:g' \
+		-i icons/CMakeLists.txt data/CMakeLists.txt CMakeLists.txt || die
 	vala_src_prepare
 	cmake-utils_src_prepare
-	epatch \
-		"${FILESDIR}/${P}-no-icon-cache-update.patch" \
-		"${FILESDIR}/${P}-no-desktop-database-update.patch" \
-		"${FILESDIR}/${P}-schemas.patch"
 }
 
 src_configure() {
