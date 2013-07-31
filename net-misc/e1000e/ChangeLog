@@ -1,0 +1,5 @@
+*e1000e-2.4.14 (31 Jul 2013)
+
+  31 Jul 2013; Michael Weber <xmw@gentoo.org> +e1000e-2.4.14.ebuild,
+  +metadata.xml:
+  Initial import
