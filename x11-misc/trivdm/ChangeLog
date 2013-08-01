@@ -2,6 +2,12 @@
 # Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*trivdm-0_p20130707-r1 (01 Aug 2013)
+
+  01 Aug 2013; Michael Weber <xmw@gentoo.org> +trivdm-0_p20130707-r1.ebuild,
+  -trivdm-0_p20130707.ebuild:
+  inherit readme.gentoo, fix user creation, ease inittab handling
+
 *trivdm-0_p20130707 (07 Jul 2013)
 
   07 Jul 2013; Michael Weber <xmw@gentoo.org> +files/trivdm-0_p20130707,
