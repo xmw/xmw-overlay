@@ -1,0 +1,5 @@
+*gtkmmorse-0.9.27 (13 Aug 2013)
+
+  13 Aug 2013; Michael Weber <xmw@gentoo.org> +gtkmmorse-0.9.27.ebuild,
+  +metadata.xml:
+  Initial import
