@@ -1,0 +1,33 @@
+From https://aur.archlinux.org/packages.php?ID=63769
+
+--- cdc-acm.c.orig	2013-04-11 20:33:24.000000000 +0400
++++ cdc-acm.c	2013-04-11 20:33:41.463683982 +0400
+@@ -552,11 +552,6 @@
+ 		goto error_submit_urb;
+ 	}
+ 
+-	acm->ctrlout = ACM_CTRL_DTR | ACM_CTRL_RTS;
+-	if (acm_set_control(acm, acm->ctrlout) < 0 &&
+-	    (acm->ctrl_caps & USB_CDC_CAP_LINE))
+-		goto error_set_control;
+-
+ 	usb_autopm_put_interface(acm->control);
+ 
+ 	/*
+@@ -577,8 +572,6 @@
+ error_submit_read_urbs:
+ 	acm->ctrlout = 0;
+ 	acm_set_control(acm, acm->ctrlout);
+-error_set_control:
+-	usb_kill_urb(acm->ctrlurb);
+ error_submit_urb:
+ 	usb_autopm_put_interface(acm->control);
+ error_get_interface:
+@@ -609,7 +602,6 @@
+ 	mutex_lock(&acm->mutex);
+ 	if (!acm->disconnected) {
+ 		usb_autopm_get_interface(acm->control);
+-		acm_set_control(acm, acm->ctrlout = 0);
+ 		usb_kill_urb(acm->ctrlurb);
+ 		for (i = 0; i < ACM_NW; i++)
+ 			usb_kill_urb(acm->wb[i].urb);

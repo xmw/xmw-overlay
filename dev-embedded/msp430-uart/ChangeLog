@@ -1,0 +1,5 @@
+*msp430-uart-0 (06 Sep 2013)
+
+  06 Sep 2013; Michael Weber <xmw@gentoo.org>
+  +files/msp430-uart-0-cdc-acm.patch, +metadata.xml, +msp430-uart-0.ebuild:
+  Initial import
