@@ -1,0 +1,448 @@
+#!/usr/bin/python3
+# Michael Weber (xmw at gentoo dot org) 06 Nov 2012
+# TODO use ClosedSytem to copy files
+# vim: tabstop=4 expandtab
+
+import argparse, glob, os, re, subprocess, sys, tempfile, time
+import portage
+
+def cat(fn, s, append=None, mode=0o644):
+    d = os.path.split(fn)[0]
+    if d and not os.path.exists(d):
+        os.makedirs(d)
+    f = open(fn, 'w' + (append and 'a' or ''))
+    f.write(s)
+    f.close()
+    os.chmod(fn, mode)
+
+def sed(src, *opts):
+    return subprocess.Popen(['sed'] + list(opts) + [src,], 
+        stdout=subprocess.PIPE).stdout.read().decode('UTF-8')
+
+presets = {}
+presets['minimal'] = {
+    'objs': [
+	sys.argv[0],
+        '/dev/console',
+        '/dev/null',
+        '/dev/tty',
+        '/etc/fstab',
+        '/etc/group',
+        '/etc/group',
+        '/etc/ld.so.cache',
+        '/etc/pam.d/system-auth',
+        '/etc/passwd',
+        '/etc/passwd',
+        '/etc/shadow',
+        '/etc/terminfo/l/linux',
+        '/etc/terminfo/s/screen',
+        '/etc/zsh/z*',
+        '/lib',
+        '/root/.screenrc', 
+        '/root/.zshenv', 
+        '/root/.zshfns/prompt_gentoo_setup', 
+        '/root/.zshrc', 
+        '/usr/lib*/zsh/*/zsh/complete.so',
+        '/usr/lib*/zsh/*/zsh/compctl.so',
+        '/usr/lib*/zsh/*/zsh/terminfo.so',
+        '/usr/lib*/zsh/*/zsh/zle.so',
+        '/usr/lib*/zsh/*/zsh/zutil.so',
+        '/usr/lib*/cracklib_dict.pwd',
+        '/usr/lib*/cracklib_dict.pwi', 
+        '/usr/lib*/zsh/*/zsh/parameter.so',
+        '/usr/local/sbin/power-save.sh',
+        '/usr/share/zsh/*/functions/Completion/Unix/_git',
+        '/usr/share/zsh/*/functions/Completion/compaudit',
+        '/usr/share/zsh/*/functions/Completion/compdump',
+        '/usr/share/zsh/*/functions/Completion/compinit',
+        '/usr/share/zsh/*/functions/Zle/select-word-style',
+        '/usr/share/zsh/*/functions/Zle/url-quote-magic',
+        'cat',
+        'cp',
+        'cpio',
+        'cryptsetup',
+        'dmesg',
+        'env',
+        'ethtool',
+        'find',
+        'halt',
+        'id',
+        'ip',
+        'less',
+        'ls',
+        'lvchange', 
+        'lvscan',
+        'mdadm',
+        'mkdir',
+        'modprobe',
+        'more',
+        'mount', 
+        'mountpoint', 
+        'mv',
+        'ps',
+        'readlink', 
+        'reboot',
+        'rfkill', 
+        'screen',
+        'setsid', 
+        'stat',
+        'switch_root',
+        'tftp',
+        'uname',
+        'whoami',
+        'zsh', 
+    ],
+    'pkgs': [
+        'sys-apps/sed',
+    ],
+    'hooks': [
+        (sed, 'etc/passwd', '-i', '-n', '-e /^root:/p'),
+        (sed, 'etc/group', '-i', '-n', '-e /^root:/p'),
+        (cat, 'etc/shadow', ''),
+        (os.symlink, '/proc/mounts', 'etc/mtab'), 
+        (cat, 'etc/resolv.conf', """nameserver 2001:4ca0::53:2
+nameserver 129.187.5.1"""),
+        (os.symlink, 'root/.zshenv', '.zshenv'),
+        #(os.symlink, 'root/.zshrc', '.zshrc'),
+        #(os.symlink, 'root/.zshfns', '.zshfns'),
+        #(os.symlink, 'root/.histfile', '.histfile'),
+	(cat, 'init', """\
+#!/bin/zsh
+echo "
+
+
+initrd created on %s by xmw.de/dotfiles/mkinitrd.py
+kernel $(uname -s -r -m)
+modules $(ls /lib/modules) 
+
+"
+trap '{
+    echo
+    echo "Something went wrong. Dropping you to a shell."
+    echo "Try mount /boot; gzip -cd /boot/initramfs | cpio -i ; exec /init"
+    #exec /usr/bin/setsid /bin/zsh -c "exec /bin/zsh </dev/tty1 >/dev/tty1"
+    export USER=root
+    export HOME=/root
+    cd /root
+    exec /bin/zsh
+}' ZERR
+setopt noequals nonomatch
+
+mkdir -p /proc /sys /run /dev /mnt/target
+mountpoint -q /proc    || mount -t proc none /proc
+mountpoint -q /sys     || mount -t sysfs none /sys
+mountpoint -q /run     || mount -t tmpfs none /run
+mountpoint -q /dev     || mount -t devtmpfs none /dev
+mkdir -p /dev/pts
+mountpoint -q /dev/pts || mount -t devpts -o gid=5,mode=0620 none /dev/pts
+
+get() {
+    for x in ${(Oa)$(< /proc/cmdline)} ; do
+        [ "x${x%%%%=*}" = "x${1}" ] && { echo ${x/*=} ; return }
+    done
+    echo $2
+}
+esr() {
+    exec switch_root /mnt/target $(get init /sbin/init)
+}
+
+if [ -x /usr/local/sbin/power-save.sh ] ; then
+    /usr/local/sbin/power-save.sh || true
+fi
+
+case $(< /proc/sys/kernel/hostname) in 
+    io)
+        echo "Disconnect LAN cable <Enter>" ; read
+        ip link set eth0 up
+        echo "Reconnect LAN cable <Enter>" ; read
+        ip link set eth0 up
+        if dmesg | grep -i "Hardware error" ; then
+            #stop boot sequence
+            false
+        fi
+
+        mdadm --assemble /dev/md42 /dev/sda /dev/sdb
+        cryptsetup --tries 3 luksOpen $(get crypt_dev /dev/md42) $(get crypt_name main) 
+        mount $(get root /dev/mapper/main) /mnt/target
+        ;;
+    x)
+        cryptsetup --tries 3 luksOpen $(get crypt_dev /dev/sda2) $(get crypt_name main)
+        lvscan
+        lvchange -a y $(get vg_name main)
+        printf "%%d:%%d" $(stat -c "0x%%t 0x%%T" $(readlink -e $(get resume /dev/mapper/main-swap))) > /sys/power/resume
+        mount $(get root /dev/mapper/main) /mnt/target
+        ;;
+    *)
+        echo "unkown host $(< /proc/sys/kernel/hostname)"
+        echo "define at mkinitrd.py"
+        echo "mount root to /mnt/target and run esr"
+        ;;
+esac
+
+esr
+""" % (time.ctime()), '', 0o755),
+	(lambda: cat('root/.histfile', sed('init', '-e 1d')),),
+	(cat, 'root/.zshenv', """\
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+USER=root
+HOME=/root
+SHELL=/bin/zsh
+#setopt noequals nonomatch
+alias la='ls -hal'
+"""),
+
+
+    ]
+}
+
+presets['full'] = {
+    'objs': presets['minimal']['objs'] + [
+       '/etc/wpa_supplicant/wpa_supplicant.conf',
+    ],
+    'pkgs': presets['minimal']['pkgs'] + [
+        'app-arch/cpio',
+        'app-arch/pbzip2',
+        'app-arch/tar',
+        'app-cdr/cdrtools',
+        'app-editors/nano',
+        'app-misc/pax-utils',
+        'app-misc/screen',
+        'app-shells/zsh',
+        'app-shells/zsh-completion',
+        'dev-util/strace',
+        'dev-util/vbindiff',
+        'net-analyzer/iptraf-ng',
+        'net-analyzer/netcat6',
+        'net-dns/bind-tools',
+        'net-misc/curl',
+        'net-misc/iputils',
+        'net-misc/dhcp',
+        'net-misc/ntp',
+        'net-misc/openssh',
+        'net-misc/rsync',
+        'net-misc/wget',
+        'net-wireless/rfkill',
+        'sys-apps/kmod',
+        'sys-apps/util-linux',
+        'net-wireless/wpa_supplicant',
+        'sys-apps/coreutils',
+        'sys-apps/diffutils',
+        'sys-apps/ethtool',
+        'sys-apps/findutils',
+        'sys-apps/gawk',
+        'sys-apps/grep',
+        'sys-apps/iproute2',
+        'sys-apps/less',
+        'sys-apps/man',
+        'sys-apps/net-tools',
+        'sys-apps/pciutils',
+        'sys-apps/pv',
+        'sys-apps/sed',
+        'sys-apps/shadow',
+        'sys-apps/smartmontools',
+        'sys-apps/sysvinit',
+        'sys-apps/usbutils',
+        'sys-fs/cryptsetup',
+        'sys-fs/ddrescue',
+        'sys-fs/e2fsprogs',
+        'sys-fs/lvm2',
+        'sys-fs/mdadm',
+        'sys-fs/multipath-tools',
+        'sys-fs/xfsprogs',
+        'sys-libs/gpm',
+        'sys-process/htop',
+        'sys-process/procps',
+        'sys-process/psmisc',
+        'www-client/links',
+        'www-client/w3m',
+    ],
+    'hooks': presets['minimal']['hooks'] + [
+        (sed, 'etc/wpa_supplicant/wpa_supplicant.conf', '-i',
+            '-e', '/\(psk=\|wep_key\)/s:=.*:="":'),
+        (cat, 'root/.histfile', "wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant.conf -W -B -i wlan0 -P /var/run/wpa_supplicant-wlan0.pid"),
+    ] 
+}
+
+ignorelist=(
+    '/var/lock/iptraf-ng',
+    '/var/lock/iptraf-ng/.keep_net-analyzer_iptraf-ng-0',
+    '/var/run/wpa_supplicant',
+    '/var/run/wpa_supplicant/.keep_net-wireless_wpa_supplicant-0'
+)
+
+
+def which(fn):
+	for path in os.get_exec_path():
+		if os.path.exists(os.path.join(path, fn)):
+			return os.path.join(path, fn)
+
+def list_kernels(pwd='/boot'):
+    kernels = list(set(map(os.path.realpath, 
+        map(lambda f: os.path.join(pwd, f), 
+        filter(lambda f: f.startswith('vmlinu'), os.listdir(pwd))))))
+    return list(map(lambda k: k[1], sorted(
+        map(lambda f: (os.lstat(f).st_mtime, f), kernels))))
+
+class ClosedSystem(list):
+    SHEBANG_MATCHER=re.compile('^\s*#\s*!\s*([^\s]*)\s*([^\s]*)')
+    def __init__(self):
+        list.__init__(self)
+        self.interpreter = set()
+
+    def isElf(fn):
+        return open(fn, 'rb').read(5) in (b'\x7fELF\x01', b'\x7fELF\x02')
+
+    def needed(fn):
+        return filter(None, subprocess.Popen(
+                ['scanelf', '-L', '-n', '-q', '-F', '%n #F', fn], 
+                stdout=subprocess.PIPE
+            ).stdout.read().decode("UTF-8").strip().split(','))
+
+    def shebang(fn):
+        match=ClosedSystem.SHEBANG_MATCHER.match(
+            open(fn, 'rb').read(1000).decode('UTF-8'))
+        if not match:
+            return ()
+        if match.group(1) == '/usr/bin/env':
+            return '/usr/bin/env', which(match.group(2))
+        return match.group(1), 
+
+    def append(self, fn):
+        if not fn or fn in self:
+            return
+        if not os.path.isabs(fn):
+            self.append(which(fn))
+            return
+        if not os.path.exists(fn):
+            if fn in ignorelist:
+                print('ignore missing ' + fn)
+                return
+            fns = glob.glob(fn)
+            if not fns:
+                raise BaseException('file does not exist ' + fn)
+            [self.append(fn) for fn in fns]
+            return
+
+        d, b = os.path.split(fn)
+        if b:
+            self.append(d)
+        fn = os.path.join(os.path.realpath(d), b)
+        
+        list.append(self, fn)
+        if os.path.isdir(fn):
+            pass
+        elif os.path.islink(fn):
+            self.append(os.path.join(os.path.dirname(fn), os.readlink(fn)))
+        elif os.path.isfile(fn):
+            if ClosedSystem.isElf(fn):
+                [self.append(so) for so in ClosedSystem.needed(fn)]
+            else:
+                if os.stat(fn).st_mode & 0o111:
+                    interpreter=ClosedSystem.shebang(fn)
+                    if not len(interpreter):
+                        print('unable to handle executeable %s' % fn)
+                    else:
+                        [self.interpreter.add(i) for i in interpreter]
+        else:
+            BaseException('unable to handle %s' % fn)
+
+if __name__ == '__main__':
+    kernels = list_kernels()
+    def kernel_version(kernel):
+        return os.path.split(os.path.realpath(kernel))[1].split('-', 1)[1]
+    def modules_dir(kernel_version):
+        return os.path.join('/lib/modules', kernel_version)
+    
+    parser = argparse.ArgumentParser(description='arch testing',
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('--preset', default='full',
+        choices=presets.keys(),
+        help="select file set")
+    parser.add_argument('--kernel', default=kernels[-1],
+        help="select kernel filename")
+    parser.add_argument('--initrd', default='',
+        help="select initrd filename")
+    parser.add_argument('--chroot', action='store_true',
+        help="chroot into target")
+    parser.add_argument('--force', action='store_true',
+        help="overwrite destination")
+    parser.add_argument('--keep', action='store_true',
+        help="keep tempdir")
+    parser.add_argument('--compressor', default='lzop -9',
+        help="kernel compartible initrd compressor (cat,gzip,lzop,bzip2,xz)")
+    args = parser.parse_args()
+
+    if not os.path.exists(args.kernel):
+        print('kernel file %s not found in %s' % \
+            (args.kernel, list_kernels()))
+        sys.exit(1)
+    if not args.preset in presets.keys():
+        print('preset %s not found in %s' % \
+            (args.preset, sorted(presets.keys())))
+        sys.exit(1)
+    args.initrd = args.initrd or (
+        '/boot/initrd.img-' + kernel_version(args.kernel))
+    if not args.force and os.path.exists(args.initrd):
+        print('initrd %s already exists' % args.initrd)
+        sys.exit(1)
+        
+
+    print("building preset %s for kernel %s" % (args.preset, args.kernel))
+    print("Target %s" % args.initrd)
+
+    system = ClosedSystem()
+
+  
+    for path, directories, files in os.walk(
+            modules_dir(kernel_version(args.kernel))):
+        system.append(path)
+        [system.append(os.path.join(path, fn)) for fn in files]
+
+    [system.append(fn) for fn in presets[args.preset].get('objs', [])]
+    
+    pkgs = set()
+    vartree = portage.db[portage.root]['vartree']
+    missing=[]
+    for atom in presets[args.preset].get('pkgs', []):
+        cand = vartree.dbapi.match(atom)
+        if not cand:
+            missing.append(atom)
+        else:
+            [pkgs.add(c) for c in cand]
+    if missing:
+        print('package not installed/found: ' + ' '.join(missing))
+        sys.exit(1)
+    for cpv in sorted(pkgs):
+        link = portage.dblink(cpv.cpv_split[0], '-'.join(cpv.cpv_split[1:]),
+            treetype='vartree', vartree=vartree, settings=portage.settings)
+        [system.append(os.path.normpath(fn)) for fn in sorted(link.getcontents())]
+
+    system.interpreter.difference(set('/usr/bin/python3'))
+    print("list of interpreters %s" % sorted(system.interpreter))
+    [system.append(fn) for fn in sorted(system.interpreter)]
+        
+    tmpdir = tempfile.mkdtemp(prefix='/tmp/mkinitrd.py-')
+    os.chdir(tmpdir)
+    print('copy %i files to %s' % (len(system), tmpdir))
+    p1 = subprocess.Popen(['tar', 'cC', '/', '--no-recursion'] + system, 
+        stdout=subprocess.PIPE)
+    p2 = subprocess.Popen(['tar', 'xC', tmpdir], stdin=p1.stdout)
+    p2.communicate()
+
+    print('hooks')
+    for hook in presets[args.preset].get('hooks', []):
+        print(hook[0])
+        hook[0](*hook[1:])
+
+    if args.chroot:
+        os.system('chroot .')
+
+    print('compress')
+    os.system('find . -print0 | sort | cpio --null -o --format=newc | pv -s $(du -s . | cut -f 1)k | %s > %s' % (args.compressor, args.initrd))
+    if not args.keep:
+        os.chdir('..')
+        print('remove ' + tmpdir)
+        os.system('rm -r ' + tmpdir)
+    else:
+        print('keep ' + tmpdir)
+
