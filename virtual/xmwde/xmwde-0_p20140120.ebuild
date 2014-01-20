@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -17,11 +17,10 @@ RDEPEND="
 	app-misc/hddled[X]
 	app-misc/pystopwatch
 	app-shells/zsh
-	app-text/evince
 	app-text/llpp
 	app-text/mupdf
 	app-text/paps
-	gnome-base/gnome-keyring
+	|| ( mate-base/mate-keyring gnome-base/gnome-keyring )
 	media-fonts/dina
 	media-fonts/terminus-font
 	media-gfx/feh
@@ -45,11 +44,11 @@ RDEPEND="
 	x11-misc/xclip
 	x11-misc/xdotool
 	x11-misc/xscreensaver
-	x11-terms/rxvt-unicode[256-color,xft]
+	x11-terms/rxvt-unicode[xft]
 	x11-wm/cwm
 	media-fonts/font-misc-misc
 	!minimal? (
-		app-text/evince
+		|| ( app-text/mate-document-viewer app-text/evince )
 		app-text/gv
 		mail-client/thunderbird
 		media-gfx/gimp
@@ -64,7 +63,7 @@ RDEPEND="
 		sci-electronics/osqoop
 		sci-geosciences/googleearth
 		www-client/firefox
-		www-client/google-chrome:unstable
+		www-client/google-chrome-unstable 
 		www-client/opera
 		www-plugins/adobe-flash
 		x11-terms/xterm
