@@ -1,0 +1,5 @@
+*multi-9999 (21 Jan 2014)
+
+  21 Jan 2014; Michael Weber <xmw@gentoo.org> +files/multi-9999-LDFLAGS.patch,
+  +metadata.xml, +multi-9999.ebuild:
+  Initial import

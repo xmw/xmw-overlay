@@ -1,0 +1,11 @@
+--- multi-9999/src/Makefile
++++ multi-9999/src/Makefile
+@@ -6,7 +6,7 @@
+ all: multi_client
+ 
+ multi_client: $(SRC_FILES)
+-	$(CC) $(CFLAGS) -o $@ $^ $(LIBS)
++	$(CC) $(CFLAGS) -o $@ $^ $(LIBS) $(LDFLAGS)
+ 
+ clean:
+ 	rm -f multi_client *.o
