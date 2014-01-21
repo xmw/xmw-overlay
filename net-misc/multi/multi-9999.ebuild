@@ -15,8 +15,11 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-DEPEND=""
-RDEPEND=""
+DEPEND="dev-libs/glib
+	dev-libs/libyaml
+	net-libs/libmnl
+	net-wireless/wireless-tools"
+DEPEND="${RDEPEND}"
 
 src_prepare() {
 	epatch "${FILESDIR}"/${P}-LDFLAGS.patch
