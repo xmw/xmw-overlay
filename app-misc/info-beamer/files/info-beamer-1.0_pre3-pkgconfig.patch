@@ -1,18 +1,16 @@
 --- info-beamer-9999/Makefile
 +++ info-beamer-9999/Makefile
-@@ -11,9 +11,9 @@
+@@ -11,8 +11,8 @@
  endif
  
  ifdef USE_LUAJIT
 -LUA_CFLAGS  ?= -I/usr/include/luajit-2.0
 -LUA_LDFLAGS ?= -lluajit-5.1
--LUA_LUAC    ?= luac
 +LUA_CFLAGS  ?= $(shell pkg-config --cflags luajit)
 +LUA_LDFLAGS ?= $(shell pkg-config --libs luajit)
-+LUA_LUAC    ?= luac
+ LUA_LUAC    ?= luac
  CFLAGS      += -DUSE_LUAJIT=1
  else
- #################################################
 @@ -24,14 +24,14 @@
  # $ LUA_LDFLAGS=-llua make
  #
