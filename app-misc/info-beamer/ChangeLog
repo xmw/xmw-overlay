@@ -1,0 +1,7 @@
+*info-beamer-1.0_pre3 (12 Feb 2014)
+*info-beamer-9999 (12 Feb 2014)
+
+  12 Feb 2014; Michael Weber <xmw@gentoo.org>
+  +files/info-beamer-1.0_pre3-pkgconfig.patch, +info-beamer-1.0_pre3.ebuild,
+  +info-beamer-9999.ebuild, +metadata.xml:
+  Initial import

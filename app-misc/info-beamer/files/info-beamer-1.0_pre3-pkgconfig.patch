@@ -1,0 +1,34 @@
+--- info-beamer-9999/Makefile
++++ info-beamer-9999/Makefile
+@@ -11,9 +11,9 @@
+ endif
+ 
+ ifdef USE_LUAJIT
+-LUA_CFLAGS  ?= -I/usr/include/luajit-2.0
+-LUA_LDFLAGS ?= -lluajit-5.1
+-LUA_LUAC    ?= luac
++LUA_CFLAGS  ?= $(shell pkg-config --cflags luajit)
++LUA_LDFLAGS ?= $(shell pkg-config --libs luajit)
++LUA_LUAC    ?= luac
+ CFLAGS      += -DUSE_LUAJIT=1
+ else
+ #################################################
+@@ -24,14 +24,14 @@
+ # $ LUA_LDFLAGS=-llua make
+ #
+ #################################################
+-LUA_CFLAGS  ?= -I/usr/include/lua5.1
+-LUA_LDFLAGS ?= -L/usr/lib -llua5.1
++LUA_CFLAGS  ?= $(shell pkg-config --cflags lua)
++LUA_LDFLAGS ?= $(shell pkg-config --libs lua)
+ LUA_LUAC    ?= luac
+ endif
+ 
+ CFLAGS  += -DVERSION='"$(VERSION)"'
+-CFLAGS  += $(LUA_CFLAGS) -I/usr/include/freetype2/ -I/usr/include/ffmpeg -std=c99 -Wall
+-LDFLAGS += $(LUA_LDFLAGS) -levent -lglfw -lGL -lGLU -lGLEW -lftgl -lIL -lILU -lavformat -lavcodec -lavutil -lswscale -lz 
++CFLAGS  += $(LUA_CFLAGS) $(shell pkg-config --cflags libevent libglfw gl glu glew ftgl IL ILU libavformat libavcodec libavutil libswscale) -std=c99 -Wall
++LDFLAGS += $(LUA_LDFLAGS) $(shell pkg-config --libs libevent libglfw gl glu glew ftgl IL ILU libavformat libavcodec libavutil libswscale)
+ 
+ prefix 		?= /usr/local
+ exec_prefix ?= $(prefix)
