@@ -4,15 +4,15 @@
 
 EAPI=5
 
-inherit eutils git-r3 toolchain-funcs
+inherit eutils toolchain-funcs vcs-snapshot
 
 DESCRIPTION="allows to rapidly prototype interactive multimedia presentations using Lua"
 HOMEPAGE="http://info-beamer.org/"
-EGIT_REPO_URI="https://github.com/dividuum/info-beamer.git"
+SRC_URI="https://github.com/dividuum/${PN}/tarball/8309433 -> ${P}.tar.gz"
 
 LICENSE="BSD-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="examples glfw2 luajit"
 
 RDEPEND="
@@ -32,7 +32,7 @@ DEPEND="${RDEPEND}
 
 src_prepare() {
 	epatch "${FILESDIR}"/${PN}-1.0_pre3-pkgconfig.patch
-	use glfw2 || epatch "${FILESDIR}"/${PN}-1.0_pre3_p20140107-glfw3.patch
+	use glfw2 || epatch "${FILESDIR}"/${P}-glfw3.patch
 }
 
 src_compile() {
