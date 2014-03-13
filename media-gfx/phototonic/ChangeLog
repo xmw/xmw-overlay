@@ -1,0 +1,5 @@
+*phototonic-9999 (13 Mar 2014)
+
+  13 Mar 2014; Michael Weber <xmw@gentoo.org> +metadata.xml,
+  +phototonic-9999.ebuild:
+  Initial import, minimal ebuild.
