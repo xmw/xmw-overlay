@@ -75,14 +75,11 @@ src_install() {
 	for my_file in "build/bin/${ARCH}/"* ; do
 		sed -e "s:${S}/build:${EROOT}opt/${PN}:g" \
 			-i "${my_file}" || die
+		make_wrapper "$(basename "${my_file}")" "${EROOT}opt/${PN}/bin/${ARCH}/$(basename "${my_file}")"
 	done
 
 	rmdir build/tcltk{/x86_64_linux,}
 	use doc || rm -rf build/doc
 	dodir /opt
 	mv build "${ED}"opt/${PN}
-
-	for my_file in "${EROOT}opt/${PN}/bin/${ARCH}/"* ; do
-		make_wrapper "$(basename "${my_file}")" "${my_file}"
-	done
 }
