@@ -67,7 +67,7 @@ src_configure() {
 }
 
 src_compile() {
-	emake -f Makefile.${ARCH} PREFIX="${S}/build"
+	emake -f Makefile.${ARCH} PREFIX="${S}/build" -j1
 }
 
 src_install() {

@@ -1,3 +1,6 @@
+  15 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:
+  meh, no parallel build
+
 *eclipse-cpl-6.1.187 (15 May 2014)
 
   15 May 2014; Michael Weber <xmw@gentoo.org> +eclipse-cpl-6.1.187.ebuild,
