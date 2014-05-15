@@ -1,0 +1,12 @@
+--- Eclipse_6.1_187/Makefile.in
++++ Eclipse_6.1_187/Makefile.in
+@@ -27,9 +27,7 @@
+ # (e.g. because they try to make .eco/.eci files and need to run eclipse,
+ # or requires the making of such a subsystem)
+ install_all:	install_cross \
+-		make_ecrc_solvers \
+ 		make_pt_libraries \
+-		make_zincinterface \
+ 		make_compiler \
+ 		make_contrib \
+ 		make_mercury

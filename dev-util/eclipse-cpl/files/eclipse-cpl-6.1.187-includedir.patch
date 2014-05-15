@@ -1,0 +1,11 @@
+--- Eclipse_6.1_187/icparc_solvers/Makefile.in
++++ Eclipse_6.1_187/icparc_solvers/Makefile.in
+@@ -47,7 +47,7 @@
+ GMP_LD = @GMP_LD@
+ FLOAT_ROUND_FLAGS = @FLOAT_ROUND_FLAGS@
+ 
+-CPPFLAGS  = -I. -I$(ECLIPSEDIR)/include/$(ARCH) -I$(ECLIPSEDIR)/Kernel/src -I- $(OS_INCLUDES)
++CPPFLAGS  = -I. -I$(ECLIPSEDIR)/include/$(ARCH) -I$(top_srcdir)/Kernel/src -iquote $(OS_INCLUDES)
+ STDCXXLIB = @STDCXXLIB@
+ ECLIBS	= -L$(ECLIPSEDIR)/lib/$(ARCH) -leclipse @LIBS@
+ 
