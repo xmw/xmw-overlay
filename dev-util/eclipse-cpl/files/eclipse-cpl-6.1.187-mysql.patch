@@ -1,0 +1,11 @@
+--- Eclipse_6.1_187/configure.ac
++++ Eclipse_6.1_187/configure.ac
+@@ -1908,7 +1908,7 @@
+ 	mysql_versions_requested="55 54 53 52 51 50"
+     fi
+     for version in $mysql_versions_requested; do
+-	MYSQLDIR="$ECLIPSETHIRDPARTY/mysql$version/$ARCH"
++	MYSQLDIR=${MYSQLDIR:-"$ECLIPSETHIRDPARTY/mysql$version/$ARCH"}
+ 	if test -d "$MYSQLDIR"; then
+ 	    ALL_WITH_MYSQL=all_with_mysql
+ 	    ALL_CROSS_WITH_MYSQL=all_cross_with_mysql

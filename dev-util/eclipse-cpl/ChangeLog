@@ -1,3 +1,11 @@
+  16 May 2014; Michael Weber <xmw@gentoo.org> +files/README.gentoo,
+  +files/eclipse-cpl-6.1.187-mysql.patch,
+  +files/eclipse-cpl-6.1.187-tcl8.6.patch,
+  -files/eclipse-cpl-6.1.187-disable-ecrc-solver.patch,
+  -files/eclipse-cpl-6.1.187-disable-icparc-solver.patch,
+  eclipse-cpl-6.1.187.ebuild, metadata.xml:
+  work in progress
+
   15 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:
   second approach generating wrappers
 

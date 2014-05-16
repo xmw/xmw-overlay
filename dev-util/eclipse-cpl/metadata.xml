@@ -5,4 +5,7 @@
 <email>xmw@gentoo.org</email>
 <name>Michael Weber</name>
 </maintainer>
+<use>
+<flag name="gecode">Bindings for dev-libs/gecode</flag>
+</use>
 </pkgmetadata>
