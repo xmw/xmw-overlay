@@ -1,3 +1,14 @@
+  18 May 2014; Michael Weber <xmw@gentoo.org>
+  +files/eclipse-cpl-6.1.187-AR.patch,
+  +files/eclipse-cpl-6.1.187-Eplex-include.patch,
+  +files/eclipse-cpl-6.1.187-configure-osi.patch,
+  +files/eclipse-cpl-6.1.187-icparc_solvers.patch,
+  -files/eclipse-cpl-6.1.187-automagic-doc.patch,
+  -files/eclipse-cpl-6.1.187-includedir.patch,
+  -files/eclipse-cpl-6.1.187-shm-respect-ar.patch, eclipse-cpl-6.1.187.ebuild,
+  metadata.xml:
+  work in progress
+
   16 May 2014; Michael Weber <xmw@gentoo.org> +files/README.gentoo,
   +files/eclipse-cpl-6.1.187-mysql.patch,
   +files/eclipse-cpl-6.1.187-tcl8.6.patch,

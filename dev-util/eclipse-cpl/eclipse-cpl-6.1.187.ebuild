@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit autotools eutils flag-o-matic readme.gentoo toolchain-funcs versionator
+inherit autotools eutils flag-o-matic readme.gentoo versionator
 
 DESCRIPTION="OSS system for the cost-effective development and deployment of constraint programming applications"
 HOMEPAGE="http://eclipseclp.org/"
@@ -15,30 +15,47 @@ SRC_URI="http://eclipseclp.org/Distribution/${MY_PV}/src/${PN/-cpl}_src.tgz -> $
 LICENSE="${pn} LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="doc gecode gmp java mysql tcl threads"
+IUSE="doc +coin +gecode +glpk +gmp +java +mysql +tcl +threads"
 
-RDEPEND="dev-libs/gmp"
+RDEPEND=""
 DEPEND="${RDEPEND}
+	gmp? ( dev-libs/gmp )
 	doc? ( app-text/ghostscript-gpl
-	dev-tex/hevea
-	dev-texlive/texlive-latex )
+		dev-tex/hevea
+		dev-texlive/texlive-latex )
 	gecode? ( dev-libs/gecode )
 	mysql? ( virtual/mysql )
-	java? ( dev-java/batik dev-java/javahelp )"
+	java? ( dev-java/batik dev-java/javahelp )
+	coin? ( sci-libs/coinor-cbc[examples]
+		sci-libs/coinor-osi[glpk?]
+		sci-libs/coinor-symphony[glpk?]
+		glpk? ( <sci-mathematics/glpk-4.54 ) )"
 
 S=${WORKDIR}/Eclipse_${MY_PV}
+
+REQUIRED_USE="coin? ( gmp ) glpk? ( coin )"
 
 pkg_setup() {
 	use gecode && ewarn gecode does not work yet
 	use doc && ewarn doc does not work yet
 }
 
+src_unpack() {
+	default
+	local my_cbc=$(best_version sci-libs/coinor-cbc)
+	cp "${EROOT}"usr/share/doc/${my_cbc/sci-libs\//}/examples/Cbc{Branch,Compare}User.{c,h}pp.* . || die
+	unpack ./Cbc{Branch,Compare}User.{c,h}pp.*
+	mv Cbc{Branch,Compare}User.{c,h}pp "${S}"/Eplex || die
+}
+
 src_prepare() {
 	epatch \
-		"${FILESDIR}"/${P}-automagic-doc.patch \
 		"${FILESDIR}"/${P}-mysql.patch \
-		"${FILESDIR}"/${P}-shm-respect-ar.patch \
-		"${FILESDIR}"/${P}-tcl8.6.patch
+		"${FILESDIR}"/${P}-tcl8.6.patch \
+		"${FILESDIR}"/${P}-configure-osi.patch \
+		"${FILESDIR}"/${P}-AR.patch \
+		"${FILESDIR}"/${P}-Eplex-include.patch \
+		"${FILESDIR}"/${P}-icparc_solvers.patch
 
 	append-cflags -DUSE_INTERP_RESULT
 	rm ARCH RUNME || die
@@ -49,21 +66,30 @@ src_prepare() {
 		*)     die "unsupported arch ${ARCH}" ;;
 	esac
 	export ECLIPSEDIR=${EROOT}opt/${PN}
-
+	export MYSQLDIR="${EROOT}usr/include/mysql"
+	export prefix="${S}/build"
 	eautoreconf
 }
 
 src_configure() {
-	MYSQLDIR="${EROOT}usr/include/mysql" econf \
-		$(use_with gmp) \
+	local my_osi="--without-osi"
+	if use coin ; then
+		if use glpk ; then
+			my_osi="--with-osi=clpcbc symclp glpk"
+		else
+			my_osi="--with-osi=clpcbc symclp"
+		fi
+	fi
+	econf \
 		--without-cplex \
-		--with-osi \
+		--without-xpress \
+		$(use_with gmp) \
+		"${my_osi}" \
 		--with-flexlm \
 		$(use_with gecode gfd) \
 		--without-graphviz \
 		--without-gurobi \
 		$(use_with mysql) \
-		--without-xpress \
 		$(use_with java) \
 		$(use_with java cpviz) \
 		$(use_with threads pthreads) \
@@ -77,7 +103,7 @@ src_compile() {
 	#replace toplevel Makefile.${ARCH}, -j1 bug etc.
 	rm -fv Makefile.${ARCH} || die
 	einfo "compile & install Shm"
-	emake -C Shm/${ARCH} AR="$(tc-getAR) ruv" PREFIX="${S}/build" install
+	emake -C Shm/${ARCH} PREFIX="${S}/build" install
 	einfo "compile & install Kernel"
 	emake -C Kernel/${ARCH} sepia
 	emake -C Kernel/${ARCH} PREFIX="${S}/build" install
@@ -108,28 +134,36 @@ EOF
 		runme "tkeclipse" "exec wish \"\${ECLIPSEDIR}/lib_tcl/tkeclipse.tcl\" -- \"\$@\""
 		runme "tktools" "exec wish \"\${ECLIPSEDIR}/lib_tcl/tktools.tcl\" -- \"\$@\""
 	fi
+
+	#einfo "compile & install ecrc_solvers"
+	#emake -C ecrc_solvers -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
+
 	einfo "compile & install Flexlm"
 	emake -C Flexlm -f Makefile.${ARCH} PREFIX="${S}/build" install
-	#einfo "install Eplex"
-	#emake -C Eplex -f Makefile.${ARCH} PREFIX="${my_ED}" install_eplex -j1
-	if use mysql ; then
-		einfo "compile & install Oci"
-		emake -C Oci -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
-	fi
 
+	if use coin ; then
+		einfo "compile & install Eplex"
+		emake -C Eplex -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
+
+		einfo "compile & install icparc_solvers"
+		emake -C icparc_solvers -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
+	fi
 	if use gecode ; then
 		einfo "compile & install GecodeInterface"
-		emake -C GecodeInterface -f Makefile.${ARCH} AR="$(tc-getAR)" PREFIX="${S}/build" install
+		emake -C GecodeInterface -f Makefile.${ARCH} PREFIX="${S}/build" install
 	fi
 	if use java ; then
 		einfo "compile & install JavaInterface"
-		# installs documentation and examples
 		emake -C JavaInterface -f Makefile.${ARCH} PREFIX="${S}/build" install
 		runme "jeclipse" "exec \"\${JRE_HOME}/bin/java\" -Xss2m  -Declipse.directory=\"\${ECLIPSEDIR}\" -classpath \"\${ECLIPSEDIR}/lib/eclipse.jar\" com.parctechnologies.eclipse.JEclipse \"\$@\""
 
 		einfo "compile & install Visualisation"
-		# installs documentation and examples
 		emake -C Visualisation -f Makefile.${ARCH} PREFIX="${S}/build" install
+	fi
+
+	if use mysql ; then
+		einfo "compile & install Oci"
+		emake -C Oci -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
 	fi
 }
 
