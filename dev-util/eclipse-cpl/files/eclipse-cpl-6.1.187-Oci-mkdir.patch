@@ -1,0 +1,21 @@
+--- Eclipse_6.1_187/Oci/Makefile.in
++++ Eclipse_6.1_187/Oci/Makefile.in
+@@ -131,15 +131,15 @@
+ 
+ 
+ $(ARCH)/dbi.o : dbi.h dbi.c
+-	[ -d $(ARCH) ] || mkdir $(ARCH)
++	mkdir -p $(ARCH)
+ 	$(CC) $(OPT_FLAGS) $(CFLAGS) $(CPPFLAGS) -c -o $(ARCH)/dbi.o dbi.c
+ 
+ $(ARCH)/mysql.o: dbi.h mysql.c
+-	[ -d $(ARCH) ] || mkdir $(ARCH)
++	mkdir -p $(ARCH)
+ 	$(CC) $(OPT_FLAGS) $(CFLAGS) $(CPPFLAGS) $(MFLAGS) -c -o $(ARCH)/mysql.o mysql.c
+ 
+ $(ARCH)/dbi_mysql.$(OBJ_SUFFIX): $(MOBJ)
+-	[ -d $(ARCH) ] || mkdir $(ARCH)
++	mkdir -p $(ARCH)
+ 	$(DYLD) $(DYNLDFLAGS) \
+ 	    $(MOBJ) $(MLIBS) $(ELIBS) \
+ 	    -o $(ARCH)/dbi_mysql.$(OBJ_SUFFIX)

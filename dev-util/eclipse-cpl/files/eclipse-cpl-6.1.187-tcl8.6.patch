@@ -33,3 +33,14 @@
  
      if test "$OSCLASS" != "win" ; then
  	dnl find X includes and libraries
+--- Eclipse_6.1_187/Kernel/src/Makefile.in
++++ Eclipse_6.1_187/Kernel/src/Makefile.in
+@@ -94,7 +94,7 @@
+ OPT_FLAGS_ARITH = @OPT_FLAGS_ARITH@ 
+ LOCAL_FLAGS = @LOCAL_FLAGS@
+ FLOAT_ROUND_FLAGS = @FLOAT_ROUND_FLAGS@
+-CFLAGS = @CFLAGS@
++CFLAGS = -DUSE_INTERP_RESULT @CFLAGS@
+ OBJECTS_SUFFIX = @OBJECTS_SUFFIX@
+ LIB_PREFIX = @LIB_PREFIX@
+ 

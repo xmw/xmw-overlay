@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit autotools eutils flag-o-matic readme.gentoo versionator
+inherit autotools eutils readme.gentoo versionator
 
 DESCRIPTION="OSS system for the cost-effective development and deployment of constraint programming applications"
 HOMEPAGE="http://eclipseclp.org/"
@@ -52,12 +52,12 @@ src_prepare() {
 	epatch \
 		"${FILESDIR}"/${P}-mysql.patch \
 		"${FILESDIR}"/${P}-tcl8.6.patch \
-		"${FILESDIR}"/${P}-configure-osi.patch \
+		"${FILESDIR}"/${P}-Eplex-Makefile.patch \
 		"${FILESDIR}"/${P}-AR.patch \
 		"${FILESDIR}"/${P}-Eplex-include.patch \
-		"${FILESDIR}"/${P}-icparc_solvers.patch
+		"${FILESDIR}"/${P}-icparc_solvers.patch \
+		"${FILESDIR}"/${P}-Oci-mkdir.patch
 
-	append-cflags -DUSE_INTERP_RESULT
 	rm ARCH RUNME || die
 
 	case "${ARCH}" in
@@ -146,7 +146,7 @@ EOF
 		emake -C Eplex -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
 
 		einfo "compile & install icparc_solvers"
-		emake -C icparc_solvers -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
+		emake -C icparc_solvers -f Makefile.${ARCH} PREFIX="${S}/build" install
 	fi
 	if use gecode ; then
 		einfo "compile & install GecodeInterface"
