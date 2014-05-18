@@ -1,3 +1,6 @@
+  18 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:
+  building version
+
   18 May 2014; Michael Weber <xmw@gentoo.org>
   +files/eclipse-cpl-6.1.187-AR.patch,
   +files/eclipse-cpl-6.1.187-Eplex-include.patch,

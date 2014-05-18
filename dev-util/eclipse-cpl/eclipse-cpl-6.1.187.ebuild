@@ -74,10 +74,10 @@ src_prepare() {
 src_configure() {
 	local my_osi="--without-osi"
 	if use coin ; then
+		my_osi="--with-osi=symclp"
+		#my_osi=" ... clpcbc" doesn't build jet
 		if use glpk ; then
-			my_osi="--with-osi=clpcbc symclp glpk"
-		else
-			my_osi="--with-osi=clpcbc symclp"
+			my_osi="${my_osi} glpk"
 		fi
 	fi
 	econf \
