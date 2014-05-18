@@ -6,7 +6,7 @@ EAPI=5
 
 inherit eutils readme.gentoo
 
-DESCRIPTION="intelligent Python IDE with unique code assistance and analysis"
+DESCRIPTION="Intelligent Python IDE with unique code assistance and analysis"
 HOMEPAGE="http://www.jetbrains.com/pycharm/"
 SRC_URI="http://download.jetbrains.com/python/${P}.tar.gz"
 
