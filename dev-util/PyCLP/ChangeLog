@@ -1,3 +1,6 @@
+  18 May 2014; Michael Weber <xmw@gentoo.org> PyCLP-0.8.ebuild:
+  Set LD_RUN_PATH.
+
   15 May 2014; Michael Weber <xmw@gentoo.org> PyCLP-0.8.ebuild:
   Add dep.
 
