@@ -42,10 +42,12 @@ pkg_setup() {
 
 src_unpack() {
 	default
-	local my_cbc=$(best_version sci-libs/coinor-cbc)
-	cp "${EROOT}"usr/share/doc/${my_cbc/sci-libs\//}/examples/Cbc{Branch,Compare}User.{c,h}pp.* . || die
-	unpack ./Cbc{Branch,Compare}User.{c,h}pp.*
-	mv Cbc{Branch,Compare}User.{c,h}pp "${S}"/Eplex || die
+	if use coin ; then
+		local my_cbc=$(best_version sci-libs/coinor-cbc)
+		cp "${EROOT}"usr/share/doc/${my_cbc/sci-libs\//}/examples/Cbc{Branch,Compare}User.{c,h}pp.* . || die
+		unpack ./Cbc{Branch,Compare}User.{c,h}pp.*
+		mv Cbc{Branch,Compare}User.{c,h}pp "${S}"/Eplex || die
+	fi
 }
 
 src_prepare() {
