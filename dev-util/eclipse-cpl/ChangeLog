@@ -1,4 +1,7 @@
   20 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:
+  revert to default use flags
+
+  20 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:
   more non-parallel build
 
   20 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:

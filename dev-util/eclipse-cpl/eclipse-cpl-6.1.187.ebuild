@@ -15,7 +15,7 @@ SRC_URI="http://eclipseclp.org/Distribution/${MY_PV}/src/${PN/-cpl}_src.tgz -> $
 LICENSE="${pn} LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="doc +coin +gecode +glpk +gmp +java +mysql +tcl +threads"
+IUSE="doc +coin +gecode +glpk +gmp java mysql tcl +threads"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
