@@ -148,7 +148,7 @@ EOF
 		emake -C Eplex -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
 
 		einfo "compile & install icparc_solvers"
-		emake -C icparc_solvers -f Makefile.${ARCH} PREFIX="${S}/build" install
+		emake -C icparc_solvers -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
 	fi
 	if use gecode ; then
 		einfo "compile & install GecodeInterface"
