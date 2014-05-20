@@ -183,8 +183,8 @@ src_install() {
 		make_wrapper jeclipse "${EROOT}opt/${PN}/bin/${ARCH}/jeclipse"
 	fi
 
-	echo "ECLIPSEDIR=\"${EROOT}opt/${PN}\"" > "${TMP}"/90${PN}
-	doenvd "${TMP}"/90${PN}
+	echo "ECLIPSEDIR=\"${EROOT}opt/${PN}\"" > "${T}"/90${PN}
+	doenvd "${T}"/90${PN}
 
 	dodoc README_UNIX
 	readme.gentoo_create_doc
