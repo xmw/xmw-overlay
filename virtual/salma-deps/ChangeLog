@@ -1,0 +1,5 @@
+*salma-deps-0 (20 May 2014)
+
+  20 May 2014; Michael Weber <xmw@gentoo.org> +metadata.xml,
+  +salma-deps-0.ebuild:
+  Initial import
