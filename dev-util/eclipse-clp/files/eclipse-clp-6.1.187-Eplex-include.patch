@@ -1,0 +1,10 @@
+--- Eclipse_6.1_187/Eplex/coinplex.cpp
++++ Eclipse_6.1_187/Eplex/coinplex.cpp
+@@ -139,6 +139,7 @@
+ #include <stdio.h>
+ #include <exception>
+ #include <string>
++#include <cmath>
+ using std::string;
+ using namespace std;
+ 

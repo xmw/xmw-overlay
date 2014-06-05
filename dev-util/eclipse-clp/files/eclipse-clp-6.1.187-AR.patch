@@ -1,0 +1,31 @@
+--- Eclipse_6.1_187/configure.ac
++++ Eclipse_6.1_187/configure.ac
+@@ -750,7 +750,7 @@
+ AC_PROG_CXX
+ AC_PROG_CXXCPP
+ AC_PROG_AWK
+-AC_PATH_PROG(AR,ar,ar,[$PATH:/usr/ccs/bin])
++AM_PROG_AR
+ AC_PROG_RANLIB
+ AC_PROG_LN_S
+ AC_CHECK_PROG(SED,sed,sed,false)
+--- Eclipse_6.1_187/Shm/src/Makefile.in
++++ Eclipse_6.1_187/Shm/src/Makefile.in
+@@ -33,7 +33,7 @@
+ RANLIB = @RANLIB@
+ LOCK = @LOCK@
+ 
+-AR = ar ruv
++AR = @AR@
+ RM = /bin/rm -f
+ CP = /bin/cp
+ 
+@@ -66,7 +66,7 @@
+ 
+ 
+ libshm.a:	$(SHM_OBJ)
+-	ar rcv libshm.a $(SHM_OBJ)
++	$(AR) rcv libshm.a $(SHM_OBJ)
+ 	$(RANLIB) libshm.a
+ 
+ alloc.o:	config.h memman.h

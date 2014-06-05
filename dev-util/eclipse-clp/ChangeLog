@@ -1,0 +1,57 @@
+  20 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:
+  revert to default use flags
+
+  20 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:
+  more non-parallel build
+
+  20 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:
+  fix tempdir
+
+  20 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:
+  make use of USE=coin
+
+  18 May 2014; Michael Weber <xmw@gentoo.org>
+  +files/eclipse-cpl-6.1.187-Eplex-Makefile.patch,
+  +files/eclipse-cpl-6.1.187-Oci-mkdir.patch,
+  -files/eclipse-cpl-6.1.187-configure-osi.patch, eclipse-cpl-6.1.187.ebuild,
+  files/eclipse-cpl-6.1.187-icparc_solvers.patch,
+  files/eclipse-cpl-6.1.187-tcl8.6.patch:
+  parallel fooo
+
+  18 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:
+  building version
+
+  18 May 2014; Michael Weber <xmw@gentoo.org>
+  +files/eclipse-cpl-6.1.187-AR.patch,
+  +files/eclipse-cpl-6.1.187-Eplex-include.patch,
+  +files/eclipse-cpl-6.1.187-configure-osi.patch,
+  +files/eclipse-cpl-6.1.187-icparc_solvers.patch,
+  -files/eclipse-cpl-6.1.187-automagic-doc.patch,
+  -files/eclipse-cpl-6.1.187-includedir.patch,
+  -files/eclipse-cpl-6.1.187-shm-respect-ar.patch, eclipse-cpl-6.1.187.ebuild,
+  metadata.xml:
+  work in progress
+
+  16 May 2014; Michael Weber <xmw@gentoo.org> +files/README.gentoo,
+  +files/eclipse-cpl-6.1.187-mysql.patch,
+  +files/eclipse-cpl-6.1.187-tcl8.6.patch,
+  -files/eclipse-cpl-6.1.187-disable-ecrc-solver.patch,
+  -files/eclipse-cpl-6.1.187-disable-icparc-solver.patch,
+  eclipse-cpl-6.1.187.ebuild, metadata.xml:
+  work in progress
+
+  15 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:
+  second approach generating wrappers
+
+  15 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:
+  meh, no parallel build
+
+*eclipse-cpl-6.1.187 (15 May 2014)
+
+  15 May 2014; Michael Weber <xmw@gentoo.org> +eclipse-cpl-6.1.187.ebuild,
+  +files/eclipse-cpl-6.1.187-automagic-doc.patch,
+  +files/eclipse-cpl-6.1.187-disable-ecrc-solver.patch,
+  +files/eclipse-cpl-6.1.187-disable-icparc-solver.patch,
+  +files/eclipse-cpl-6.1.187-includedir.patch,
+  +files/eclipse-cpl-6.1.187-shm-respect-ar.patch, +metadata.xml:
+  Iniital import
