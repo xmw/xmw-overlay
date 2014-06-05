@@ -1,1 +1,2 @@
 move dev-util/PyCLP dev-python/PyCLP
+move dev-util/eclipse-cpl dev-util/eclipse-clp
