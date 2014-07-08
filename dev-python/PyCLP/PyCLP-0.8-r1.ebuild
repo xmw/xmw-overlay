@@ -16,7 +16,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-RDEPEND="dev-util/eclipse-cpl"
+RDEPEND="dev-util/eclipse-clp"
 DEPEND="${RDEPEND}"
 
 pkg_setup() {

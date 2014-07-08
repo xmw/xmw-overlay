@@ -1,3 +1,9 @@
+*PyCLP-0.8-r1 (08 Jul 2014)
+
+  08 Jul 2014; Michael Weber <xmw@gentoo.org> +PyCLP-0.8-r1.ebuild,
+  -PyCLP-0.8.ebuild:
+  eclipse-clp rename
+
   18 May 2014; Michael Weber <xmw@gentoo.org> PyCLP-0.8.ebuild:
   Set LD_RUN_PATH.
 
