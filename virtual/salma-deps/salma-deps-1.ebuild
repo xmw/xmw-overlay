@@ -20,6 +20,6 @@ RDEPEND="dev-python/PyCLP
 	dev-python/nose
 	dev-python/celery
 	dev-python/pyside
-	dev-util/eclipse-cpl[coin]
+	dev-util/eclipse-clp[coin]
 	net-misc/rabbitmq-server"
 DEPEND="${RDEPEND}"
