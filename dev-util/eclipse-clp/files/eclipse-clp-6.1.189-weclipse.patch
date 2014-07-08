@@ -1,0 +1,80 @@
+--- Eclipse_6.1_187/Kernel/src/scheduler.c
++++ Eclipse_6.1_187/Kernel/src/scheduler.c
+@@ -31,6 +31,7 @@
+ #include <stdio.h>
+ 
+ #include "config.h"
++#include "ec_public.h"
+ 
+ #include "pds.h"        /* The Underlying Message Passing System */
+ #include "memman.h"
+--- Eclipse_6.1_189/Kernel/src/emu_par.c
++++ Eclipse_6.1_189/Kernel/src/emu_par.c
+@@ -856,7 +856,7 @@
+     while (po && b_aux >= bcommon)
+     {
+ 	while (IsGcFrame(BTop(b_aux))
+-	 || IsSmallFrame(BTop(b_aux))
++	 //|| IsSmallFrame(BTop(b_aux))
+ 	 || IsCatchFrame(BTop(b_aux))
+ 	 || IsExceptionFrame(BTop(b_aux)))
+ 	{
+@@ -898,7 +898,7 @@
+     while ( po && b_aux >= bcommon)
+     {
+ 	while (IsGcFrame(BTop(b_aux))
+-	 || IsSmallFrame(BTop(b_aux))
++	 //|| IsSmallFrame(BTop(b_aux))
+ 	 || IsCatchFrame(BTop(b_aux))
+ 	 || IsExceptionFrame(BTop(b_aux)))
+ 	{
+--- Eclipse_6.1_189/Kernel/src/Makefile.in
++++ Eclipse_6.1_189/Kernel/src/Makefile.in
+@@ -264,8 +264,8 @@
+ 		$(CC) $(LDFLAGS) -L$(SYS_LIB) $(DEVSYS_OBJECTS) $(COMMON_OBJECTS) mps.o whereami.o $(PAR_LIBS) $(BASIC_LIBS) libdummies.a $(LIBS) -o $@
+ 
+ # An eclipse parallel worker (includes mps)
+-weclipse:	$(DEVSYS_OBJECTS) $(COMMON_OBJECTS) o parallel.o mps.o whereami.o libdummies.a
+-		$(CC) $(LDFLAGS) -L$(SYS_LIB) $(DEVSYS_OBJECTS) $(COMMON_OBJECTS) parallel.o mps.o whereami.o $(PAR_LIBS) $(BASIC_LIBS) libdummies.a $(LIBS) -o $@
++weclipse:	$(DEVSYS_OBJECTS) $(COMMON_OBJECTS) parallel.o mps.o whereami.o lib1.o lib2.o lib7.o
++		$(CC) $(LDFLAGS) -L$(SYS_LIB) $(DEVSYS_OBJECTS) $(COMMON_OBJECTS) parallel.o mps.o whereami.o $(PAR_LIBS) $(BASIC_LIBS) lib1.o lib2.o lib7.o $(LIBS) -o $@
+ 
+ # The worker manager
+ peclipse:	wm.o whereami.o wm_interface.o eclipsedir.o os_support.o
+@@ -463,12 +463,12 @@
+ 		$(CC) $(OPT_FLAGS) $(FLOAT_ROUND_FLAGS) $(CFLAGS) $(CPPFLAGS) \
+ 		-c $<
+ 
+-wm.o:		wm.c
+-		$(CC) $(OPT_FLAGS) $(CFLAGS) $(CPPFLAGS) -c wm.c
++wm.o:		../src/wm.c
++		$(CC) $(OPT_FLAGS) $(CFLAGS) $(CPPFLAGS) -c ../src/wm.c
+ 
+-wm_interface.o:	wm_interface.c
++wm_interface.o:	../src/wm_interface.c
+ 		$(CC) $(OPT_FLAGS) $(CFLAGS) $(CPPFLAGS) \
+-		-c wm_interface.c
++		-c ../src/wm_interface.c
+ 
+ 
+ #
+--- Eclipse_6.1_189/Kernel/src/wm.c
++++ Eclipse_6.1_189/Kernel/src/wm.c
+@@ -87,6 +87,7 @@
+ #include "trace.h"
+ #include "wm_msgs.h"
+ #include "wm_types.h"
++#include "os_support.h"
+ 
+ /* #define DEBUG_MPS*/
+ 
+--- Eclipse_6.1_189/Kernel/src/wm_interface.c
++++ Eclipse_6.1_189/Kernel/src/wm_interface.c
+@@ -59,6 +59,7 @@
+ #include "trace.h"
+ #include "wm_msgs.h"
+ #include "wm_types.h"
++#include "os_support.h"
+ 
+ 
+ /* Tcl/Tk includes */

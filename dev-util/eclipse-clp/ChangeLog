@@ -1,3 +1,26 @@
+*eclipse-clp-6.1.189 (08 Jul 2014)
+
+  08 Jul 2014; Michael Weber <xmw@gentoo.org> +eclipse-clp-6.1.189.ebuild,
+  +files/eclipse-clp-6.1.189-AR.patch,
+  +files/eclipse-clp-6.1.189-Alog-64bit.patch,
+  +files/eclipse-clp-6.1.189-Eplex-Makefile.patch,
+  +files/eclipse-clp-6.1.189-Eplex-include.patch,
+  +files/eclipse-clp-6.1.189-Oci-mkdir.patch,
+  +files/eclipse-clp-6.1.189-Pds-64bit.patch,
+  +files/eclipse-clp-6.1.189-Usc-64bit.patch,
+  +files/eclipse-clp-6.1.189-icparc_solvers.patch,
+  +files/eclipse-clp-6.1.189-mysql.patch,
+  +files/eclipse-clp-6.1.189-tcl8.6.patch,
+  +files/eclipse-clp-6.1.189-weclipse.patch, -eclipse-clp-6.1.187-r1.ebuild,
+  -files/eclipse-clp-6.1.187-AR.patch,
+  -files/eclipse-clp-6.1.187-Eplex-Makefile.patch,
+  -files/eclipse-clp-6.1.187-Eplex-include.patch,
+  -files/eclipse-clp-6.1.187-Oci-mkdir.patch,
+  -files/eclipse-clp-6.1.187-icparc_solvers.patch,
+  -files/eclipse-clp-6.1.187-mysql.patch,
+  -files/eclipse-clp-6.1.187-tcl8.6.patch, metadata.xml:
+  Version bump, parallel stuff
+
   20 May 2014; Michael Weber <xmw@gentoo.org> eclipse-cpl-6.1.187.ebuild:
   revert to default use flags
 

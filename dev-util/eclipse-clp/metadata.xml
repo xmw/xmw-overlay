@@ -9,5 +9,6 @@
 <flag name="gecode">Bindings for dev-libs/gecode</flag>
 <flag name="coin">Bindings for COIN-OR Open Solver Interface</flag>
 <flag name="glpk">Bindings for COIN-OR OSI Gnu Linear Programming Kit</flag>
+<flag name="parallel">Build parallel engine</flag>
 </use>
 </pkgmetadata>

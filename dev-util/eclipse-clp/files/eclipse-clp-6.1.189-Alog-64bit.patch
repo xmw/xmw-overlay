@@ -1,0 +1,42 @@
+--- Eclipse_6.1_187/Alog/src/configure
++++ Eclipse_6.1_187/Alog/src/configure
+@@ -531,8 +531,9 @@
+ #
+ # UNIX variants
+ #
+-CC=cc
+-CFLAGS="-O"
++CC=${CC:-cc}
++AR=${AR:-ar}
++CFLAGS=${CFLAGS:-"-O"}
+ case "$ARCH" in
+  sun3)
+     ;;
+@@ -556,7 +557,7 @@
+     ;;
+  i386_sunos5)
+     ;;
+- i386_linux)
++ i386_linux|x86_64_linux)
+     LIBS="-lieee $LIBS"
+     ;;
+  rs_aix32)
+@@ -767,6 +768,7 @@
+ s%@infodir@%$infodir%g
+ s%@mandir@%$mandir%g
+ s%@CC@%$CC%g
++s%@AR@%$AR%g
+ s%@ARCH@%$ARCH%g
+ s%@RANLIB@%$RANLIB%g
+ s%@SYS_DIR@%$SYS_DIR%g
+--- Eclipse_6.1_187/Alog/src/Makefile.in
++++ Eclipse_6.1_187/Alog/src/Makefile.in
+@@ -20,7 +20,7 @@
+ 
+ CCFLAGS = $(CFLAGS) $(IPATH)
+ 
+-AR = ar ruv
++AR = @AR@ ruv
+ RM = /bin/rm -f
+ CP = /bin/cp
+ 

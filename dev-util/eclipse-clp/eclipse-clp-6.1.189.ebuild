@@ -15,7 +15,7 @@ SRC_URI="http://eclipseclp.org/Distribution/${MY_PV}/src/${PN/-clp}_src.tgz -> $
 LICENSE="${pn} LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="doc +coin +gecode +glpk +gmp java mysql tcl +threads"
+IUSE="doc +coin +gecode +glpk +gmp java mysql parallel tcl +threads"
 
 RDEPEND=""
 DEPEND="${RDEPEND}
@@ -33,7 +33,7 @@ DEPEND="${RDEPEND}
 
 S=${WORKDIR}/Eclipse_${MY_PV}
 
-REQUIRED_USE="coin? ( gmp ) glpk? ( coin )"
+REQUIRED_USE="coin? ( gmp ) glpk? ( coin ) parallel? ( tcl )"
 
 pkg_setup() {
 	use gecode && ewarn gecode does not work yet
@@ -58,22 +58,31 @@ src_prepare() {
 		"${FILESDIR}"/${P}-AR.patch \
 		"${FILESDIR}"/${P}-Eplex-include.patch \
 		"${FILESDIR}"/${P}-icparc_solvers.patch \
-		"${FILESDIR}"/${P}-Oci-mkdir.patch
+		"${FILESDIR}"/${P}-Oci-mkdir.patch \
+		"${FILESDIR}"/${P}-Usc-64bit.patch \
+		"${FILESDIR}"/${P}-Pds-64bit.patch \
+		"${FILESDIR}"/${P}-Alog-64bit.patch \
+		"${FILESDIR}"/${P}-weclipse.patch
 
 	rm ARCH RUNME || die
 
 	case "${ARCH}" in
 		amd64) export ARCH=x86_64_linux ;;
-		x86)   export ARCH=i386_linux ;;
+		x86)   export ARCH=i386_linux   ;;
 		*)     die "unsupported arch ${ARCH}" ;;
 	esac
 	export ECLIPSEDIR=${EROOT}opt/${PN}
 	export MYSQLDIR="${EROOT}usr/include/mysql"
 	export prefix="${S}/build"
+	tc-export CC AR
 	eautoreconf
 }
 
 src_configure() {
+	#pushd Pds/src >/dev/null
+	#ARCH=${PDS_ARCH} econf
+	#popd >/dev/null
+
 	local my_osi="--without-osi"
 	if use coin ; then
 		my_osi="--with-osi=symclp"
@@ -100,21 +109,9 @@ src_configure() {
 }
 
 src_compile() {
-	mkdir -p "${S}/build/bin/${ARCH}"
-
-	#replace toplevel Makefile.${ARCH}, -j1 bug etc.
-	rm -fv Makefile.${ARCH} || die
-	einfo "compile & install Shm"
-	emake -C Shm/${ARCH} PREFIX="${S}/build" install
-	einfo "compile & install Kernel"
-	emake -C Kernel/${ARCH} sepia
-	emake -C Kernel/${ARCH} PREFIX="${S}/build" install
-	einfo "install legal files"
-	cp -pr legal "${S}/build" || die
-
 	runme() {
 		einfo "create wrapper $1"
-		cat << EOF > "build/bin/${ARCH}/$1"
+		cat << EOF > "bin/${ARCH}/$1"
 #!/bin/sh
 export ECLIPSEDIR="\${ECLIPSEDIR:-${EROOT}opt/${PN}}"
 if [ -z "\${LD_LIBRARY_PATH}" ] ; then
@@ -125,14 +122,46 @@ fi
 export JRE_HOME="\${JRE_HOME:-\${JAVA_HOME}}"
 $2
 EOF
-		chmod +x "build/bin/${ARCH}/$1"
+		chmod +x "bin/${ARCH}/$1"
 	}
+	mkdir -p "${S}/bin/${ARCH}"
+
+	#replace toplevel Makefile.${ARCH}, -j1 bug etc.
+	rm -fv Makefile.${ARCH} || die
+	einfo "compile & install Shm"
+	emake -C Shm/${ARCH} PREFIX="${S}" install
+
+	einfo "compile & install Usc (Micro Second Clock)"
+	pushd Usc
+	./INSTALL || die
+	popd
+
+	einfo "compile & install Alog"
+	pushd Alog
+	./INSTALL || die
+	popd
+
+	einfo "compile & install Pds (Parallel Distributed System)"
+	pushd Pds
+	./INSTALL || die
+	popd
+
+	einfo "compile & install Kernel"
+	emake -C Kernel/${ARCH} sepia
+	emake -C Kernel/${ARCH} PREFIX="${S}" install
 	runme "eclipse" "exec \"\${ECLIPSEDIR}/lib/x86_64_linux/eclipse.exe\" \"\$@\""
 
-	if use tcl ; then
-		einfo "install lib_tcl"
-		cp -pr lib_tcl "build" || die
+	if use parallel ; then
+		einfo "compile & install parallel Kernel"
+		emake -C Kernel/${ARCH} weclipse
+		cp -v {Kernel,lib}/${ARCH}/weclipse
+		runme "weclipse" "exec \"\${ECLIPSEDIR}/lib/x86_64_linux/weclipse\" \"\$@\""
+		emake -C Kernel/${ARCH} peclipse
+		cp -v {Kernel,lib}/${ARCH}/weclipse
+		runme "peclipse" "exec \"\${ECLIPSEDIR}/lib/x86_64_linux/peclipse\" \"\$@\""
+	fi
 
+	if use tcl ; then
 		runme "tkeclipse" "exec wish \"\${ECLIPSEDIR}/lib_tcl/tkeclipse.tcl\" -- \"\$@\""
 		runme "tktools" "exec wish \"\${ECLIPSEDIR}/lib_tcl/tktools.tcl\" -- \"\$@\""
 	fi
@@ -141,44 +170,50 @@ EOF
 	#emake -C ecrc_solvers -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
 
 	einfo "compile & install Flexlm"
-	emake -C Flexlm -f Makefile.${ARCH} PREFIX="${S}/build" install
+	emake -C Flexlm -f Makefile.${ARCH} PREFIX="${S}" install
 
 	if use coin ; then
 		einfo "compile & install Eplex"
-		emake -C Eplex -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
+		emake -C Eplex -f Makefile.${ARCH} PREFIX="${S}" install -j1
 
 		einfo "compile & install icparc_solvers"
-		emake -C icparc_solvers -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
+		emake -C icparc_solvers -f Makefile.${ARCH} PREFIX="${S}" install -j1
 	fi
 	if use gecode ; then
 		einfo "compile & install GecodeInterface"
-		emake -C GecodeInterface -f Makefile.${ARCH} PREFIX="${S}/build" install
+		emake -C GecodeInterface -f Makefile.${ARCH} PREFIX="${S}" install
 	fi
 	if use java ; then
 		einfo "compile & install JavaInterface"
-		emake -C JavaInterface -f Makefile.${ARCH} PREFIX="${S}/build" install
+		emake -C JavaInterface -f Makefile.${ARCH} PREFIX="${S}" install
 		runme "jeclipse" "exec \"\${JRE_HOME}/bin/java\" -Xss2m  -Declipse.directory=\"\${ECLIPSEDIR}\" -classpath \"\${ECLIPSEDIR}/lib/eclipse.jar\" com.parctechnologies.eclipse.JEclipse \"\$@\""
 
 		einfo "compile & install Visualisation"
-		emake -C Visualisation -f Makefile.${ARCH} PREFIX="${S}/build" install
+		emake -C Visualisation -f Makefile.${ARCH} PREFIX="${S}" install
 	fi
 
 	if use mysql ; then
 		einfo "compile & install Oci"
-		emake -C Oci -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
+		emake -C Oci -f Makefile.${ARCH} PREFIX="${S}" install -j1
 	fi
 }
 
 src_install() {
-	dodir /opt
-	mv "${S}/build" "${ED}opt/${PN}" || die
-
-	local my_file
+	dodir /opt/${PN}
+	mv bin doc include legal lib "${ED}opt/${PN}" || die
 	make_wrapper eclipse "${EROOT}opt/${PN}/bin/${ARCH}/eclipse"
+
 	if use tcl ; then
+		mv lib_tcl "${ED}opt/${PN}" || die
 		make_wrapper tkeclipse "${EROOT}opt/${PN}/bin/${ARCH}/tkeclipse"
 		make_wrapper tktools "${EROOT}opt/${PN}/bin/${ARCH}/tktools"
 	fi
+
+	if use parallel ; then
+		make_wrapper weclipse "${EROOT}opt/${PN}/bin/${ARCH}/weclipse"
+		make_wrapper peclipse "${EROOT}opt/${PN}/bin/${ARCH}/peclipse"
+	fi
+
 	if use java ; then
 		make_wrapper jeclipse "${EROOT}opt/${PN}/bin/${ARCH}/jeclipse"
 	fi
