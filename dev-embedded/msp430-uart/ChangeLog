@@ -1,3 +1,9 @@
+*msp430-uart-0-r1 (08 Jul 2014)
+
+  08 Jul 2014; Michael Weber <xmw@gentoo.org>
+  +files/msp430-uart-0-cdc-acm-3.4.10.patch, +msp430-uart-0-r1.ebuild:
+  Revbump to address newer kernels
+
 *msp430-uart-0 (06 Sep 2013)
 
   06 Sep 2013; Michael Weber <xmw@gentoo.org>
