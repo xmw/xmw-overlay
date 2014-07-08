@@ -20,6 +20,6 @@ RDEPEND="dev-util/eclipse-clp"
 DEPEND="${RDEPEND}"
 
 pkg_setup() {
-	export ECLIPSEDIR=${EROOT}opt/eclipse-cpl
-	export LD_RUN_PATH=${EROOT}opt/eclipse-cpl/lib/x86_64_linux
+	export ECLIPSEDIR=${EROOT}opt/eclipse-clp
+	export LD_RUN_PATH=${EROOT}opt/eclipse-clp/lib/x86_64_linux
 }

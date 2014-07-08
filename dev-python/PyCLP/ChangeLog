@@ -1,3 +1,6 @@
+  08 Jul 2014; Michael Weber <xmw@gentoo.org> PyCLP-0.8-r1.ebuild:
+  Revbump for eclipse-clp rename
+
 *PyCLP-0.8-r1 (08 Jul 2014)
 
   08 Jul 2014; Michael Weber <xmw@gentoo.org> +PyCLP-0.8-r1.ebuild,
