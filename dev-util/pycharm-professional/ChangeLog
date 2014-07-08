@@ -1,3 +1,9 @@
+*pycharm-professional-3.4.1 (08 Jul 2014)
+
+  08 Jul 2014; Michael Weber <xmw@gentoo.org>
+  +pycharm-professional-3.4.1.ebuild:
+  Version bump
+
 *pycharm-professional-3.4 (30 May 2014)
 
   30 May 2014; Michael Weber <xmw@gentoo.org> +pycharm-professional-3.4.ebuild:
