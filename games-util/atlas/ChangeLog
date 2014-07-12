@@ -1,0 +1,6 @@
+*atlas-0.4_p20140519 (12 Jul 2014)
+*atlas-9999 (12 Jul 2014)
+
+  12 Jul 2014; Michael Weber <xmw@gentoo.org> +atlas-0.4_p20140519.ebuild,
+  +atlas-9999.ebuild, +metadata.xml:
+  Initial import, clone from main tree.
