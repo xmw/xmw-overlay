@@ -33,6 +33,7 @@ RDEPEND="${COMMON_DEPEND}
 "
 
 src_prepare() {
+	epatch "${FILESDIR}"/${P}-fg3.patch
 	eautoreconf
 }
 
