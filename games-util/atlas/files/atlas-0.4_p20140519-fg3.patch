@@ -12,7 +12,16 @@ Based on a patch by Frederik Tilmann, posted at http://forum.flightgear.org/view
  
 --- atlas-0.4_p20140519/src/NavData.cxx
 +++ atlas-0.4_p20140519/src/NavData.cxx
-@@ -1397,3 +1397,304 @@
+@@ -1016,6 +1016,8 @@
+     if (version == 810) {
+ 	// It looks like we have a valid file.
+ 	_loadAirports810(arp);
++    } else if ( version == 1000 ) {
++	_loadAirports1000(arp);
+     } else {
+ 	// EYE - throw an error?
+ 	fprintf(stderr, "AirportsOverlay::load: \"%s\": unknown version %d.\n", 
+@@ -1397,3 +1399,304 @@
  	_frustumCullers[AIRPORTS]->culler().addObject(ap);
      }
  }
