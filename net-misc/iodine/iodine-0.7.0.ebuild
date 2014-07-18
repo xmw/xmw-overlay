@@ -22,8 +22,7 @@ DEPEND="${RDEPEND}
 	test? ( dev-libs/check )"
 
 src_prepare(){
-	epatch \
-		"${FILESDIR}"/${P}-TestMessage.patch
+	epatch "${FILESDIR}"/${P}-TestMessage.patch
 
 	sed -e '/^\s@echo \(CC\|LD\)/d' \
 		-e 's:^\(\s\)@:\1:' \
@@ -45,7 +44,7 @@ src_install() {
 
 	dodoc CHANGELOG README TODO
 
-	newinitd "${FILESDIR}"/iodined.init iodined
+	newinitd "${FILESDIR}"/iodined-1.init iodined
 	newconfd "${FILESDIR}"/iodined.conf iodined
 	keepdir /var/empty
 }
