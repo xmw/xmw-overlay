@@ -20,7 +20,6 @@ RDEPEND="
 	app-text/llpp
 	app-text/mupdf
 	app-text/paps
-	|| ( mate-base/mate-keyring gnome-base/gnome-keyring )
 	media-fonts/dina
 	media-fonts/terminus-font
 	media-gfx/feh
@@ -63,7 +62,7 @@ RDEPEND="
 		sci-electronics/osqoop
 		sci-geosciences/googleearth
 		www-client/firefox
-		www-client/google-chrome-unstable 
+		www-client/google-chrome-unstable
 		www-client/opera
 		www-plugins/adobe-flash
 		x11-terms/xterm
