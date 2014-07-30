@@ -1,0 +1,11 @@
+--- mip-1.0/configure.ac
++++ mip-1.0/configure.ac
+@@ -90,7 +90,7 @@
+ ])
+ 
+ AC_CHECK_LIB(netlink, rtnl_talk)
+-AM_CONDITIONAL(LOCAL_NETLINK, test x$ac_cv_lib_netlink_rtnl_talk = xno)
++AM_CONDITIONAL(LOCAL_NETLINK, test xno = xno)
+ 
+ AC_ARG_WITH(builtin-crypto,
+ 	AC_HELP_STRING([--with-builtin-crypto],[use builtin crypto code]),

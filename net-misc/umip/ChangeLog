@@ -1,0 +1,7 @@
+*umip-1.0_p20131111 (30 Jul 2014)
+*umip-9999 (30 Jul 2014)
+
+  30 Jul 2014; Michael Weber <xmw@gentoo.org> +files/mip6d.conf,
+  +files/mip6d.init, +files/umip-1.0-force-bundled-netlink.patch, +metadata.xml,
+  +umip-1.0_p20131111.ebuild, +umip-9999.ebuild:
+  Initial import from lorem_ipsum overlay
