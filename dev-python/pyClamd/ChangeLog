@@ -1,5 +1,0 @@
-*pyClamd-0.3.10 (11 Sep 2014)
-
-  11 Sep 2014; Michael Weber <xmw@gentoo.org> +metadata.xml,
-  +pyClamd-0.3.10.ebuild:
-  initial import
