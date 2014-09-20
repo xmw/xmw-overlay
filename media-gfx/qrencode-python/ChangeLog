@@ -1,0 +1,5 @@
+*qrencode-python-1.01_p20131226 (20 Sep 2014)
+
+  20 Sep 2014; Michael Weber <xmw@gentoo.org> +metadata.xml,
+  +qrencode-python-1.01_p20131226.ebuild:
+  Version bump
