@@ -16,11 +16,18 @@ SRC_URI="mirror://sourceforge/${PN}/${P}.tar.gz
 LICENSE="BSD"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
+IUSE="examples"
 
 RDEPEND="net-libs/libpcap"
 RDEPEND="${DEPEND}"
 
 src_prepare() {
 	epatch ${DISTDIR}/${P}-py3.diff
+}
+
+src_install() {
+	distutils-r1_src_install
+	if use examples ; then
+		dodoc examples/*
+	fi
 }
