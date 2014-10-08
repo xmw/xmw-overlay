@@ -1,0 +1,12 @@
+--- python-iptables-9999/iptc/util.py
++++ python-iptables-9999/iptc/util.py
+@@ -66,6 +66,9 @@
+ 
+ def _find_library(*names):
+     ext = get_config_var('SO')
++    from sys import version_info
++    if version_info > (3, ):
++        ext = '.cpython-%i%i' % (version_info.major, version_info.minor) + ext
+     for name in names:
+         for n in (name, "lib" + name, name + ext, "lib" + name + ext):
+             lib = _do_find_library(n)

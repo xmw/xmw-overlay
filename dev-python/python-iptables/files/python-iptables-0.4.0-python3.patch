@@ -1,0 +1,23 @@
+--- python-iptables-0.4.0/setup.py
++++ python-iptables-0.4.0/setup.py
+@@ -7,7 +7,7 @@
+ # make pyflakes happy
+ __pkgname__ = None
+ __version__ = None
+-execfile("iptc/version.py")
++exec(open("iptc/version.py").read())
+ 
+ # build/install python-iptables
+ setup(
+--- python-iptables-0.4.0/iptc/util.py
++++ python-iptables-0.4.0/iptc/util.py
+@@ -66,6 +66,9 @@
+ 
+ def _find_library(*names):
+     ext = get_config_var('SO')
++    from sys import version_info
++    if version_info > (3, ):
++        ext = '.cpython-%i%i' % (version_info.major, version_info.minor) + ext
+     for name in names:
+         for n in (name, "lib" + name, name + ext, "lib" + name + ext):
+             lib = _do_find_library(n)
