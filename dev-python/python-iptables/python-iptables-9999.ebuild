@@ -25,7 +25,6 @@ RESTRICT=test
 
 PATCHES=(
 	"${FILESDIR}/${P}-tests.patch"
-	"${FILESDIR}/${P}-cpython.patch"
 )
 
 python_test() {
