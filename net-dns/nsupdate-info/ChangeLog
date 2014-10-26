@@ -1,0 +1,5 @@
+*nsupdate-info-9999 (26 Oct 2014)
+
+  26 Oct 2014; Michael Weber <xmw@gentoo.org> +metadata.xml,
+  +nsupdate-info-9999.ebuild:
+  Initial import
