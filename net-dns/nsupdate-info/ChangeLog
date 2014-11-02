@@ -1,5 +1,9 @@
   02 Nov 2014; Michael Weber <xmw@gentoo.org> nsupdate-info-0.9.0.ebuild,
   nsupdate-info-9999.ebuild:
+  django 1.7 doesn't work, yet
+
+  02 Nov 2014; Michael Weber <xmw@gentoo.org> nsupdate-info-0.9.0.ebuild,
+  nsupdate-info-9999.ebuild:
   add needed dev-python/south
 
   02 Nov 2014; Michael Weber <xmw@gentoo.org> nsupdate-info-0.9.0.ebuild,
