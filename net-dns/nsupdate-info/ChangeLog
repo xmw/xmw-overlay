@@ -1,3 +1,6 @@
+  02 Nov 2014; Michael Weber <xmw@gentoo.org> nsupdate-info-9999.ebuild:
+  Update deps
+
 *nsupdate-info-9999 (26 Oct 2014)
 
   26 Oct 2014; Michael Weber <xmw@gentoo.org> +metadata.xml,

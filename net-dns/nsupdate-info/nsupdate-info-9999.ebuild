@@ -17,4 +17,12 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND=""
-RDEPEND="${DEPEND}"
+RDEPEND="${DEPEND}
+	dev-python/django[sqlite]
+	dev-python/django-debug-toolbar
+	dev-python/django-extensions
+	dev-python/django-registration
+	dev-python/django-bootstrap-form
+	dev-python/python-social-auth
+	dev-python/dnspython
+	dev-python/netaddr"
