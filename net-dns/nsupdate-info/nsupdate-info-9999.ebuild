@@ -19,10 +19,11 @@ IUSE=""
 DEPEND=""
 RDEPEND="${DEPEND}
 	>=dev-python/django-1.7[sqlite]
+	dev-python/django-bootstrap-form
 	dev-python/django-debug-toolbar
 	dev-python/django-extensions
 	dev-python/django-registration
-	dev-python/django-bootstrap-form
-	dev-python/python-social-auth
 	dev-python/dnspython
-	dev-python/netaddr"
+	dev-python/netaddr
+	dev-python/python-social-auth
+	dev-python/south"
