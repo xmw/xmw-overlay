@@ -1,3 +1,8 @@
+*nsupdate-info-0.9.0 (02 Nov 2014)
+
+  02 Nov 2014; Michael Weber <xmw@gentoo.org> +nsupdate-info-0.9.0.ebuild:
+  add release
+
   02 Nov 2014; Michael Weber <xmw@gentoo.org> nsupdate-info-9999.ebuild:
   Update deps
 
