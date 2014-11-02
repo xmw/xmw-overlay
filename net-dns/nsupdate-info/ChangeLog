@@ -1,3 +1,7 @@
+  02 Nov 2014; Michael Weber <xmw@gentoo.org> nsupdate-info-0.9.0.ebuild,
+  nsupdate-info-9999.ebuild:
+  need django-1.7
+
 *nsupdate-info-0.9.0 (02 Nov 2014)
 
   02 Nov 2014; Michael Weber <xmw@gentoo.org> +nsupdate-info-0.9.0.ebuild:

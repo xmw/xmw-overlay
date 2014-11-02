@@ -18,7 +18,7 @@ IUSE=""
 
 DEPEND=""
 RDEPEND="${DEPEND}
-	dev-python/django[sqlite]
+	>=dev-python/django-1.7[sqlite]
 	dev-python/django-debug-toolbar
 	dev-python/django-extensions
 	dev-python/django-registration
