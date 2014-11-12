@@ -1,0 +1,22 @@
+--- khal-0.3.1/khal/settings/utils.py
++++ khal-0.3.1/khal/settings/utils.py
+@@ -29,7 +29,7 @@
+ from validate import VdtValueError
+ 
+ from ..log import logger
+-from exceptions import InvalidSettingsError
++from .exceptions import InvalidSettingsError
+ 
+ 
+ def is_timezone(tzstring):
+--- khal-0.3.1/khal/settings/settings.py
++++ khal-0.3.1/khal/settings/settings.py
+@@ -28,7 +28,7 @@
+ from validate import Validator
+ import xdg.BaseDirectory
+ 
+-from exceptions import InvalidSettingsError, CannotParseConfigFileError
++from .exceptions import InvalidSettingsError, CannotParseConfigFileError
+ from khal import __productname__
+ from ..log import logger
+ from .utils import is_timezone, weeknumber_option, config_checks, \

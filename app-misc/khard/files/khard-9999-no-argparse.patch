@@ -1,0 +1,10 @@
+--- khard-9999/setup.py
++++ khard-9999/setup.py
+@@ -38,7 +38,6 @@
+     install_requires = [
+         'configobj',
+         'vobject',
+-        'argparse',
+         'vdirsyncer',
+     ]
+ )
