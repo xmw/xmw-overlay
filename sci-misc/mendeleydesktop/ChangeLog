@@ -2,6 +2,9 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/sci-misc/mendeleydesktop/ChangeLog,v 1.17 2014/08/29 11:40:55 xmw Exp $
 
+  14 Nov 2014; Michael Weber <xmw@gentoo.org> mendeleydesktop-1.12.3.ebuild:
+  Fix bug 480346.
+
 *mendeleydesktop-1.12.1 (29 Aug 2014)
 
   29 Aug 2014; Michael Weber <xmw@gentoo.org> +mendeleydesktop-1.12.1.ebuild:
