@@ -1,0 +1,5 @@
+*khard-9999 (12 Nov 2014)
+
+  12 Nov 2014; Michael Weber <xmw@gentoo.org>
+  +files/khard-9999-no-argparse.patch, +khard-9999.ebuild, +metadata.xml:
+  Initial import

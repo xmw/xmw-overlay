@@ -1,0 +1,5 @@
+*requests-toolbelt-0.3.0 (12 Nov 2014)
+
+  12 Nov 2014; Michael Weber <xmw@gentoo.org> +metadata.xml,
+  +requests-toolbelt-0.3.0.ebuild:
+  Initial import
