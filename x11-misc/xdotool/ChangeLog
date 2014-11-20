@@ -1,0 +1,5 @@
+*xdotool-9999 (20 Nov 2014)
+
+  20 Nov 2014; Michael Weber <xmw@gentoo.org> +metadata.xml,
+  +xdotool-9999.ebuild:
+  Initial import, ctrl+v broken.
