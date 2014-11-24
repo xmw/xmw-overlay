@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -24,7 +24,6 @@ RDEPEND="
 	app-portage/layman[git]
 	app-portage/pfl
 	app-shells/zsh
-	app-shells/zsh-completion
 	app-text/wgetpaste
 	app-vim/gnupg
 	dev-util/strace
