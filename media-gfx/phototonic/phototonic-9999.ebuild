@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit qt4-r2 git-2
+inherit qmake-utils git-2
 
 DESCRIPTION="Image Viewer and Organizer"
 HOMEPAGE="https://gitorious.org/phototonic"
@@ -15,5 +15,17 @@ SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-RDEPEND="dev-qt/qtgui:4"
+RDEPEND="dev-qt/qtwidgets:5
+	dev-qt/qtgui:5
+	dev-qt/qtcore:5
+	media-gfx/exiv2"
 DEPEND="${RDEPEND}"
+
+src_configure() {
+	local project_file=$(qmake-utils_find_pro_file)
+    eqmake5 "${project_file}"
+}
+
+src_install() {
+	emake install INSTALL_ROOT="${D}"
+}
