@@ -1,6 +1,6 @@
---- Eclipse_6.1_187/configure.ac
-+++ Eclipse_6.1_187/configure.ac
-@@ -1494,7 +1494,7 @@
+--- Eclipse_6.1_194/configure.ac
++++ Eclipse_6.1_194/configure.ac
+@@ -1498,7 +1498,7 @@
  
  AC_ARG_WITH([osi], [[  --with-osi[=versions]
  			Build ECLiPSe interface to COIN-OR Osi.  You can
@@ -9,7 +9,7 @@
  			Default is to build all available versions.
      ]],
      [osi_versions_requested="$withval"], [osi_versions_requested=yes])
-@@ -1504,34 +1504,22 @@
+@@ -1508,34 +1508,22 @@
  OSICLP_ADDDEF=""
  if test "$osi_versions_requested" != "no"; then
      if test "$osi_versions_requested" = "yes"; then
@@ -58,8 +58,15 @@
      done
  fi
  if test -n "$OSI_VERSIONS"; then
---- Eclipse_6.1_187/Eplex/Makefile.in
-+++ Eclipse_6.1_187/Eplex/Makefile.in
+@@ -2115,4 +2103,4 @@
+ AC_SUBST(JHELP_DIR)
+ AC_SUBST(JAVA_PATH_SEP)
+ 
+-AC_OUTPUT
+\ No newline at end of file
++AC_OUTPUT
+--- Eclipse_6.1_194/Eplex/Makefile.in
++++ Eclipse_6.1_194/Eplex/Makefile.in
 @@ -96,34 +96,31 @@
  SYMCLPDIR = @SYMCLPDIR@
  OSIGLPKDIR = @OSIGLPKDIR@
@@ -120,53 +127,69 @@
  
  #----------------------------------------------------------------------
  # EPLEX/CPLEX
-@@ -308,35 +303,25 @@
+@@ -308,47 +305,33 @@
  	cp $(CPLEX1251_SUPPORT_x86_64_nt) x86_64_nt/
  	cp $(CPLEX1251_SUPPORT_x86_64_nt) ../lib/x86_64_nt/
  
 -x86_64_linux/secplex90.so: eplex.c eplex_cplex.h eplex_cplex.c eplex.h
 +x86_64_linux/secplex90.so: dir_x86_64_linux eplex.c eplex_cplex.h eplex_cplex.c eplex.h
  	$(CC) -DCPLEX=9 -DCPLEXMINOR=0 $(CPPFLAGS) $(CFLAGS) -I$(THIRDPARTY)/cplex90/include/ilcplex -c eplex.c
--	$(CC) -shared eplex.o $(THIRDPARTY)/cplex90/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o secplex.so
+-	$(DYLD) $(DYNLDFLAGS) eplex.o $(THIRDPARTY)/cplex90/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o secplex.so
 -	[ -d x86_64_linux ] || mkdir x86_64_linux
 -	mv secplex.so x86_64_linux/secplex90.so
-+	$(CC) -shared eplex.o $(THIRDPARTY)/cplex90/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o x86_64_linux/secplex90.so
++	$(DYLD) $(DYNLDFLAGS) eplex.o $(THIRDPARTY)/cplex90/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o x86_64_linux/secplex90.so
  
 -x86_64_linux/secplex102.so: eplex.c eplex_cplex.h eplex_cplex.c eplex.h
 +x86_64_linux/secplex102.so: dir_x86_64_linux eplex.c eplex_cplex.h eplex_cplex.c eplex.h
  	$(CC) -DCPLEX=10 -DCPLEXMINOR=2 $(CPPFLAGS) $(CFLAGS) -I$(THIRDPARTY)/cplex102/include/ilcplex -c eplex.c
--	$(CC) -shared eplex.o $(THIRDPARTY)/cplex102/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o secplex.so
+-	$(DYLD) $(DYNLDFLAGS) eplex.o $(THIRDPARTY)/cplex102/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o secplex.so
 -	[ -d x86_64_linux ] || mkdir x86_64_linux
 -	mv secplex.so x86_64_linux/secplex102.so
-+	$(CC) -shared eplex.o $(THIRDPARTY)/cplex102/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o x86_64_linux/secplex102.so
++	$(DYLD) $(DYNLDFLAGS) eplex.o $(THIRDPARTY)/cplex102/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o x86_64_linux/secplex102.so
  
 -x86_64_linux/secplex110.so: eplex.c eplex_cplex.h eplex_cplex.c eplex.h
 +x86_64_linux/secplex110.so: dir_x86_64_linux eplex.c eplex_cplex.h eplex_cplex.c eplex.h
  	$(CC) -DCPLEX=11 -DCPLEXMINOR=0 $(CPPFLAGS) $(CFLAGS) -I$(THIRDPARTY)/cplex110/include/ilcplex -c eplex.c
--	$(CC) -shared eplex.o $(THIRDPARTY)/cplex110/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o secplex.so
+-	$(DYLD) $(DYNLDFLAGS)  eplex.o $(THIRDPARTY)/cplex110/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o secplex.so
 -	[ -d x86_64_linux ] || mkdir x86_64_linux
 -	mv secplex.so x86_64_linux/secplex110.so
-+	$(CC) -shared eplex.o $(THIRDPARTY)/cplex110/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o x86_64_linux/secplex110.so
++	$(DYLD) $(DYNLDFLAGS)  eplex.o $(THIRDPARTY)/cplex110/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o x86_64_linux/secplex110.so
  
 -x86_64_linux/secplex121.so: eplex.c eplex_cplex.h eplex_cplex.c eplex.h
 +x86_64_linux/secplex121.so: dir_x86_64_linux eplex.c eplex_cplex.h eplex_cplex.c eplex.h
  	$(CC) -DCPLEX=12 -DCPLEXMINOR=1 $(CPPFLAGS) $(CFLAGS) -I$(THIRDPARTY)/cplex121/include/ilcplex -c eplex.c
--	$(CC) -shared eplex.o $(THIRDPARTY)/cplex121/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o secplex.so
+-	$(DYLD) $(DYNLDFLAGS) eplex.o $(THIRDPARTY)/cplex121/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o secplex.so
 -	[ -d x86_64_linux ] || mkdir x86_64_linux
 -	mv secplex.so x86_64_linux/secplex121.so
-+	$(CC) -shared eplex.o $(THIRDPARTY)/cplex121/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o x86_64_linux/secplex121.so
++	$(DYLD) $(DYNLDFLAGS) eplex.o $(THIRDPARTY)/cplex121/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o x86_64_linux/secplex121.so
  
 -x86_64_linux/secplex122.so: eplex.c eplex_cplex.h eplex_cplex.c eplex.h
 +x86_64_linux/secplex122.so: dir_x86_64_linux eplex.c eplex_cplex.h eplex_cplex.c eplex.h
  	$(CC) -DCPLEX=12 -DCPLEXMINOR=2 $(CPPFLAGS) $(CFLAGS) -I$(THIRDPARTY)/cplex122/include/ilcplex -c eplex.c
--	$(CC) -shared eplex.o $(THIRDPARTY)/cplex122/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o secplex.so
+-	$(DYLD) $(DYNLDFLAGS) eplex.o $(THIRDPARTY)/cplex122/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o secplex.so
 -	[ -d x86_64_linux ] || mkdir x86_64_linux
 -	mv secplex.so x86_64_linux/secplex122.so
-+	$(CC) -shared eplex.o $(THIRDPARTY)/cplex122/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o x86_64_linux/secplex122.so
++	$(DYLD) $(DYNLDFLAGS) eplex.o $(THIRDPARTY)/cplex122/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o x86_64_linux/secplex122.so
+ 
+-x86_64_linux/secplex124.so: eplex.c eplex_cplex.h eplex_cplex.c eplex.h
++x86_64_linux/secplex124.so: dir_x86_64_linux eplex.c eplex_cplex.h eplex_cplex.c eplex.h
+ 	$(CC) -DCPLEX=12 -DCPLEXMINOR=4 $(CPPFLAGS) $(CFLAGS) -I$(THIRDPARTY)/cplex124/include/ilcplex -c eplex.c
+-	$(CC) -shared eplex.o $(THIRDPARTY)/cplex124/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o secplex.so
+-	[ -d x86_64_linux ] || mkdir x86_64_linux
+-	mv secplex.so x86_64_linux/secplex124.so
++	$(CC) -shared eplex.o $(THIRDPARTY)/cplex124/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o x86_64_linux/secplex124.so
+ 
+-x86_64_linux/secplex126.so: eplex.c eplex_cplex.h eplex_cplex.c eplex.h
++x86_64_linux/secplex126.so: dir_x86_64_linux eplex.c eplex_cplex.h eplex_cplex.c eplex.h
+ 	$(CC) -DCPLEX=12 -DCPLEXMINOR=6 $(CPPFLAGS) $(CFLAGS) -I$(THIRDPARTY)/cplex126/include/ilcplex -c eplex.c
+-	$(CC) -shared eplex.o $(THIRDPARTY)/cplex126/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o secplex.so
+-	[ -d x86_64_linux ] || mkdir x86_64_linux
+-	mv secplex.so x86_64_linux/secplex126.so
++	$(CC) -shared eplex.o $(THIRDPARTY)/cplex126/lib/x86_64_linux/static_pic/libcplex.a $(ECLIBS) -lpthread -o x86_64_linux/secplex126.so
  
  i386_macosx/secplex110.dylib: eplex.c eplex_cplex.h eplex_cplex.c eplex.h
  	$(CC) -DCPLEX=11 -DCPLEXMINOR=0 $(CPPFLAGS) $(CFLAGS) -I$(THIRDPARTY)/cplex110/include/ilcplex -c eplex.c
-@@ -657,24 +653,19 @@
+@@ -682,24 +665,19 @@
  # - we add . to the library path because some libraries might not yet
  #   be installed in ECLIPSEDIR/lib at [fi]compile time
  

@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -17,6 +17,8 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE="doc +coin +gecode +glpk +gmp java mysql parallel tcl +threads"
 
+#Braucht gmp 4.2 4.1, vmtl dev-libs/gmp:3
+#[doc] brauch wohl hevea: dev-tex/hevea
 RDEPEND=""
 DEPEND="${RDEPEND}
 	gmp? ( dev-libs/gmp )
@@ -62,7 +64,8 @@ src_prepare() {
 		"${FILESDIR}"/${P}-Usc-64bit.patch \
 		"${FILESDIR}"/${P}-Pds-64bit.patch \
 		"${FILESDIR}"/${P}-Alog-64bit.patch \
-		"${FILESDIR}"/${P}-weclipse.patch
+		"${FILESDIR}"/${P}-weclipse.patch \
+		"${FILESDIR}"/${P}-Shm-buildsystem.patch
 
 	rm ARCH RUNME || die
 
@@ -73,15 +76,24 @@ src_prepare() {
 	esac
 	export ECLIPSEDIR=${EROOT}opt/${PN}
 	export MYSQLDIR="${EROOT}usr/include/mysql"
-	export prefix="${S}/build"
+	#export prefix="${S}/build"
 	tc-export CC AR
 	eautoreconf
+
+	pushd Shm/src >/dev/null
+	eautoreconf
+	popd >/dev/null
 }
 
 src_configure() {
-	#pushd Pds/src >/dev/null
-	#ARCH=${PDS_ARCH} econf
-	#popd >/dev/null
+	my_submods="Shm Usc Alog Pds"
+	local my_submod
+	for my_submod in ${my_submods}; do
+		einfo "configure ${my_submod}"
+		pushd ${my_submod}/src >/dev/null || die
+		econf
+		popd >/dev/null || die
+	done
 
 	local my_osi="--without-osi"
 	if use coin ; then
@@ -109,9 +121,29 @@ src_configure() {
 }
 
 src_compile() {
+	#replace toplevel Makefile.${ARCH}, -j1 bug etc.
+	rm -fv Makefile.${ARCH} || die
+	mkdir -p sys_{include,{bin,lib}/${ARCH}} || die
+
+	local my_out
+	local my_submod
+	for my_submod in ${my_submods}; do
+		einfo "compile and install ${my_submod}"
+		mkdir -p $my_submod/{include,{bin,lib}/${ARCH}} || die
+		case $my_submod in
+			Pds)	emake -C ${my_submod}/src install_all ;;
+			*)		emake -C ${my_submod}/src install ;;
+		esac
+		for my_out in $(find ${my_submod}/{include,{bin,lib}/${ARCH}} -type f) ; do
+			mv -vn ${my_out} sys_${my_out/${my_submod}\/} || die
+		done
+	done
+       
 	runme() {
 		einfo "create wrapper $1"
-		cat << EOF > "bin/${ARCH}/$1"
+		local my_dst="build/bin/${ARCH}/$1"
+		mkdir -p "$(dirname "${my_dest}")" || die
+		cat << EOF > "${my_dest}"
 #!/bin/sh
 export ECLIPSEDIR="\${ECLIPSEDIR:-${EROOT}opt/${PN}}"
 if [ -z "\${LD_LIBRARY_PATH}" ] ; then
@@ -122,43 +154,26 @@ fi
 export JRE_HOME="\${JRE_HOME:-\${JAVA_HOME}}"
 $2
 EOF
-		chmod +x "bin/${ARCH}/$1"
+		chmod +x "${my_dest}" || die
 	}
 	mkdir -p "${S}/bin/${ARCH}"
 
-	#replace toplevel Makefile.${ARCH}, -j1 bug etc.
-	rm -fv Makefile.${ARCH} || die
-	einfo "compile & install Shm"
-	emake -C Shm/${ARCH} PREFIX="${S}" install
-
-	einfo "compile & install Usc (Micro Second Clock)"
-	pushd Usc
-	./INSTALL || die
-	popd
-
-	einfo "compile & install Alog"
-	pushd Alog
-	./INSTALL || die
-	popd
-
-	einfo "compile & install Pds (Parallel Distributed System)"
-	pushd Pds
-	./INSTALL || die
-	popd
-
-	einfo "compile & install Kernel"
+	einfo "compile installation kernel (sepia)"
 	emake -C Kernel/${ARCH} sepia
-	emake -C Kernel/${ARCH} PREFIX="${S}" install
-	runme "eclipse" "exec \"\${ECLIPSEDIR}/lib/x86_64_linux/eclipse.exe\" \"\$@\""
+	einfo "compile runtime kernel (eclipse.exe)"
+	emake -C Kernel/${ARCH} eclipse.exe
+	einfo "install kernel and header files"
+	emake -C Kernel/${ARCH} PREFIX="../../build" install
+	runme "eclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/eclipse.exe\" \"\$@\""
 
 	if use parallel ; then
 		einfo "compile & install parallel Kernel"
 		emake -C Kernel/${ARCH} weclipse
 		cp -v {Kernel,lib}/${ARCH}/weclipse
-		runme "weclipse" "exec \"\${ECLIPSEDIR}/lib/x86_64_linux/weclipse\" \"\$@\""
+		runme "weclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/weclipse\" \"\$@\""
 		emake -C Kernel/${ARCH} peclipse
-		cp -v {Kernel,lib}/${ARCH}/weclipse
-		runme "peclipse" "exec \"\${ECLIPSEDIR}/lib/x86_64_linux/peclipse\" \"\$@\""
+		cp -v {Kernel,lib}/${ARCH}/peclipse
+		runme "peclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/peclipse\" \"\$@\""
 	fi
 
 	if use tcl ; then
@@ -170,7 +185,7 @@ EOF
 	#emake -C ecrc_solvers -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
 
 	einfo "compile & install Flexlm"
-	emake -C Flexlm -f Makefile.${ARCH} PREFIX="${S}" install
+	emake -C Flexlm -f Makefile.${ARCH} PREFIX="../build" install
 
 	if use coin ; then
 		einfo "compile & install Eplex"
@@ -199,8 +214,8 @@ EOF
 }
 
 src_install() {
-	dodir /opt/${PN}
-	mv bin doc include legal lib "${ED}opt/${PN}" || die
+	mkdir "${ED}"opt || die
+	mv build "${ED}opt/${PN}" || die
 	make_wrapper eclipse "${EROOT}opt/${PN}/bin/${ARCH}/eclipse"
 
 	if use tcl ; then
