@@ -1,0 +1,41 @@
+--- MSPDebugStack_OS_Package/ThirdParty/BSL430_DLL/Makefile
++++ MSPDebugStack_OS_Package/ThirdParty/BSL430_DLL/Makefile
+@@ -44,6 +44,9 @@
+ 
+ LIBS :=
+ 
++INCLUDES += $(shell pkg-config --cflags hidapi-libusb)
++LIBS += $(shell pkg-config --libs hidapi-libusb)
++
+ SRC := \
+ 	./BSL430_DLL/MSPBSL_Factory.cpp \
+ 	$(wildcard ./BSL430_DLL/Connections/*.cpp) \
+@@ -59,6 +59,7 @@
+ OUTPUT := ../lib/libbsl430.a
+ 
+ all: $(OBJS)
++	mkdir -p $(basename $(OUTPUT))
+ 	ar -cq $(OUTPUT) $(OBJS)
+ 
+ $(PCH_COMPILED): $(PCH_HEADER)
+--- MSPDebugStack_OS_Package/Makefile
++++ MSPDebugStack_OS_Package/Makefile
+@@ -52,6 +52,9 @@
+ LIBS :=
+ STATIC_LIBS :=
+ 
++INCLUDES += $(shell pkg-config --cflags hidapi-libusb)
++LIBS += $(shell pkg-config --libs hidapi-libusb)
++
+ ifdef STATIC
+ STATIC_LIBS += -lboost_thread -lboost_filesystem -lboost_date_time -lboost_system -lbsl430 -lusb-1.0 -lrt
+ else
+@@ -91,7 +91,7 @@
+ OUTPUT := libmsp430.so
+ 
+ all: $(BSLLIB) $(OBJS)
+-	$(CXX) $(CXXFLAGS) -shared -Wl,-soname,$(OUTPUT) -o $(OUTPUT) $(OBJS) ThirdParty/lib/hid-libusb.o $(LIBDIRS) -Wl,-Bstatic $(STATIC_LIBS) -Wl,-Bdynamic $(LIBS)
++	$(CXX) $(CXXFLAGS) -shared -Wl,-soname,$(OUTPUT) -o $(OUTPUT) $(OBJS) $(LIBDIRS) -Wl,-Bstatic $(STATIC_LIBS) -Wl,-Bdynamic $(LIBS)
+ 
+ $(PCH_COMPILED): $(PCH_HEADER)
+ 	$(CXX) $(MAKE_PCH) -o $@ $< $(CXXFLAGS) $(INCLUDES) $(DEFINES)
