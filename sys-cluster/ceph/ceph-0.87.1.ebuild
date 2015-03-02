@@ -24,7 +24,7 @@ HOMEPAGE="http://ceph.com/"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-IUSE="cryptopp debug fuse gtk libatomic +libaio +nss radosgw static-libs tcmalloc xfs zfs"
+IUSE="babeltrace cryptopp debug fuse gtk kinetic libatomic +libaio lttng +nss radosgw rocksdb static-libs tcmalloc xfs zfs"
 
 CDEPEND="
 	app-arch/snappy
@@ -38,6 +38,7 @@ CDEPEND="
 	sys-apps/keyutils
 	sys-apps/util-linux
 	dev-libs/libxml2
+	babeltrace? ( dev-util/babeltrace )
 	fuse? ( sys-fs/fuse )
 	libatomic? ( dev-libs/libatomic_ops )
 	xfs? ( sys-fs/xfsprogs )
@@ -53,6 +54,7 @@ CDEPEND="
 		net-misc/curl
 	)
 	tcmalloc? ( dev-util/google-perftools )
+	lttng? ( dev-util/lttng-ust )
 	$(python_gen_any_dep '
 	' )
 	${PYTHON_DEPS}
@@ -104,10 +106,10 @@ src_configure() {
 		$(use_with tcmalloc) \
 		$(use_with xfs libxfs) \
 		$(use_with zfs libzfs) \
-		--with-kinetic \
-		--with-librocksdb \
-		--with-lttng \
-		--with-babeltrace
+		$(use_with kinetic) \
+		$(use_with rocksdb librocksdb ) \
+		$(use_with lttng ) \
+		$(use_with babeltrace)
 }
 
 src_install() {
