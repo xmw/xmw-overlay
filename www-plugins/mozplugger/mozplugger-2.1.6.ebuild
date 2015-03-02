@@ -24,7 +24,6 @@ src_install() {
 	doins ${PN}rc
 
 	insinto /usr/$(get_libdir)/nsbrowser/plugins
-	insmod -m755
 	doins ${PN}.so
 
 	doman ${PN}.7
