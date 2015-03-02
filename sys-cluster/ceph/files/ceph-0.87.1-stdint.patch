@@ -1,0 +1,40 @@
+--- ceph-0.87.1/src/tracing/objectstore.h
++++ ceph-0.87.1/src/tracing/objectstore.h
+@@ -9,6 +9,7 @@
+ #define OBJECTSTORE_H
+ 
+ #include <lttng/tracepoint.h>
++#include <stdint.h>
+ 
+ TRACEPOINT_EVENT(objectstore, exists_enter,
+     TP_ARGS(
+--- ceph-0.87.1/src/tracing/oprequest.h
++++ ceph-0.87.1/src/tracing/oprequest.h
+@@ -9,6 +9,7 @@
+ #define OPREQUEST_H
+ 
+ #include <lttng/tracepoint.h>
++#include <stdint.h>
+ 
+ TRACEPOINT_EVENT(oprequest, set_rmw_flags,
+     TP_ARGS(
+--- ceph-0.87.1/src/tracing/osd.h
++++ ceph-0.87.1/src/tracing/osd.h
+@@ -9,6 +8,7 @@
+ #define OSD_H
+ 
+ #include <lttng/tracepoint.h>
++#include <stdint.h>
+ 
+ TRACEPOINT_EVENT(osd, prepare_tx_enter,
+     TP_ARGS(
+--- ceph-0.87.1/src/tracing/pg.h
++++ ceph-0.87.1/src/tracing/pg.h
+@@ -9,6 +9,7 @@
+ #define PG_H
+ 
+ #include <lttng/tracepoint.h>
++#include <stdint.h>
+ 
+ TRACEPOINT_EVENT(pg, queue_op,
+     TP_ARGS(

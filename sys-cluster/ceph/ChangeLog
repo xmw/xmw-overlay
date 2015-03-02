@@ -1,3 +1,8 @@
+  02 Mar 2015; Michael Weber <xmw@gentoo.org> +files/README.gentoo,
+  +files/ceph-0.87.1-stdint.patch, +files/ceph.confd-r1, +files/ceph.initd-r1,
+  +files/ceph.logrotate, ceph-0.87.1.ebuild, metadata.xml:
+  Drop USE=rocksdb and USE=kinetic for now.
+
 *ceph-0.87.1 (02 Mar 2015)
 
   02 Mar 2015; Michael Weber <xmw@gentoo.org> +ceph-0.87.1.ebuild,
