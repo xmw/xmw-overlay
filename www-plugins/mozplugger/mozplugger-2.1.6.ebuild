@@ -14,15 +14,15 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-DEPEND=""
-RDEPEND="${DEPEND}"
+RDEPEND="x11-libs/libX11"
+DEPEND="${RDEPEND}"
 
 src_install() {
 	dobin ${PN}-{helper,controller,linker,update}
 
 	insinto /etc
 	doins ${PN}rc
-	
+
 	insinto /usr/$(get_libdir)/nsbrowser/plugins
 	insmod -m755
 	doins ${PN}.so

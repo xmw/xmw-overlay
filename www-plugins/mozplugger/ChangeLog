@@ -1,3 +1,6 @@
+  02 Mar 2015; Michael Weber <xmw@gentoo.org> mozplugger-2.1.6.ebuild:
+  Depend on x11-libs/libX11
+
 *mozplugger-2.1.6 (02 Mar 2015)
 
   02 Mar 2015; Michael Weber <xmw@gentoo.org> +metadata.xml,
