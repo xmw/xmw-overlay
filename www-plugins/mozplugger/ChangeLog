@@ -1,0 +1,5 @@
+*mozplugger-2.1.6 (02 Mar 2015)
+
+  02 Mar 2015; Michael Weber <xmw@gentoo.org> +metadata.xml,
+  +mozplugger-2.1.6.ebuild:
+  Initial import
