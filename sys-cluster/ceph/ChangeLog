@@ -1,0 +1,5 @@
+*ceph-0.87 (02 Mar 2015)
+
+  02 Mar 2015; Michael Weber <xmw@gentoo.org> +ceph-0.87.ebuild,
+  +files/ceph-0.79-libzfs.patch, +files/ceph-fix-gnustack.patch, +metadata.xml:
+  Version bump (bug 536472)
