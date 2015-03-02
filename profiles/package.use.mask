@@ -2,3 +2,6 @@
 # Michael Weber <xmw@gentoo.org> 03 May 2011
 # doesn't wort atm
 www-client/netsurf pdf
+# Michael Weber <xmw@gentoo.org> 02 Mar 2015
+# not jet working
+sys-cluster/ceph kinetic lttng babeltrace rocksdb
