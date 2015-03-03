@@ -1,3 +1,10 @@
+*ceph-0.80.8 (03 Mar 2015)
+*ceph-0.93 (03 Mar 2015)
+
+  03 Mar 2015; Michael Weber <xmw@gentoo.org> +ceph-0.80.8.ebuild,
+  +ceph-0.93.ebuild, ceph-0.87.1.ebuild, metadata.xml:
+  Add 0.93 and 0.80.8.
+
   02 Mar 2015; Michael Weber <xmw@gentoo.org> +files/README.gentoo,
   +files/ceph-0.87.1-stdint.patch, +files/ceph.confd-r1, +files/ceph.initd-r1,
   +files/ceph.logrotate, ceph-0.87.1.ebuild, metadata.xml:
