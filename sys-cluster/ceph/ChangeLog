@@ -1,3 +1,7 @@
+  04 Mar 2015; Michael Weber <xmw@gentoo.org> -ceph-0.80.8.ebuild,
+  -ceph-0.87.1.ebuild:
+  Ebuilds moved to tree
+
 *ceph-0.80.8 (03 Mar 2015)
 *ceph-0.93 (03 Mar 2015)
 
