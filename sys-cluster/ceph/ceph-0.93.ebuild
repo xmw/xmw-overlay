@@ -14,7 +14,7 @@ if [[ $PV = *9999* ]]; then
 	KEYWORDS=""
 else
 	SRC_URI="http://ceph.com/download/${P}.tar.bz2"
-	KEYWORDS="~amd64 ~x86"
+	KEYWORDS=""
 fi
 
 inherit autotools eutils multilib python-any-r1 udev readme.gentoo ${scm_eclass}
@@ -24,8 +24,11 @@ HOMEPAGE="http://ceph.com/"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-IUSE="babeltrace cryptopp debug fuse gtk kinetic libatomic +libaio lttng +nss radosgw rocksdb static-libs tcmalloc xfs zfs"
+IUSE="babeltrace cryptopp debug fuse gtk jemalloc libatomic +libaio lttng +nss radosgw static-libs tcmalloc xfs xio zfs"
 
+# packages not in gentoo:
+# --with-kinetic requires Seagate kinetic API
+# --with-rocksdb requires http://rocksdb.org/
 CDEPEND="
 	app-arch/snappy
 	dev-libs/boost:=[threads]
@@ -54,6 +57,7 @@ CDEPEND="
 		net-misc/curl
 	)
 	tcmalloc? ( dev-util/google-perftools )
+	jemalloc? ( dev-libs/jemalloc )
 	lttng? ( dev-util/lttng-ust )
 	$(python_gen_any_dep '
 	' )
@@ -69,12 +73,12 @@ RDEPEND="${CDEPEND}
 	' )"
 REQUIRED_USE="
 	^^ ( nss cryptopp )
+	jemalloc? ( tcmalloc )
 	"
 
 STRIP_MASK="/usr/lib*/rados-classes/*"
 
 PATCHES=(
-	"${FILESDIR}"/${PN}-fix-gnustack.patch
 	"${FILESDIR}"/${PN}-0.79-libzfs.patch
 )
 
@@ -84,6 +88,9 @@ pkg_setup() {
 
 src_prepare() {
 	[[ ${PATCHES[@]} ]] && epatch "${PATCHES[@]}"
+
+	sed -e '1i#include <stdint.h>' \
+		-i src/tracing/{objectstore,oprequest,osd,pg}.tp || die
 
 	epatch_user
 	eautoreconf
@@ -104,12 +111,15 @@ src_configure() {
 		$(use_with gtk gtk2) \
 		$(use_enable static-libs static) \
 		$(use_with tcmalloc) \
+		$(use_with jemalloc) \
 		$(use_with xfs libxfs) \
 		$(use_with zfs libzfs) \
-		$(use_with kinetic) \
-		$(use_with rocksdb librocksdb ) \
+		--without-kinetic \
+		--without-librocksdb \
 		$(use_with lttng ) \
-		$(use_with babeltrace)
+		$(use_with babeltrace) \
+		--enable-root-make-check \
+		$(use_enable xio)
 }
 
 src_install() {
