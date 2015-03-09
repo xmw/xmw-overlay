@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -47,7 +47,7 @@ RDEPEND="
 	x11-wm/cwm
 	media-fonts/font-misc-misc
 	!minimal? (
-		|| ( app-text/mate-document-viewer app-text/evince )
+		|| ( app-text/atril app-text/evince )
 		app-text/gv
 		mail-client/thunderbird
 		media-gfx/gimp
