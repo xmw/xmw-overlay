@@ -1,3 +1,9 @@
+*phototonic-1.5.54_p20150208 (10 Mar 2015)
+
+  10 Mar 2015; Michael Weber <xmw@gentoo.org>
+  +phototonic-1.5.54_p20150208.ebuild, phototonic-9999.ebuild:
+  Add snapshot version
+
 *phototonic-9999 (13 Mar 2014)
 
   13 Mar 2014; Michael Weber <xmw@gentoo.org> +metadata.xml,
