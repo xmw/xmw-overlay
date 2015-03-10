@@ -1,12 +1,16 @@
+# Michael Weber <xmw@gentoo.org> (10 Mar 2015)
+# Upstream repo unreachable
+=media-gfx/phototonic-9999
+
 # Michael Weber <xmw@gentoo.org> (18 Jul 2013)
 # Upstream next versions
 =sys-kernel/raspberrypi-source-3.9*
 =media-libs/raspberrypi-userland-bin-1*
 
-# Michael Weber xmw@gentoo.org 18 Jul 2013
+# Michael Weber <xmw@gentoo.org> (18 Jul 2013)
 # Renamed to media-libs/raspberrypi-userland-bin
 media-libs/raspberrypi-videocore-bin
 
-# Michael Weber xmw@gentoo.org 13 Mar 2013
+# Michael Weber <xmw@gentoo.org> (13 Mar 2013)
 # segfault in snprintf
 =media-radio/ebook2cw-0.8.2
