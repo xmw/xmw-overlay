@@ -1,0 +1,5 @@
+*energia-bin-1.0.1_p14 (12 Mar 2015)
+
+  12 Mar 2015; Michael Weber <xmw@gentoo.org> +energia-bin-1.0.1_p14.ebuild,
+  +metadata.xml:
+  Initial import.
