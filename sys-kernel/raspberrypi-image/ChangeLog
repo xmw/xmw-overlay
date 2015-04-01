@@ -1,3 +1,7 @@
+  01 Apr 2015; Michael Weber <xmw@gentoo.org>
+  -raspberrypi-image-3.12.31_pre-r20141106.ebuild:
+  drop superseeded version
+
 *raspberrypi-image-3.12.36_pre-r20150206 (01 Apr 2015)
 
   01 Apr 2015; Michael Weber <xmw@gentoo.org>
