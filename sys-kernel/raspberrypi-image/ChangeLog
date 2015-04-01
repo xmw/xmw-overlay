@@ -1,3 +1,9 @@
+*raspberrypi-image-3.10.38_pre-r20140427 (01 Apr 2015)
+
+  01 Apr 2015; Michael Weber <xmw@gentoo.org>
+  +raspberrypi-image-3.10.38_pre-r20140427.ebuild:
+  Version bump
+
   01 Apr 2015; Michael Weber <xmw@gentoo.org>
   -raspberrypi-image-3.12.31_pre-r20141106.ebuild:
   drop superseeded version
