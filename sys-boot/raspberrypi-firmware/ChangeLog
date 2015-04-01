@@ -1,0 +1,8 @@
+*raspberrypi-firmware-1_pre20150327 (01 Apr 2015)
+
+  01 Apr 2015; Michael Weber <xmw@gentoo.org>
+  +files/raspberrypi-firmware-0_p20130711-cmdline.txt,
+  +files/raspberrypi-firmware-0_p20130711-config.txt,
+  +files/raspberrypi-firmware-0_p20130711-envd, +metadata.xml,
+  +raspberrypi-firmware-1_pre20150327.ebuild:
+  Version bump
