@@ -1,3 +1,7 @@
+  01 Apr 2015; Michael Weber <xmw@gentoo.org>
+  raspberrypi-firmware-1_pre20150327.ebuild:
+  Fix bug 520686 by Maxim Mikityanskiy.
+
 *raspberrypi-firmware-1_pre20150327 (01 Apr 2015)
 
   01 Apr 2015; Michael Weber <xmw@gentoo.org>

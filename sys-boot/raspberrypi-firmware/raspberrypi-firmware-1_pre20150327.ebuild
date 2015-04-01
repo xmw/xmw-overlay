@@ -31,10 +31,10 @@ src_unpack() { :; }
 pkg_preinst() {
 	if [ -z "${REPLACING_VERSIONS}" ] ; then
 		local msg=""
-		if [ -e "${D}"/boot/cmdline.txt -a -e /boot/cmdline.txt ] ; then
+		if [ -e "${D}"/boot/cmdline.txt -a -e "${ROOT}"/boot/cmdline.txt ] ; then
 			msg+="/boot/cmdline.txt "
 		fi
-		if [ -e "${D}"/boot/config.txt -a -e /boot/config.txt ] ; then
+		if [ -e "${D}"/boot/config.txt -a -e "${ROOT}"/boot/config.txt ] ; then
 			msg+="/boot/config.txt "
 		fi
 		if [ -n "${msg}" ] ; then
