@@ -1,0 +1,9 @@
+*raspberrypi-image-3.12.31_pre-r20141106 (01 Apr 2015)
+*raspberrypi-image-3.18.10_pre-r20150330 (01 Apr 2015)
+*raspberrypi-image-3.19.3_pre-r20150327 (01 Apr 2015)
+
+  01 Apr 2015; Michael Weber <xmw@gentoo.org> +metadata.xml,
+  +raspberrypi-image-3.12.31_pre-r20141106.ebuild,
+  +raspberrypi-image-3.18.10_pre-r20150330.ebuild,
+  +raspberrypi-image-3.19.3_pre-r20150327.ebuild:
+  Version bump
