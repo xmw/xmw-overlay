@@ -39,7 +39,7 @@ pkg_preinst() {
 		fi
 		if [ -n "${msg}" ] ; then
 			msg="This package installs following files: ${msg}."
-			msg="${msg} Please remove(backup) your copies durning install"
+			msg="${msg} Please remove(backup) your copies during install"
 			msg="${msg} and merge settings afterwards."
 			msg="${msg} Further updates will be CONFIG_PROTECTed."
 			die "${msg}"
