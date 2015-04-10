@@ -4,27 +4,19 @@
 
 EAPI=5
 
-inherit cvs eutils toolchain-funcs user multilib-minimal
+inherit eutils toolchain-funcs user multilib-minimal
 
 DESCRIPTION="small audio and MIDI framework part of the OpenBSD project"
 HOMEPAGE="http://www.sndio.org/"
-ECVS_SERVER="moule.caoua.org:/sndio"
-ECVS_MODULE="${PN}"
-ECVS_AUTH="ext"
-ECVS_USER="anoncvs"
-#ECVS_SSH_HOST_KEY="moule.caoua.org,2001:7a8:4e69::1 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMGPWNw+u/o4raby5ZszCAUC2b4BCwfvGzm81s5mRHqDRt1ksrde6uaB79mzzM3dm/rp3rjYFx38cVeGjQDxVgs="
+SRC_URI="http://www.${PN}.org/${P}.tar.gz"
 
 LICENSE="ISC"
 SLOT="0"
-KEYWORD=""
+KEYWORDS="~amd64"
 IUSE="alsa"
 
 RDEPEND="alsa? ( media-libs/alsa-lib )"
 DEPEND="${REPEND}"
-
-S=${WORKDIR}/${PN}
-
-RESTRICT="test"
 
 pkg_setup() {
 	if ! use alsa ; then
