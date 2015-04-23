@@ -1,3 +1,9 @@
+*raspberrypi-firmware-1_pre20150421 (23 Apr 2015)
+
+  23 Apr 2015; Michael Weber <xmw@gentoo.org>
+  +raspberrypi-firmware-1_pre20150421.ebuild:
+  Version bump
+
   01 Apr 2015; Michael Weber <xmw@gentoo.org>
   raspberrypi-firmware-1_pre20150327.ebuild:
   Fix typo (bug 505108, thanks David Flogeras).
