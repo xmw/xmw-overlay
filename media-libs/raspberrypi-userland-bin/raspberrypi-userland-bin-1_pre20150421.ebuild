@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit vcs-snapshot
+inherit multilib vcs-snapshot
 
 DESCRIPTION="Raspberry Pi userspace tools and libraries"
 HOMEPAGE="https://github.com/raspberrypi/firmware"
@@ -36,9 +36,11 @@ src_install() {
 	into /opt
 	dobin bin/*
 	dobin sbin/*
-	into /opt/vc
-	dolib.so lib/*
+	insopts -m 0755
+	insinto "/opt/vc/$(get_libdir)"
+	doins -r lib/*
 
+	insopts -m 0644
 	insinto /usr/share/doc/${PF}/examples
 	use examples && doins -r src/hello_pi
 
