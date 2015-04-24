@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -16,7 +16,7 @@ KEYWORDS="~arm"
 IUSE=""
 
 RDEPEND="dev-libs/libpcre
-	media-libs/raspberrypi-userland-bin
+	|| ( media-libs/raspberrypi-userland media-libs/raspberrypi-userland-bin )
 	virtual/ffmpeg
 	sys-apps/dbus
 	sys-apps/fbset"
