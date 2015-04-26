@@ -24,11 +24,10 @@ DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-Makefile.patch
+	epatch "${FILESDIR}"/${PN}-0_p20150421-Makefile.patch
 
 	cat > Makefile.include << EOF
-INCLUDES=-I/opt/vc/include -I/opt/vc/include/interface/vcos/pthreads -I/opt/vc/include/interface/vmcs_host/linux
-LIBS=-L/opt/vc/lib -lvchiq_arm -lvcos -lbcm_host -lEGL -lopenmaxil -lrt -lpthread
+LIBS=-lvchiq_arm -lvcos -lbcm_host -lEGL -lGLESv2 -lopenmaxil -lrt -lpthread
 EOF
 
 	tc-export CXX

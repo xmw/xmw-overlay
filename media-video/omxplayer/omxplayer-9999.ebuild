@@ -1,34 +1,43 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
 EAPI=5
 
-inherit eutils flag-o-matic git-2 toolchain-funcs
+inherit eutils git-r3 toolchain-funcs
 
 DESCRIPTION="command line media player for the Raspberry Pi"
-HOMEPAGE="https://github.com/huceke/omxplayer"
-EGIT_REPO_URI="https://github.com/huceke/omxplayer.git"
+HOMEPAGE="https://github.com/popcornmix/omxplayer"
+EGIT_REPO_URI="https://github.com/popcornmix/omxplayer.git"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS=""
 IUSE=""
 
-DEPEND="dev-libs/libpcre
-	media-libs/raspberrypi-userland-bin
-	media-video/ffmpeg"
-RDEPEND="${RDEPEND}
+RDEPEND="dev-libs/libpcre
+	|| ( media-libs/raspberrypi-userland media-libs/raspberrypi-userland-bin )
+	virtual/ffmpeg
+	sys-apps/dbus
 	sys-apps/fbset"
+DEPEND="${RDEPEND}
+	virtual/pkgconfig"
 
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-Makefile.patch \
-		"${FILESDIR}"/${P}-wrapper.patch
+	epatch "${FILESDIR}"/${PN}-0_p20150421-Makefile.patch
+
+	cat > Makefile.include << EOF
+LIBS=-lvchiq_arm -lvcos -lbcm_host -lEGL -lGLESv2 -lopenmaxil -lrt -lpthread
+EOF
+
 	tc-export CXX
-	filter-ldflags -Wl,--as-needed
+}
+
+src_compile() {
+	emake ${PN}.bin
 }
 
 src_install() {
-	dobin ${PN}{,.bin}
-	dodoc README
+	dobin ${PN} ${PN}.bin
+	dodoc README.md
 }
