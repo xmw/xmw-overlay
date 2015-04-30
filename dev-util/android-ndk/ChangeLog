@@ -1,3 +1,6 @@
+  30 Apr 2015; Michael Weber <xmw@gentoo.org> android-ndk-10d.ebuild:
+  Replace cp -pPR with mv to avoid replicating 3.3GB, add check-req test.
+
 *android-ndk-10d (30 Apr 2015)
 
   30 Apr 2015; Michael Weber <xmw@gentoo.org> +android-ndk-10d.ebuild,
