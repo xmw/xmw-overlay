@@ -1,0 +1,5 @@
+*android-ndk-10d (30 Apr 2015)
+
+  30 Apr 2015; Michael Weber <xmw@gentoo.org> +android-ndk-10d.ebuild,
+  +metadata.xml:
+  Bug 547632.
