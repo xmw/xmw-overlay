@@ -4,15 +4,15 @@
 
 EAPI=5
 
-inherit eutils git-r3 toolchain-funcs
+inherit eutils toolchain-funcs vcs-snapshot
 
 DESCRIPTION="command line media player for the Raspberry Pi"
 HOMEPAGE="https://github.com/popcornmix/omxplayer"
-EGIT_REPO_URI="https://github.com/popcornmix/omxplayer.git"
+SRC_URI="https://github.com/popcornmix/omxplayer/tarball/b1ad23ec68 -> ${P}.tar.gz"
 
 LICENSE="GPL-2"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~arm"
 IUSE=""
 
 RDEPEND="dev-libs/libpcre

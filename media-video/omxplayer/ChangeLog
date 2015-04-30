@@ -1,6 +1,14 @@
 # ChangeLog for media-video/omxplayer
-# Copyright 1999-2013 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  26 Apr 2015; Michael Weber <xmw@gentoo.org> -omxplayer-9999-r1.ebuild,
+  omxplayer-0_p20150421.ebuild, omxplayer-9999.ebuild:
+  Update for userland at /usr and provide pined version
+
+  24 Apr 2015; Michael Weber <xmw@gentoo.org> omxplayer-0_p20150421.ebuild,
+  omxplayer-9999-r1.ebuild:
+  allow userland built from source
 
   22 Jul 2013; Michael Weber <xmw@gentoo.org>
   files/omxplayer-9999-Makefile.patch, files/omxplayer-9999-wrapper.patch,
