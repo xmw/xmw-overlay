@@ -1,3 +1,9 @@
+  25 May 2015; Michael Weber <xmw@gentoo.org>
+  -raspberrypi-image-3.12.36_pre-r20150206.ebuild,
+  -raspberrypi-image-3.18.10_pre-r20150330.ebuild,
+  -raspberrypi-image-3.19.3_pre-r20150327.ebuild:
+  Drop version moved to main tree
+
 *raspberrypi-image-3.18.14_pre-r20150520 (25 May 2015)
 *raspberrypi-image-3.19.3_pre-r20150413 (25 May 2015)
 *raspberrypi-image-4.0.4_pre-r20150523 (25 May 2015)
