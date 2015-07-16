@@ -2,6 +2,11 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*sndio-0.0.10 (16 Jul 2015)
+
+  16 Jul 2015; Michael Weber <xmw@gentoo.org> +sndio-0.0.10.ebuild:
+  Version bump
+
 *sndio-0.0.8-r1 (10 Apr 2015)
 
   10 Apr 2015; Michael Weber <xmw@gentoo.org> +sndio-0.0.8-r1.ebuild,
