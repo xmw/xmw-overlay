@@ -1,3 +1,15 @@
+*raspberrypi-image-3.18.14_pre-r20150605 (08 Jun 2015)
+*raspberrypi-image-4.0.4_pre-r20150607 (08 Jun 2015)
+
+  08 Jun 2015; Michael Weber <xmw@gentoo.org>
+  +raspberrypi-image-3.18.14_pre-r20150605.ebuild,
+  +raspberrypi-image-4.0.4_pre-r20150607.ebuild,
+  -raspberrypi-image-3.10.38_pre-r20140427.ebuild,
+  -raspberrypi-image-3.18.14_pre-r20150520.ebuild,
+  -raspberrypi-image-3.19.3_pre-r20150413.ebuild,
+  -raspberrypi-image-4.0.4_pre-r20150523.ebuild:
+  New kernelz
+
   25 May 2015; Michael Weber <xmw@gentoo.org>
   -raspberrypi-image-3.12.36_pre-r20150206.ebuild,
   -raspberrypi-image-3.18.10_pre-r20150330.ebuild,
