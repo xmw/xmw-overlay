@@ -1,3 +1,8 @@
+*django-bootstrap-form-3.2 (29 Jul 2015)
+
+  29 Jul 2015; Michael Weber <xmw@gentoo.org> +django-bootstrap-form-3.2.ebuild:
+  Version bump.
+
 *django-bootstrap-form-3.1 (27 Oct 2014)
 
   27 Oct 2014; Michael Weber <xmw@gentoo.org> +django-bootstrap-form-3.1.ebuild,

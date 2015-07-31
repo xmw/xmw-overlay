@@ -1,3 +1,8 @@
+*pyroute2-0.3.9 (18 Jul 2015)
+
+  18 Jul 2015; Michael Weber <xmw@gentoo.org> +pyroute2-0.3.9.ebuild:
+  Version bump
+
 *pyroute2-0.3.1 (21 Oct 2014)
 
   21 Oct 2014; Michael Weber <xmw@gentoo.org> +metadata.xml,
