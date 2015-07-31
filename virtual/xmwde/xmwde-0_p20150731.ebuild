@@ -54,7 +54,7 @@ RDEPEND="
 		media-sound/audacity
 		media-sound/baudline
 		media-video/avidemux
-		|| ( media-video/mplayer media-video/mplayer2 )
+		|| ( media-video/mpv media-video/mplayer2 media-video/mplayer )
 		net-im/pidgin
 		net-p2p/qbittorrent
 		sci-astronomy/stellarium
