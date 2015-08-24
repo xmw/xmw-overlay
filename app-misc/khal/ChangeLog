@@ -1,7 +1,0 @@
-*khal-0.3.1 (12 Nov 2014)
-*khal-9999 (12 Nov 2014)
-
-  12 Nov 2014; Michael Weber <xmw@gentoo.org>
-  +files/khal-9999-relative-imports.patch, +khal-0.3.1.ebuild,
-  +khal-9999.ebuild, +metadata.xml:
-  Initial import

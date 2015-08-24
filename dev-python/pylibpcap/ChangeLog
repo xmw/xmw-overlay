@@ -1,9 +1,0 @@
-  27 Sep 2014; Michael Weber <xmw@gentoo.org> pylibpcap-0.6.4-r1.ebuild:
-  add examples
-
-*pylibpcap-0.6.4-r1 (27 Sep 2014)
-
-  27 Sep 2014; Michael Weber <xmw@gentoo.org> +metadata.xml,
-  +pylibpcap-0.6.4-r1.ebuild:
-  Initial import with python3 patch by Paul Koning
-  (https://sourceforge.net/p/pylibpcap/bugs/22/)

@@ -1,6 +1,0 @@
-*libmsp430-3.4.3.4 (27 Feb 2015)
-
-  27 Feb 2015; Michael Weber <xmw@gentoo.org>
-  +files/libmsp430-3.4.3.4-hidapi.patch, +libmsp430-3.4.3.4.ebuild,
-  +metadata.xml:
-  Initial import

@@ -1,5 +1,0 @@
-*tzlocal-1.1.2 (12 Nov 2014)
-
-  12 Nov 2014; Michael Weber <xmw@gentoo.org> +metadata.xml,
-  +tzlocal-1.1.2.ebuild:
-  Initial import

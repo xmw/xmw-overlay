@@ -1,9 +1,0 @@
-*xdemorse-2.4 (14 Mar 2013)
-
-  14 Mar 2013; Michael Weber <xmw@gentoo.org> +xdemorse-2.4.ebuild:
-  Version bump
-
-*xdemorse-2.3 (19 Jul 2012)
-
-  19 Jul 2012; Michael Weber <xmw@gentoo.org> +xdemorse-2.3.ebuild:
-  media-radio/xdemorse: Version bump

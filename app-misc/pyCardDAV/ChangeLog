@@ -1,5 +1,0 @@
-*pyCardDAV-0.7.0 (06 Oct 2014)
-
-  06 Oct 2014; Michael Weber <xmw@gentoo.org> +files/README.gentoo,
-  +metadata.xml, +pyCardDAV-0.7.0.ebuild:
-  Initial import

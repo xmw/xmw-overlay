@@ -1,7 +1,0 @@
-*django-registration-redux-1.1 (29 Jul 2015)
-*django-registration-redux-1.2 (29 Jul 2015)
-
-  29 Jul 2015; Michael Weber <xmw@gentoo.org>
-  +django-registration-redux-1.1.ebuild, +django-registration-redux-1.2.ebuild,
-  +metadata.xml:
-  Initial import from bug 542020.

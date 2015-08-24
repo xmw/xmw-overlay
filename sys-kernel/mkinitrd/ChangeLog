@@ -1,5 +1,0 @@
-*mkinitrd-0_p20131207 (07 Dec 2013)
-
-  07 Dec 2013; Michael Weber <xmw@gentoo.org> +files/mkinitrd-0_p20131207,
-  +metadata.xml, +mkinitrd-0_p20131207.ebuild:
-  Initial import

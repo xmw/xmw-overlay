@@ -1,5 +1,0 @@
-*libturpial-0.8.5 (06 Jul 2013)
-
-  06 Jul 2013; Michael Weber <xmw@gentoo.org>
-  +files/libturpial-0.8.5-setup.patch, +libturpial-0.8.5.ebuild, +metadata.xml:
-  Initial import

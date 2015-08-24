@@ -1,6 +1,0 @@
-*gmediarender-0.0.6 (02 Sep 2012)
-*gmediarender-9999 (02 Sep 2012)
-
-  02 Sep 2012; Michael Weber <xmw@gentoo.org> +gmediarender-0.0.6.ebuild,
-  +gmediarender-9999.ebuild, +metadata.xml:
-  media-libs/gmediarender: initial import, segfaults.

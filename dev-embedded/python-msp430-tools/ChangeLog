@@ -1,6 +1,0 @@
-*python-msp430-tools-0.6 (05 Mar 2015)
-
-  05 Mar 2015; Michael Weber <xmw@gentoo.org>
-  +files/python-msp430-tools-0.6-scripts-filenames.patch, +metadata.xml,
-  +python-msp430-tools-0.6.ebuild:
-  Fix so name, add dependency libmsp430

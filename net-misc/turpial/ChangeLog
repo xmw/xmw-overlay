@@ -1,6 +1,0 @@
-*turpial-1.6.9 (06 Jul 2013)
-*turpial-1.7.6_alpha1 (06 Jul 2013)
-
-  06 Jul 2013; Michael Weber <xmw@gentoo.org> +metadata.xml,
-  +turpial-1.6.9.ebuild, +turpial-1.7.6_alpha1.ebuild:
-  Initial import

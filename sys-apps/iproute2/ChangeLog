@@ -1,5 +1,0 @@
-*iproute-mptcp-9999 (17 Sep 2014)
-
-  17 Sep 2014; Michael Weber <xmw@gentoo.org> +iproute-mptcp-9999.ebuild,
-  +metadata.xml:
-  Initial import

@@ -1,5 +1,0 @@
-*pydhcplib-0.6.2 (18 Sep 2014)
-
-  18 Sep 2014; Michael Weber <xmw@gentoo.org>
-  +files/pydhcplib-0.6.2-manpages.patch, +metadata.xml, +pydhcplib-0.6.2.ebuild:
-  Initial import
