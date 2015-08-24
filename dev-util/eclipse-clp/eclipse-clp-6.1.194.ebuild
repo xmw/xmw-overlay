@@ -141,7 +141,7 @@ src_compile() {
        
 	runme() {
 		einfo "create wrapper $1"
-		local my_dst="build/bin/${ARCH}/$1"
+		local my_dest="build/bin/${ARCH}/$1"
 		mkdir -p "$(dirname "${my_dest}")" || die
 		cat << EOF > "${my_dest}"
 #!/bin/sh
