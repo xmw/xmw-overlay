@@ -53,7 +53,6 @@ RDEPEND="
 		media-gfx/gimp
 		media-sound/audacity
 		media-sound/baudline
-		media-video/avidemux
 		|| ( media-video/mpv media-video/mplayer2 media-video/mplayer )
 		net-im/pidgin
 		net-p2p/qbittorrent
