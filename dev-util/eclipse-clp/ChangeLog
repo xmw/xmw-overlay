@@ -1,3 +1,8 @@
+*eclipse-clp-6.1.204 (24 Aug 2015)
+
+  24 Aug 2015; Michael Weber <xmw@gentoo.org> +eclipse-clp-6.1.204.ebuild:
+  dev-util/eclipse-clp: Version bump.
+
 *eclipse-clp-6.1.194 (16 Feb 2015)
 
   16 Feb 2015; Michael Weber <xmw@gentoo.org> +eclipse-clp-6.1.194.ebuild,
