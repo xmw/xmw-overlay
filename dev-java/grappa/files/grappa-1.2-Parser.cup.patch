@@ -1,0 +1,36 @@
+--- grappa-1.2/src/jdk1.2/att/grappa/Parser.cup
++++ grappa-1.2/src/jdk1.2/att/grappa/Parser.cup
+@@ -70,19 +70,19 @@
+       } else {
+ 	switch(kind) {
+ 	case Grappa.NODE:
+-		if( parser.getDebugLevel >= 1 ) {
++		if( parser.getDebugLevel() >= 1 ) {
+ 	  		parser.debug_message(1, "adding node default attr (" + attr.getName() + ") to thisGraph(" + thisGraph.getName() + ")");
+ 		}
+ 	  thisGraph.setNodeAttribute(attr);
+ 	  break;
+ 	case Grappa.EDGE:
+-		if( parser.getDebugLevel >= 1 ) {
++		if( parser.getDebugLevel() >= 1 ) {
+ 			parser.debug_message(1, "adding edge default attr (" + attr.getName() + ") to thisGraph(" + thisGraph.getName() + ")");
+ 		}
+ 	  thisGraph.setEdgeAttribute(attr);
+ 	  break;
+ 	case Grappa.SUBGRAPH:
+-		if( parser.getDebugLevel >= 1 ) {
++		if( parser.getDebugLevel() >= 1 ) {
+ 			parser.debug_message(1, "adding subg default attr (" + attr.getName() + ") to thisGraph(" + thisGraph.getName() + ")");
+ 		}
+ 	  thisGraph.setAttribute(attr);  
+@@ -496,7 +496,9 @@
+     debug_message(5, "# Current Symbol is #" + cur_token.sym);
+ 
+     /* push dummy Symbol with start state to get us underway */
+-    stack.push(new Symbol(0, start_state()));
++    Symbol s = new Symbol(0);
++    s.parse_state = start_state();
++    stack.push(s);
+     tos = 0;
+ 
+     /* continue until we are told to stop */
