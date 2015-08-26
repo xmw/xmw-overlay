@@ -24,30 +24,26 @@ S=${WORKDIR}/src/jdk1.2/att/grappa
 
 src_prepare() {
 	cd "${WORKDIR}" || die
-
-	#unbundle old and system files
 	rm -rf archives src/jdk1.0 src/jdk1.1 src/jdk1.2/java_cup || die
-
 	epatch "${FILESDIR}"/${P}-Parser.cup.patch
-
 	java-pkg_ensure-no-bundled-jars
 }
 
 src_compile() {
 	java-pkg_jar-from --build-only javacup javacup.jar
 	java-pkg_jar-from --build-only javacup javacup-runtime.jar
+
 	#JDK=jdk1.2 ./mkParser || die
 	einfo "genrating Parser.java and Symbols.java from Parser.cup"
 	"${JAVA_HOME}"/bin/java -jar javacup.jar -package att.grappa \
-		-parser Parser -symbols Symbols -nonterms \
-		< Parser.cup || die
-	sed -e "/^public/i\\
-$(sed -n '/^.[*]/s/$/\\/p' Parser.cup)
-" 		-i Parser.java || die
+		-parser Parser -symbols Symbols -nonterms < Parser.cup || die
+	sed -e "/^public/i$(sed -n '/^.[*]/s/$/\\/p' Parser.cup)" \
+ 		-i Parser.java || die
 
 	#JDK=jdk1.2 ./mk || die
 	einfo "${JAVAC} *.java"
-	"${JAVAC}" -source 5 -target 5 -classpath javacup.jar:javacup-runtime.jar -g -nowarn *.java || die
+	"${JAVAC}" -source 5 -target 5 -classpath javacup.jar:javacup-runtime.jar \
+		-g -nowarn *.java || die
 }
 
 src_install() {
