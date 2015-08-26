@@ -18,7 +18,7 @@ IUSE=""
 RDEPEND=""
 DEPEND="${RDEPEND}
 	dev-java/javacup:0
-	virtual/jdk:1.7"
+	>=virtual/jdk-0"
 
 S=${WORKDIR}/src/jdk1.2/att/grappa
 
@@ -38,7 +38,7 @@ src_compile() {
 	java-pkg_jar-from --build-only javacup javacup-runtime.jar
 	#JDK=jdk1.2 ./mkParser || die
 	einfo "genrating Parser.java and Symbols.java from Parser.cup"
-	java -jar javacup.jar -package att.grappa \
+	"${JAVA_HOME}"/bin/java -jar javacup.jar -package att.grappa \
 		-parser Parser -symbols Symbols -nonterms \
 		< Parser.cup || die
 	sed -e "/^public/i\\
@@ -46,8 +46,8 @@ $(sed -n '/^.[*]/s/$/\\/p' Parser.cup)
 " 		-i Parser.java || die
 
 	#JDK=jdk1.2 ./mk || die
-	einfo "javac *.java"
-	javac -source 5 -target 5 -classpath javacup.jar:javacup-runtime.jar -g -nowarn *.java || die
+	einfo "${JAVAC} *.java"
+	"${JAVAC}" -source 5 -target 5 -classpath javacup.jar:javacup-runtime.jar -g -nowarn *.java || die
 }
 
 src_install() {
