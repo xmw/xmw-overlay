@@ -4,7 +4,7 @@
 
 EAPI=5
 
-inherit autotools eutils readme.gentoo versionator
+inherit autotools eutils java-utils-2 readme.gentoo versionator
 
 DESCRIPTION="OSS system for the cost-effective development and deployment of constraint programming applications"
 HOMEPAGE="http://eclipseclp.org/"
@@ -21,13 +21,18 @@ IUSE="doc +coin +gecode +glpk +gmp java mysql parallel tcl +threads"
 #[doc] brauch wohl hevea: dev-tex/hevea
 RDEPEND=""
 DEPEND="${RDEPEND}
-	gmp? ( dev-libs/gmp )
+	gmp? ( dev-libs/gmp:3 )
 	doc? ( app-text/ghostscript-gpl
 		dev-tex/hevea
 		dev-texlive/texlive-latex )
 	gecode? ( dev-libs/gecode )
 	mysql? ( virtual/mysql )
-	java? ( dev-java/batik dev-java/javahelp )
+	java? ( dev-java/batik:1.7
+		dev-java/grappa:1.2
+		dev-java/javacup:0
+		dev-java/javahelp:0
+		dev-java/xml-commons-external:1.4
+	)
 	coin? ( sci-libs/coinor-cbc[examples]
 		sci-libs/coinor-osi[glpk?]
 		sci-libs/coinor-symphony[glpk?]
@@ -37,20 +42,15 @@ S=${WORKDIR}/Eclipse_${MY_PV}
 
 REQUIRED_USE="coin? ( gmp ) glpk? ( coin ) parallel? ( tcl )"
 
-pkg_setup() {
-	use gecode && ewarn gecode does not work yet
-	use doc && ewarn doc does not work yet
-}
-
-src_unpack() {
-	default
-	if use coin ; then
-		local my_cbc=$(best_version sci-libs/coinor-cbc)
-		cp "${EROOT}"usr/share/doc/${my_cbc/sci-libs\//}/examples/Cbc{Branch,Compare}User.{c,h}pp.* . || die
-		unpack ./Cbc{Branch,Compare}User.{c,h}pp.*
-		mv Cbc{Branch,Compare}User.{c,h}pp "${S}"/Eplex || die
-	fi
-}
+#src_unpack() {
+#	default
+#	if use coin ; then
+#		local my_cbc=$(best_version sci-libs/coinor-cbc)
+#		cp "${EROOT}"usr/share/doc/${my_cbc/sci-libs\//}/examples/Cbc{Branch,Compare}User.{c,h}pp.* . || die
+#		unpack ./Cbc{Branch,Compare}User.{c,h}pp.*
+#		mv Cbc{Branch,Compare}User.{c,h}pp "${S}"/Eplex || die
+#	fi
+#}
 
 src_prepare() {
 	epatch \
@@ -65,7 +65,11 @@ src_prepare() {
 		"${FILESDIR}"/${PN}-6.1.194-Pds-64bit.patch \
 		"${FILESDIR}"/${PN}-6.1.194-Alog-64bit.patch \
 		"${FILESDIR}"/${PN}-6.1.194-weclipse.patch \
-		"${FILESDIR}"/${PN}-6.1.194-Shm-buildsystem.patch
+		"${FILESDIR}"/${PN}-6.1.194-Shm-buildsystem.patch \
+		"${FILESDIR}"/${PN}-6.1.204-Visualisation-buildsystem.patch \
+		"${FILESDIR}"/${PN}-6.1.204-grappa-detect.patch \
+		"${FILESDIR}"/${PN}-6.1.204-cp-viz-detect.patch \
+		"${FILESDIR}"/${PN}-6.1.204-JavaInterface-string.patch
 
 	rm ARCH RUNME || die
 
@@ -75,8 +79,17 @@ src_prepare() {
 		*)     die "unsupported arch ${ARCH}" ;;
 	esac
 	export ECLIPSEDIR=${EROOT}opt/${PN}
-	export MYSQLDIR="${EROOT}usr/include/mysql"
-	#export prefix="${S}/build"
+	if use mysql ; then
+		export MYSQLDIR="${EROOT}usr/include/mysql"
+	fi
+	if use java ; then
+		export GRAPPA_DIR="${EROOT}usr/share/grappa-1.2/lib"
+		export GRAPPA_JAR="grappa.jar"
+		export BATIK_DIR="${EROOT}usr/share/batik-1.7"
+		export JHELP_DIR="${EROOT}usr/share/javahelp"
+		export JAVACUP_DIR="${EROOT}usr/share/javacup/lib"
+		export JAVACUP_JAR="javacup-runtime.jar"
+	fi
 	tc-export CC AR
 	eautoreconf
 
@@ -97,8 +110,7 @@ src_configure() {
 
 	local my_osi="--without-osi"
 	if use coin ; then
-		my_osi="--with-osi=symclp"
-		#my_osi=" ... clpcbc" doesn't build jet
+		my_osi="--with-osi=symclp "
 		if use glpk ; then
 			my_osi="${my_osi} glpk"
 		fi
@@ -141,7 +153,7 @@ src_compile() {
        
 	runme() {
 		einfo "create wrapper $1"
-		local my_dest="build/bin/${ARCH}/$1"
+		local my_dest="${D}/opt/${PN}/bin/${ARCH}/$1"
 		mkdir -p "$(dirname "${my_dest}")" || die
 		cat << EOF > "${my_dest}"
 #!/bin/sh
@@ -156,23 +168,24 @@ $2
 EOF
 		chmod +x "${my_dest}" || die
 	}
-	mkdir -p "${S}/bin/${ARCH}"
 
+	mkdir -p "${S}/bin/${ARCH}"
 	einfo "compile installation kernel (sepia)"
 	emake -C Kernel/${ARCH} sepia
 	einfo "compile runtime kernel (eclipse.exe)"
 	emake -C Kernel/${ARCH} eclipse.exe
+
 	einfo "install kernel and header files"
-	emake -C Kernel/${ARCH} PREFIX="../../build" install
+	emake -C Kernel/${ARCH} PREFIX="${ED}opt/${PN}" install
 	runme "eclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/eclipse.exe\" \"\$@\""
 
 	if use parallel ; then
 		einfo "compile & install parallel Kernel"
 		emake -C Kernel/${ARCH} weclipse
-		cp -v {Kernel,lib}/${ARCH}/weclipse
+		cp -v Kernel/${ARCH}/weclipse "${ED}opt/${PN}/bin" || die
 		runme "weclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/weclipse\" \"\$@\""
 		emake -C Kernel/${ARCH} peclipse
-		cp -v {Kernel,lib}/${ARCH}/peclipse
+		cp -v Kernel/${ARCH}/peclipse "${ED}opt/${PN}/bin" || die
 		runme "peclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/peclipse\" \"\$@\""
 	fi
 
@@ -181,35 +194,56 @@ EOF
 		runme "tktools" "exec wish \"\${ECLIPSEDIR}/lib_tcl/tktools.tcl\" -- \"\$@\""
 	fi
 
-	#einfo "compile & install ecrc_solvers"
-	#emake -C ecrc_solvers -f Makefile.${ARCH} PREFIX="${S}/build" install -j1
+	eemake() {
+		emake -f Makefile.${ARCH} PREFIX="${ED}opt/${PN}" ECLIPSEDIR="${ED}opt/${PN}" -j1 "$@"
+	}
+
+	einfo "compile & install ecrc_solvers"
+	eemake -C ecrc_solvers install \
+		AUX_ECLIPSE="${ED}opt/${PN}/bin/${ARCH}/eclipse"
 
 	einfo "compile & install Flexlm"
-	emake -C Flexlm -f Makefile.${ARCH} PREFIX="../build" install
+	eemake -C Flexlm install
+
+	einfo "compile & install Contrib"
+	eemake -C Contrib install
 
 	if use coin ; then
 		einfo "compile & install Eplex"
-		emake -C Eplex -f Makefile.${ARCH} PREFIX="${S}" install -j1
+		eemake -C Eplex install
 
 		einfo "compile & install icparc_solvers"
-		emake -C icparc_solvers -f Makefile.${ARCH} PREFIX="${S}" install -j1
+		eemake -C icparc_solvers install
 	fi
 	if use gecode ; then
 		einfo "compile & install GecodeInterface"
-		emake -C GecodeInterface -f Makefile.${ARCH} PREFIX="${S}" install
+		eemake -C GecodeInterface install
 	fi
 	if use java ; then
 		einfo "compile & install JavaInterface"
-		emake -C JavaInterface -f Makefile.${ARCH} PREFIX="${S}" install
+		eemake -C JavaInterface install \
+			AUX_ECLIPSE="${ED}opt/${PN}/bin/${ARCH}/eclipse"
 		runme "jeclipse" "exec \"\${JRE_HOME}/bin/java\" -Xss2m  -Declipse.directory=\"\${ECLIPSEDIR}\" -classpath \"\${ECLIPSEDIR}/lib/eclipse.jar\" com.parctechnologies.eclipse.JEclipse \"\$@\""
 
 		einfo "compile & install Visualisation"
-		emake -C Visualisation -f Makefile.${ARCH} PREFIX="${S}" install
+		java-pkg_jar-from --build-only javacup javacup-runtime.jar
+		eemake -C Visualisation all_visualisation
+
+		einfo "compile & install CPViz"
+		mkdir -p CPViz/jars/batik CPViz/jars/jhelp || die
+		cd "${S}"/CPViz/jars/batik || die
+		java-pkg_jar-from --build-only batik-1.7
+		java-pkg_jar-from --build-only xml-commons-external-1.4
+		cd "${S}"/CPViz/jars/jhelp || die
+		java-pkg_jar-from --build-only javahelp
+		cd "${S}" || die
+		eemake -C CPViz all_cpviz
 	fi
 
 	if use mysql ; then
 		einfo "compile & install Oci"
-		emake -C Oci -f Makefile.${ARCH} PREFIX="${S}" install -j1
+		eemake -C Oci install \
+			ECLIPSE="${ED}opt/${PN}/bin/${ARCH}/eclipse"
 	fi
 }
 

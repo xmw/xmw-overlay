@@ -67,6 +67,15 @@
 +AC_OUTPUT
 --- Eclipse_6.1_194/Eplex/Makefile.in
 +++ Eclipse_6.1_194/Eplex/Makefile.in
+@@ -55,7 +55,7 @@
+ GMP_LD = @GMP_LD@
+ FLOAT_ROUND_FLAGS = @FLOAT_ROUND_FLAGS@
+ 
+-CPPFLAGS  = -I. -I$(ECLIPSEDIR)/include/$(ARCH) -I$(ECLIPSEDIR)/Kernel/src $(OS_INCLUDES)
++CPPFLAGS  = -I. -I$(ECLIPSEDIR)/include/$(ARCH) $(OS_INCLUDES)
+ STDCXXLIB = @STDCXXLIB@
+ ECLIBS	= -L$(ECLIPSEDIR)/lib/$(ARCH) -leclipse @LIBS@
+ 
 @@ -96,34 +96,31 @@
  SYMCLPDIR = @SYMCLPDIR@
  OSIGLPKDIR = @OSIGLPKDIR@
