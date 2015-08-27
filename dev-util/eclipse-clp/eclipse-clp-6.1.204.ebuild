@@ -108,18 +108,11 @@ src_configure() {
 		popd >/dev/null || die
 	done
 
-	local my_osi="--without-osi"
-	if use coin ; then
-		my_osi="--with-osi=symclp "
-		if use glpk ; then
-			my_osi="${my_osi} glpk"
-		fi
-	fi
 	econf \
 		--without-cplex \
 		--without-xpress \
 		$(use_with gmp) \
-		"${my_osi}" \
+		$(usex coin "--with-osi=symclp$(usex glpk " glpk" "")" "--without-osi") \
 		--with-flexlm \
 		$(use_with gecode gfd) \
 		--without-graphviz \
@@ -150,10 +143,9 @@ src_compile() {
 			mv -vn ${my_out} sys_${my_out/${my_submod}\/} || die
 		done
 	done
-       
 	runme() {
 		einfo "create wrapper $1"
-		local my_dest="${D}/opt/${PN}/bin/${ARCH}/$1"
+		local my_dest="${S}/build/bin/${ARCH}/$1"
 		mkdir -p "$(dirname "${my_dest}")" || die
 		cat << EOF > "${my_dest}"
 #!/bin/sh
@@ -168,50 +160,40 @@ $2
 EOF
 		chmod +x "${my_dest}" || die
 	}
-
 	mkdir -p "${S}/bin/${ARCH}"
 	einfo "compile installation kernel (sepia)"
 	emake -C Kernel/${ARCH} sepia
 	einfo "compile runtime kernel (eclipse.exe)"
 	emake -C Kernel/${ARCH} eclipse.exe
-
 	einfo "install kernel and header files"
-	emake -C Kernel/${ARCH} PREFIX="${ED}opt/${PN}" install
+	emake -C Kernel/${ARCH} PREFIX="${S}/build" install
 	runme "eclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/eclipse.exe\" \"\$@\""
-
 	if use parallel ; then
 		einfo "compile & install parallel Kernel"
 		emake -C Kernel/${ARCH} weclipse
-		cp -v Kernel/${ARCH}/weclipse "${ED}opt/${PN}/bin" || die
+		cp -v Kernel/${ARCH}/weclipse "${S}/build/bin" || die
 		runme "weclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/weclipse\" \"\$@\""
 		emake -C Kernel/${ARCH} peclipse
-		cp -v Kernel/${ARCH}/peclipse "${ED}opt/${PN}/bin" || die
+		cp -v Kernel/${ARCH}/peclipse "${S}/build/bin" || die
 		runme "peclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/peclipse\" \"\$@\""
 	fi
-
 	if use tcl ; then
 		runme "tkeclipse" "exec wish \"\${ECLIPSEDIR}/lib_tcl/tkeclipse.tcl\" -- \"\$@\""
 		runme "tktools" "exec wish \"\${ECLIPSEDIR}/lib_tcl/tktools.tcl\" -- \"\$@\""
 	fi
-
 	eemake() {
-		emake -f Makefile.${ARCH} PREFIX="${ED}opt/${PN}" ECLIPSEDIR="${ED}opt/${PN}" -j1 "$@"
+		emake -f Makefile.${ARCH} PREFIX="${S}/build" ECLIPSEDIR="${S}/build" -j1 "$@"
 	}
-
 	einfo "compile & install ecrc_solvers"
 	eemake -C ecrc_solvers install \
-		AUX_ECLIPSE="${ED}opt/${PN}/bin/${ARCH}/eclipse"
-
+		AUX_ECLIPSE="${S}/build/bin/${ARCH}/eclipse"
 	einfo "compile & install Flexlm"
 	eemake -C Flexlm install
-
 	einfo "compile & install Contrib"
 	eemake -C Contrib install
-
 	if use coin ; then
 		einfo "compile & install Eplex"
 		eemake -C Eplex install
-
 		einfo "compile & install icparc_solvers"
 		eemake -C icparc_solvers install
 	fi
@@ -222,13 +204,11 @@ EOF
 	if use java ; then
 		einfo "compile & install JavaInterface"
 		eemake -C JavaInterface install \
-			AUX_ECLIPSE="${ED}opt/${PN}/bin/${ARCH}/eclipse"
+			AUX_ECLIPSE="${S}/build/bin/${ARCH}/eclipse"
 		runme "jeclipse" "exec \"\${JRE_HOME}/bin/java\" -Xss2m  -Declipse.directory=\"\${ECLIPSEDIR}\" -classpath \"\${ECLIPSEDIR}/lib/eclipse.jar\" com.parctechnologies.eclipse.JEclipse \"\$@\""
-
 		einfo "compile & install Visualisation"
 		java-pkg_jar-from --build-only javacup javacup-runtime.jar
 		eemake -C Visualisation all_visualisation
-
 		einfo "compile & install CPViz"
 		mkdir -p CPViz/jars/batik CPViz/jars/jhelp || die
 		cd "${S}"/CPViz/jars/batik || die
@@ -239,11 +219,10 @@ EOF
 		cd "${S}" || die
 		eemake -C CPViz all_cpviz
 	fi
-
 	if use mysql ; then
 		einfo "compile & install Oci"
 		eemake -C Oci install \
-			ECLIPSE="${ED}opt/${PN}/bin/${ARCH}/eclipse"
+			ECLIPSE="${S}/build/bin/${ARCH}/eclipse"
 	fi
 }
 
@@ -251,25 +230,20 @@ src_install() {
 	mkdir "${ED}"opt || die
 	mv build "${ED}opt/${PN}" || die
 	make_wrapper eclipse "${EROOT}opt/${PN}/bin/${ARCH}/eclipse"
-
 	if use tcl ; then
 		mv lib_tcl "${ED}opt/${PN}" || die
 		make_wrapper tkeclipse "${EROOT}opt/${PN}/bin/${ARCH}/tkeclipse"
 		make_wrapper tktools "${EROOT}opt/${PN}/bin/${ARCH}/tktools"
 	fi
-
 	if use parallel ; then
 		make_wrapper weclipse "${EROOT}opt/${PN}/bin/${ARCH}/weclipse"
 		make_wrapper peclipse "${EROOT}opt/${PN}/bin/${ARCH}/peclipse"
 	fi
-
 	if use java ; then
 		make_wrapper jeclipse "${EROOT}opt/${PN}/bin/${ARCH}/jeclipse"
 	fi
-
 	echo "ECLIPSEDIR=\"${EROOT}opt/${PN}\"" > "${T}"/90${PN}
 	doenvd "${T}"/90${PN}
-
 	dodoc README_UNIX
 	readme.gentoo_create_doc
 }
