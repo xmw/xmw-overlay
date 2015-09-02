@@ -40,3 +40,13 @@
  RM = /bin/rm -f
  CP = /bin/cp
  
+@@ -28,8 +28,7 @@
+ .c.o:
+ 	$(CC) $(CCFLAGS) -c $*.c 
+ 
+-all:	
+-	$(MAKE) libusc.a
++all: libusc.a
+ 
+ install: all
+ 	-$(RM) ../include/usc.h

@@ -44,24 +44,23 @@ REQUIRED_USE="coin? ( gmp ) glpk? ( coin ) parallel? ( tcl )"
 
 src_prepare() {
 	epatch \
+		"${FILESDIR}"/${PN}-6.1.204-Shm.patch \
+		"${FILESDIR}"/${PN}-6.1.204-Usc.patch \
+		"${FILESDIR}"/${PN}-6.1.204-Alog.patch \
+		"${FILESDIR}"/${PN}-6.1.204-Pds.patch \
+		"${FILESDIR}"/${PN}-6.1.204-Eplex.patch \
 		"${FILESDIR}"/${PN}-6.1.194-mysql.patch \
 		"${FILESDIR}"/${PN}-6.1.194-tcl8.6.patch \
-		"${FILESDIR}"/${PN}-6.1.194-Eplex-Makefile.patch \
 		"${FILESDIR}"/${PN}-6.1.194-AR.patch \
-		"${FILESDIR}"/${PN}-6.1.194-Eplex-include.patch \
 		"${FILESDIR}"/${PN}-6.1.194-icparc_solvers.patch \
 		"${FILESDIR}"/${PN}-6.1.194-Oci-mkdir.patch \
-		"${FILESDIR}"/${PN}-6.1.194-Usc-64bit.patch \
-		"${FILESDIR}"/${PN}-6.1.194-Pds-64bit.patch \
-		"${FILESDIR}"/${PN}-6.1.194-Alog-64bit.patch \
 		"${FILESDIR}"/${PN}-6.1.194-weclipse.patch \
-		"${FILESDIR}"/${PN}-6.1.194-Shm-buildsystem.patch \
 		"${FILESDIR}"/${PN}-6.1.204-Visualisation-buildsystem.patch \
 		"${FILESDIR}"/${PN}-6.1.204-grappa-detect.patch \
 		"${FILESDIR}"/${PN}-6.1.204-cp-viz-detect.patch \
 		"${FILESDIR}"/${PN}-6.1.204-JavaInterface-string.patch
 
-	rm ARCH RUNME || die
+	rm -v ARCH RUNME || die
 
 	case "${ARCH}" in
 		amd64) export ARCH=x86_64_linux ;;
@@ -69,9 +68,7 @@ src_prepare() {
 		*)     die "unsupported arch ${ARCH}" ;;
 	esac
 	export ECLIPSEDIR=${EROOT}opt/${PN}
-	if use mysql ; then
-		export MYSQLDIR="${EROOT}usr/include/mysql"
-	fi
+	use mysql && export MYSQLDIR="${EROOT}usr/include/mysql"
 	if use java ; then
 		export GRAPPA_DIR="${EROOT}usr/share/grappa-1.2/lib"
 		export GRAPPA_JAR="grappa.jar"
@@ -80,24 +77,21 @@ src_prepare() {
 		export JAVACUP_DIR="${EROOT}usr/share/javacup/lib"
 		export JAVACUP_JAR="javacup-runtime.jar"
 	fi
-	tc-export CC AR
+	tc-export CC AR LD
 	eautoreconf
-
-	pushd Shm/src >/dev/null
+	cd Shm/src || die
 	eautoreconf
-	popd >/dev/null
 }
 
 src_configure() {
 	my_submods="Shm Usc Alog Pds"
-	local my_submod
 	for my_submod in ${my_submods}; do
 		einfo "configure ${my_submod}"
-		pushd ${my_submod}/src >/dev/null || die
+		cd "${S}"/${my_submod}/src || die
 		econf
-		popd >/dev/null || die
 	done
 
+	cd "${S}"
 	econf \
 		--without-cplex \
 		--without-xpress \
@@ -115,29 +109,10 @@ src_configure() {
 		$(use_with tcl)
 }
 
-src_compile() {
-	#replace toplevel Makefile.${ARCH}, -j1 bug etc.
-	rm -fv Makefile.${ARCH} || die
-	mkdir -p sys_{include,{bin,lib}/${ARCH}} || die
-
-	local my_out
-	local my_submod
-	for my_submod in ${my_submods}; do
-		einfo "compile and install ${my_submod}"
-		mkdir -p $my_submod/{include,{bin,lib}/${ARCH}} || die
-		case $my_submod in
-			Pds)	emake -C ${my_submod}/src install_all ;;
-			*)		emake -C ${my_submod}/src install ;;
-		esac
-		for my_out in $(find ${my_submod}/{include,{bin,lib}/${ARCH}} -type f) ; do
-			mv -vn ${my_out} sys_${my_out/${my_submod}\/} || die
-		done
-	done
-	runme() {
-		einfo "create wrapper $1"
-		local my_dest="${S}/build/bin/${ARCH}/$1"
-		mkdir -p "$(dirname "${my_dest}")" || die
-		cat << EOF > "${my_dest}"
+make_ecl_wrapper() {
+	einfo "create wrapper $1"
+	local my_dest="${S}/build/bin/${ARCH}/$1"
+	cat << EOF > "${my_dest}"
 #!/bin/sh
 export ECLIPSEDIR="\${ECLIPSEDIR:-${EROOT}opt/${PN}}"
 if [ -z "\${LD_LIBRARY_PATH}" ] ; then
@@ -148,32 +123,52 @@ fi
 export JRE_HOME="\${JRE_HOME:-\${JAVA_HOME}}"
 $2
 EOF
-		chmod +x "${my_dest}" || die
-	}
-	mkdir -p "${S}/bin/${ARCH}"
+	chmod +x "${my_dest}" || die
+}
+
+eemake() {
+	emake -f Makefile.${ARCH} PREFIX="${S}/build" ECLIPSEDIR="${S}/build" "$@"
+}
+
+src_compile() {
+	rm -fv Makefile.${ARCH} || die
+	mkdir -p build/{include,{bin,lib}/${ARCH}} || die
+
+	for my_submod in ${my_submods} ; do
+		#einfo "compile & install ${mysubmod}"
+		mkdir -p ${my_submod}/{include,{bin,lib}/${ARCH}} || die
+		case ${my_submod} in
+			Shm)	emake -C Shm/src SYS_LIB="../lib/${ARCH}" SYS_INCLUDE="../include" install ;;
+			Usc)    emake -C Usc/src install ;;
+			Alog)	emake -C Alog/src IPATH="-I${S}/build/include" install ;;
+			Pds)	emake -C ${my_submod}/src SYS_LIB="${S}/build/lib/${ARCH}" SYS_INCL="${S}/build/include" install_all ;;
+		esac
+		for my_out in $(find ${my_submod}/{include,{bin,lib}/${ARCH}} -type f) ; do
+			mv -vn ${my_out} ${my_out/${my_submod}/build} || die
+		done
+	done
+
 	einfo "compile installation kernel (sepia)"
-	emake -C Kernel/${ARCH} sepia
+	echo "char * whereami(void) { return(\"${EROOT}opt/${PN}\"); }" > Kernel/${ARCH}/whereami.c || die
+	emake -C Kernel/${ARCH} SYS_LIB="${S}/build/lib/${ARCH}" SYS_INCL="${S}/build/include" sepia
 	einfo "compile runtime kernel (eclipse.exe)"
-	emake -C Kernel/${ARCH} eclipse.exe
+	emake -C Kernel/${ARCH} SYS_LIB="${S}/build/lib/${ARCH}" SYS_INCL="${S}/build/include" eclipse.exe
 	einfo "install kernel and header files"
 	emake -C Kernel/${ARCH} PREFIX="${S}/build" install
-	runme "eclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/eclipse.exe\" \"\$@\""
+	make_ecl_wrapper "eclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/eclipse.exe\" \"\$@\""
 	if use parallel ; then
 		einfo "compile & install parallel Kernel"
-		emake -C Kernel/${ARCH} weclipse
-		cp -v Kernel/${ARCH}/weclipse "${S}/build/bin" || die
-		runme "weclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/weclipse\" \"\$@\""
-		emake -C Kernel/${ARCH} peclipse
-		cp -v Kernel/${ARCH}/peclipse "${S}/build/bin" || die
-		runme "peclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/peclipse\" \"\$@\""
+		emake -C Kernel/${ARCH} SYS_LIB="${S}/build/lib/${ARCH}" SYS_INCL="${S}/build/include" weclipse
+		cp -v Kernel/${ARCH}/weclipse "${S}/build/bin/${ARCH}" || die
+		make_ecl_wrapper "weclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/weclipse\" \"\$@\""
+		emake -C Kernel/${ARCH} SYS_LIB="${S}/build/lib/${ARCH}" SYS_INCL="${S}/build/include" peclipse
+		cp -v Kernel/${ARCH}/peclipse "${S}/build/bin/${ARCH}" || die
+		make_ecl_wrapper "peclipse" "exec \"\${ECLIPSEDIR}/lib/${ARCH}/peclipse\" \"\$@\""
 	fi
 	if use tcl ; then
-		runme "tkeclipse" "exec wish \"\${ECLIPSEDIR}/lib_tcl/tkeclipse.tcl\" -- \"\$@\""
-		runme "tktools" "exec wish \"\${ECLIPSEDIR}/lib_tcl/tktools.tcl\" -- \"\$@\""
+		make_ecl_wrapper "tkeclipse" "exec wish \"\${ECLIPSEDIR}/lib_tcl/tkeclipse.tcl\" -- \"\$@\""
+		make_ecl_wrapper "tktools" "exec wish \"\${ECLIPSEDIR}/lib_tcl/tktools.tcl\" -- \"\$@\""
 	fi
-	eemake() {
-		emake -f Makefile.${ARCH} PREFIX="${S}/build" ECLIPSEDIR="${S}/build" -j1 "$@"
-	}
 	einfo "compile & install ecrc_solvers"
 	eemake -C ecrc_solvers install \
 		AUX_ECLIPSE="${S}/build/bin/${ARCH}/eclipse"
@@ -185,6 +180,7 @@ EOF
 		einfo "compile & install Eplex"
 		eemake -C Eplex install
 		einfo "compile & install icparc_solvers"
+		eemake -C icparc_solvers ${ARCH}/bitmap.so -j1
 		eemake -C icparc_solvers install
 	fi
 	if use gecode ; then
@@ -195,7 +191,7 @@ EOF
 		einfo "compile & install JavaInterface"
 		eemake -C JavaInterface install \
 			AUX_ECLIPSE="${S}/build/bin/${ARCH}/eclipse"
-		runme "jeclipse" "exec \"\${JRE_HOME}/bin/java\" -Xss2m  -Declipse.directory=\"\${ECLIPSEDIR}\" -classpath \"\${ECLIPSEDIR}/lib/eclipse.jar\" com.parctechnologies.eclipse.JEclipse \"\$@\""
+		make_ecl_wrapper "jeclipse" "exec \"\${JRE_HOME}/bin/java\" -Xss2m  -Declipse.directory=\"\${ECLIPSEDIR}\" -classpath \"\${ECLIPSEDIR}/lib/eclipse.jar\" com.parctechnologies.eclipse.JEclipse \"\$@\""
 		einfo "compile & install Visualisation"
 		java-pkg_jar-from --build-only javacup javacup-runtime.jar
 		eemake -C Visualisation all_visualisation
