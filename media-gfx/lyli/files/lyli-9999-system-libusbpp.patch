@@ -1,0 +1,28 @@
+--- lyli-9999/CMakeLists.txt
++++ lyli-9999/CMakeLists.txt
+@@ -16,17 +16,6 @@
+ find_package(PkgConfig REQUIRED)
+ pkg_check_modules(LIBUSB REQUIRED libusb-1.0>=1.0.0)
+ 
+-# libusbpp dependency - if it doesn't exists, clone it
+-include(ExternalProject)
+-ExternalProject_Add(libusbpp_project
+-	HG_REPOSITORY https://bitbucket.org/stativ/libusbpp
+-	PREFIX "libusbpp"
+-	CMAKE_ARGS "-DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}/libusbpp/install" "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
+-)
+-add_library(usbpp STATIC IMPORTED)
+-set_property(TARGET usbpp PROPERTY IMPORTED_LOCATION ${CMAKE_BINARY_DIR}/libusbpp/install/lib/libusbpp.a)
+-include_directories("${CMAKE_BINARY_DIR}/libusbpp/install/include")
+-
+ ##################
+ # Compiler flags #
+ ##################
+@@ -45,7 +34,6 @@
+ 
+ add_library(lyliiface STATIC camera.cpp)
+ target_link_libraries(lyliiface lylicalib lylifilesystem lyliimage usbpp ${OpenCV_LIBS} ${LIBUSB_LIBRARIES} ${JsonCpp_LIBRARIES})
+-add_dependencies(lyliiface libusbpp_project)
+ 
+ add_executable(lyli main.cpp)
+ target_link_libraries(lyli usbpp lyliiface)
