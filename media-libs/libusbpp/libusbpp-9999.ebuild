@@ -23,7 +23,6 @@ DOCS=( )
 
 src_prepare() {
 	if ! $(use examples) ; then
-		sed -e '/examples/d' \
-			-i CMakeLists.txt || die 
+		comment_add_subdirectory examples
 	fi
 }
