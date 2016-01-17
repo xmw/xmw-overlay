@@ -1,0 +1,10 @@
+--- lyli-9999/calibration/calibrator.cpp
++++ lyli-9999/calibration/calibrator.cpp
+@@ -40,6 +40,7 @@
+ #include <opencv2/calib3d/calib3d.hpp>
+ #include <opencv2/core/core.hpp>
+ #include <opencv2/imgproc/imgproc.hpp>
++#include <opencv2/imgcodecs.hpp>
+ 
+ #include <tbb/parallel_for_each.h>
+ #include <tbb/spin_mutex.h>

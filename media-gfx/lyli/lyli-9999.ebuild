@@ -25,6 +25,7 @@ DEPEND="${RDEPEND}
 PATCHES=( 
 	"${FILESDIR}"/${P}-jsoncpp-include.patch
 	"${FILESDIR}"/${P}-system-libusbpp.patch
+	"${FILESDIR}"/${P}-opencv2-imwrite.patch
 )
 
 src_configure() {
