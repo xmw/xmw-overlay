@@ -4,7 +4,8 @@
 
 EAPI=5
 
-inherit autotools
+PYTHON_COMPAT=( python2_7 )
+inherit autotools python-single-r1
 
 DESCRIPTION="Open Lighting Architecture is a framework for lighting control information"
 HOMEPAGE="https://www.openlighting.org/ola/"
