@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer>
+<email>xmw@gentoo.org</email>
+<name>Michael Weber</name>
+</maintainer>
+<use>
+	<flag name="e133">Enable Streaming APN E1.31 Protocol</flag>
+	<flag name="gcov">Enable gcov to produce coverage data</flag>
+	<flag name="http">Add support for libmicrohttp server</flag>
+	<flag name="libftdi">Add support for libftdi clients</flag>
+	<flag name="libusb">Add support for libusb clients</flag>
+	<flag name="uart">Add support for UART clients</flag>
+</use>
+</pkgmetadata>
