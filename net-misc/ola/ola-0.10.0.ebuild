@@ -24,7 +24,7 @@ DEPEND="${RDEPEND}
 	libusb? ( virtual/libusb:1 )
 	osc? ( media-libs/liblo )
 	java? ( dev-libs/protobuf )
-	python? ( dev-libs/protobuf[python] )"
+	python? ( dev-libs/protobuf[python,${PYTHON_USEDEP}] )"
 
 src_prepare() {
 	eautoreconf
