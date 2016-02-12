@@ -43,7 +43,7 @@ DEPEND="${RDEPEND}"
 S=${WORKDIR}/${P/b/}
 
 src_prepare() {
-	sed -e "s:/etc/udev/rules.d:${EROOT}lib/udev/rules.d" -i \
+	sed -e "s:/etc/udev/rules.d:${EROOT}lib/udev/rules.d:" -i \
 		plugins/hid/hid.pro \
 		plugins/udmx/src/src.pro \
 		plugins/dmxusb/src/src.pro \
