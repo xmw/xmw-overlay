@@ -4,11 +4,11 @@
 
 EAPI=5
 
-inherit qmake-utils qt4-r2 eutils virtualx
+inherit qmake-utils qt4-r2 eutils virtualx git-r3
 
 DESCRIPTION="QLC+ - Q Light Controller Plus to control DMX interfaces"
 HOMEPAGE="http://www.qlcplus.org/"
-SRC_URI="http://www.${PN}.org/downloads/${PV/b/}/${PN}_${PV}.tar.gz"
+EGIT_REPO_URI="https://github.com/mcallegari/qlcplus.git"
 
 LICENSE="Apache-2.0"
 SLOT="0"
