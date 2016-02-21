@@ -12,7 +12,7 @@ EGIT_REPO_URI="https://github.com/mcallegari/qlcplus.git"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE="qt4 qt5"
 
 REQUIRED_USE="^^ ( qt4 qt5 )"
