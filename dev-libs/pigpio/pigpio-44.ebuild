@@ -4,11 +4,11 @@
 
 EAPI=5
 
-PYTHON_COMPAT=( python2_7 python3_3 python3_4 )
+PYTHON_COMPAT=( python2_7 python3_3 python3_4 python3_5 )
 DISTUTILS_OPTIONAL=1
 inherit eutils toolchain-funcs distutils-r1 vcs-snapshot
 
-DESCRIPTION="C library for the Raspberry which allows control of the general purpose input outputs"
+DESCRIPTION="C library for the Raspberry allowing control of general purpose input outputs"
 HOMEPAGE="http://abyz.co.uk/rpi/pigpio"
 SRC_URI="https://github.com/joan2937/pigpio/tarball/ab3725839fc7cf589eb0cf67934643b21481d161 -> ${P}.tar.gz"
 
