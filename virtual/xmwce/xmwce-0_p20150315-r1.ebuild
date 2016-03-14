@@ -50,7 +50,7 @@ RDEPEND="
 	sys-block/buffer
 	sys-fs/ddrescue
 	sys-fs/ncdu
-	sys-fs/sshfs-fuse
+	sys-fs/sshfs
 	sys-process/htop
 	sys-process/iotop
 	sys-process/parallel
