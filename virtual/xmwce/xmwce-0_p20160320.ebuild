@@ -13,6 +13,8 @@ IUSE="+dev +root +wlan"
 
 RDEPEND="
 	app-admin/makepasswd
+	app-arch/hardlink
+	app-arch/lz4
 	app-arch/lzop
 	app-arch/zip
 	app-editors/vim
@@ -50,19 +52,25 @@ RDEPEND="
 		app-portage/gentoolkit-dev
 	)
 	root? (
+		app-admin/eclean-kernel
+		app-admin/syslog-ng
+		app-admin/tmpreaper
 		app-portage/layman[git]
+		app-portage/porticron
+		mail-mta/postfix
 		net-analyzer/iptraf-ng
-		net-firewall/iptables
 		net-analyzer/tcpdump
+		net-firewall/iptables
+		sys-apps/ethtool
+		sys-apps/hwloc
+		sys-apps/lshw
 		sys-apps/pciutils
 		sys-fs/ddrescue
-		sys-apps/ethtool
-		sys-apps/lshw
-		sys-apps/hwloc
+		sys-process/dcron
 	)
 	wlan? ( 
-		net-wireless/wireless-tools
 		net-wireless/iw
+		net-wireless/wireless-tools
 		net-wireless/wpa_supplicant
 	)
 	"
