@@ -1,6 +1,6 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
@@ -55,20 +55,31 @@ RDEPEND="
 		app-admin/eclean-kernel
 		app-admin/syslog-ng
 		app-admin/tmpreaper
+		app-arch/cpio
 		app-portage/layman[git]
 		app-portage/porticron
 		mail-mta/postfix
 		net-analyzer/iptraf-ng
 		net-analyzer/tcpdump
 		net-firewall/iptables
+		net-misc/dhcp
+		net-misc/ntp
 		sys-apps/ethtool
 		sys-apps/hwloc
+		sys-apps/lm_sensors
 		sys-apps/lshw
 		sys-apps/pciutils
+		sys-apps/usbutils
 		sys-fs/ddrescue
+		sys-libs/gpm
 		sys-process/dcron
+		amd64? (
+			sys-apps/smartmontools
+			sys-power/acpid
+			sys-power/cpupower
+		)
 	)
-	wlan? ( 
+	wlan? (
 		net-wireless/iw
 		net-wireless/wireless-tools
 		net-wireless/wpa_supplicant
