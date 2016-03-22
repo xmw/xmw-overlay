@@ -58,6 +58,7 @@ RDEPEND="
 		media-sound/ncmpcpp[outputs,clock,visualizer,curl]
 	)
 	root? (
+		app-admin/logrotate
 		app-admin/syslog-ng
 		app-admin/tmpreaper
 		app-portage/layman[git]
