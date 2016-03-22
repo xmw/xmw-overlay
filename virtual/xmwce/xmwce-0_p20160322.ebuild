@@ -9,13 +9,11 @@ SRC_URI=""
 
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+dev +root +wlan"
+IUSE="+dev +root +wlan +kernel mpc"
 
 RDEPEND="
 	app-admin/makepasswd
 	app-arch/hardlink
-	app-arch/lz4
-	app-arch/lzop
 	app-arch/zip
 	app-editors/vim
 	app-misc/screen
@@ -28,7 +26,6 @@ RDEPEND="
 	dev-util/strace
 	dev-vcs/git
 	media-gfx/exif
-	media-sound/ncmpcpp[outputs,clock,visualizer,curl]
 	net-analyzer/netcat6
 	net-analyzer/nmap
 	net-dns/bind-tools
@@ -51,11 +48,18 @@ RDEPEND="
 		app-portage/gentoolkit
 		app-portage/gentoolkit-dev
 	)
-	root? (
+	kernel? (
 		app-admin/eclean-kernel
+		app-arch/cpio
+		app-arch/lz4
+		app-arch/lzop
+	)
+	mpc? (
+		media-sound/ncmpcpp[outputs,clock,visualizer,curl]
+	)
+	root? (
 		app-admin/syslog-ng
 		app-admin/tmpreaper
-		app-arch/cpio
 		app-portage/layman[git]
 		app-portage/porticron
 		mail-mta/postfix
