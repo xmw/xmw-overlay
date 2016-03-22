@@ -23,6 +23,7 @@ RDEPEND="
 	app-portage/pfl
 	app-shells/zsh
 	app-vim/gnupg
+	app-vim/pathogen
 	dev-util/strace
 	dev-vcs/git
 	media-gfx/exif
@@ -56,13 +57,16 @@ RDEPEND="
 	)
 	mpc? (
 		media-sound/ncmpcpp[outputs,clock,visualizer,curl]
+		media-sound/alsa-utils
 	)
 	root? (
 		app-admin/logrotate
 		app-admin/syslog-ng
 		app-admin/tmpreaper
+		app-portage/layman
 		app-portage/layman[git]
 		app-portage/porticron
+		app-portage/smart-live-rebuild
 		mail-mta/postfix
 		net-analyzer/iptraf-ng
 		net-analyzer/tcpdump
