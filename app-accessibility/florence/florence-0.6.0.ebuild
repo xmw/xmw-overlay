@@ -1,8 +1,8 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header$
+# $Id$
 
-EAPI=2
+EAPI=5
 
 inherit gnome2
 
@@ -15,10 +15,11 @@ SLOT="0"
 KEYWORDS="~amd64 ~arm ~x86"
 IUSE="doc"
 
-RDEPEND="app-accessibility/at-spi2-core
+RDEPEND="app-accessibility/at-spi2-atk:2
 	dev-libs/glib:2
 	dev-libs/libxml2:2
-	gnome-extra/at-spi:2
+	gnome-base/librsvg:2
+	media-libs/gstreamer:0.10
 	x11-libs/cairo
 	x11-libs/gdk-pixbuf:2
 	x11-libs/gtk+:3
@@ -28,6 +29,7 @@ RDEPEND="app-accessibility/at-spi2-core
 	x11-libs/libnotify
 	x11-libs/pango"
 DEPEND="${RDEPEND}
+	app-text/gnome-doc-utils
 	app-text/scrollkeeper
 	dev-util/intltool
 	sys-devel/gettext
