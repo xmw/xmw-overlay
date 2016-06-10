@@ -6,7 +6,7 @@ EAPI=6
 
 PYTHON_COMPAT=( python2_7 python3_3 python3_4 python3_5 )
 PYTHON_REQ_USE="threads(+)"
-inherit python-single-r1 waf-utils
+inherit python-any-r1 waf-utils
 
 DESCRIPTION="implementation of SMPTE and the MXF Interop Sound & Picture Track File format"
 HOMEPAGE="http://carlh.net/asdcplib"
