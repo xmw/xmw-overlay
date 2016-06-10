@@ -14,3 +14,7 @@ media-libs/raspberrypi-videocore-bin
 # Michael Weber <xmw@gentoo.org> (13 Mar 2013)
 # segfault in snprintf
 =media-radio/ebook2cw-0.8.2
+
+# Michael Weber <xmw@gentoo.org> (11 Jun 2016)
+# ffmpeg-3 is masked
+media-video/dcpomatic
