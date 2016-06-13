@@ -30,3 +30,5 @@ RDEPEND="dev-cpp/glibmm:2
 	media-libs/openjpeg:0
 	|| ( media-gfx/graphicsmagick media-gfx/imagemagick )"
 DEPEND="${RDEPEND}"
+
+PATCHES=( "${FILESDIR}"/${P}-no-ldconfig.patch )
