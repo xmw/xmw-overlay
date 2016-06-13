@@ -6,7 +6,7 @@ EAPI=6
 
 PYTHON_COMPAT=( python2_7 python3_3 python3_4 python3_5 )
 PYTHON_REQ_USE="threads(+)"
-inherit eutils python-any-r1 waf-utils wxwidgets
+inherit python-any-r1 waf-utils wxwidgets
 
 DESCRIPTION="create Digital Cinema Packages (DCPs) from videos, images and sound files"
 HOMEPAGE="http://dcpomatic.com/"
@@ -28,7 +28,7 @@ RDEPEND="dev-cpp/cairomm
 	dev-libs/libcxml
 	dev-libs/libzip
 	dev-libs/openssl:0
-	media-gfx/imagemagick
+	|| ( media-gfx/graphicsmagick media-gfx/imagemagick )
 	media-libs/fontconfig:1.0
 	media-libs/libdcp:1.0
 	media-libs/libsamplerate
@@ -42,9 +42,12 @@ RDEPEND="dev-cpp/cairomm
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
-src_prepare() {
-	epatch "${FILESDIR}"/${P}-wxGTK3.patch
+PATCHES=(
+	"${FILESDIR}"/${P}-wxGTK3.patch
+	"${FILESDIR}"/${P}-no-ldconfig.patch
+	)
 
+src_prepare() {
 	cp -v ../waf*/waf .
 
 	default
