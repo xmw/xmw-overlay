@@ -18,10 +18,12 @@ KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RDEPEND="dev-cpp/glibmm
-dev-cpp/libxmlpp
-dev-libs/boost
-dev-libs/libcxml
-dev-libs/openssl:0
-media-libs/libasdcp-cth"
+	dev-cpp/libxmlpp
+	dev-libs/boost:=
+	dev-libs/libcxml
+	dev-libs/openssl:0
+	media-libs/libasdcp-cth"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
+
+PATCHES=( "${FILESDIR}"/${P}-no-ldconfig.patch )
