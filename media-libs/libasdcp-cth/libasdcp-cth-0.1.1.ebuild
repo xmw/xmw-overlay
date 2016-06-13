@@ -21,3 +21,5 @@ RDEPEND="dev-libs/boost
 	dev-libs/openssl:0"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
+
+PATCHES=( "${FILESDIR}"/${P}-no-ldconfig.patch )
