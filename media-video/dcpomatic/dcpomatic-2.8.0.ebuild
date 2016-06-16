@@ -16,7 +16,7 @@ SRC_URI="http://${PN}.com/downloads/${PV}/${P}.tar.bz2
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="+gui"
 
 RDEPEND="dev-cpp/cairomm
 	dev-cpp/glibmm:2
@@ -37,18 +37,23 @@ RDEPEND="dev-cpp/cairomm
 	>=media-video/ffmpeg-3
 	net-libs/libssh
 	net-misc/curl
-	x11-libs/gtk+:2
-	x11-libs/wxGTK:3.0 "
+	gui? ( x11-libs/gtk+:2
+		x11-libs/wxGTK:3.0 )"
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 PATCHES=(
 	"${FILESDIR}"/${P}-wxGTK3.patch
 	"${FILESDIR}"/${P}-no-ldconfig.patch
+	"${FILESDIR}"/${P}-desktop.patch
 	)
 
 src_prepare() {
 	cp -v ../waf*/waf .
 
 	default
+}
+
+src_configure() {
+	waf-utils_src_configure $(usex gui "" "--disable-gui")
 }
