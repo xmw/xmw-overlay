@@ -30,6 +30,7 @@ RDEPEND="
 	net-analyzer/netcat6
 	net-analyzer/nmap
 	net-dns/bind-tools
+	net-fs/sshfs
 	net-misc/mosh
 	net-misc/openssh
 	net-misc/telnet-bsd
@@ -40,7 +41,6 @@ RDEPEND="
 	sys-apps/pv
 	sys-block/buffer
 	sys-fs/ncdu
-	sys-fs/sshfs
 	sys-process/glances
 	sys-process/htop
 	sys-process/iotop
