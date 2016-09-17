@@ -1,25 +1,28 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
-EAPI=3
+EAPI=6
 
 DESCRIPTION="Michael Weber (xmw) desktop environment"
 SRC_URI=""
 
 SLOT="0"
 KEYWORDS=""
-IUSE="minimal"
+IUSE="minimal webmail"
 
 RDEPEND="
 	app-admin/conky[weather-metar,thinkpad,mpd,wifi,hddtemp,thinkpad]
-	app-editors/gvim
 	app-misc/hddled[X]
 	app-misc/pystopwatch
 	app-shells/zsh
 	app-text/llpp
 	app-text/mupdf
 	app-text/paps
+	app-text/zathura-cb
+	app-text/zathura-djvu
+	app-text/zathura-pdf-mupdf
+	app-text/zathura-ps
 	media-fonts/dina
 	media-fonts/terminus-font
 	media-gfx/feh
@@ -48,20 +51,17 @@ RDEPEND="
 	!minimal? (
 		|| ( app-text/atril app-text/evince )
 		app-text/gv
-		mail-client/thunderbird
 		media-gfx/gimp
 		media-sound/audacity
 		media-sound/baudline
-		|| ( media-video/mpv media-video/mplayer2 media-video/mplayer )
-		net-im/pidgin
-		net-p2p/qbittorrent
+		media-video/mpv
 		sci-astronomy/stellarium
 		sci-electronics/geda
 		sci-electronics/osqoop
 		sci-geosciences/googleearth
 		www-client/firefox
 		www-client/google-chrome-unstable
-		www-client/opera
 		www-plugins/adobe-flash
 		x11-terms/xterm
+		!webmail? ( mail-client/thunderbird )
 	)"
