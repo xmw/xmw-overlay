@@ -1,0 +1,13 @@
+--- opencascade-7.0.0/CMakeLists.txt
++++ opencascade-7.0.0/CMakeLists.txt
+@@ -61,7 +61,10 @@
+ # enable extended messages of many OCCT algorithms
+ set (BUILD_WITH_DEBUG OFF CACHE BOOL "${BUILD_WITH_DEBUG_DESCR}")
+ if (BUILD_WITH_DEBUG)
++  message (STATUS "xmw: debug")
+   add_definitions (-DOCCT_DEBUG)
++else()
++  message (STATUS "xmw: no debug")
+ endif()
+ 
+ # copy samples to install directory
