@@ -10,7 +10,7 @@ inherit python-any-r1 waf-utils
 
 DESCRIPTION="implementation of SMPTE and the MXF Interop Sound & Picture Track File format"
 HOMEPAGE="http://carlh.net/asdcplib"
-SRC_URI="http://carlh.net/downloads/asdcplib-cth/${P}.tar.bz2"
+SRC_URI="http://carlh.net/downloads/${PN}/${P}.tar.bz2"
 
 LICENSE="BSD"
 SLOT="0"
