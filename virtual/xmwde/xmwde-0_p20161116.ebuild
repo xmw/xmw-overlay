@@ -49,7 +49,6 @@ RDEPEND="
 	x11-wm/cwm
 	media-fonts/font-misc-misc
 	!minimal? (
-		|| ( app-text/atril app-text/evince )
 		app-text/gv
 		media-gfx/gimp
 		media-sound/audacity
