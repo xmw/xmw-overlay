@@ -1,6 +1,6 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2016 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=4
 
@@ -16,19 +16,19 @@ KEYWORDS="~amd64"
 IUSE=""
 
 RDEPEND="dev-embedded/libftdi
-	virtual/libusb:0
+	dev-qt/qtcore:4
+	dev-qt/qtdbus:4
+	dev-qt/qtgui:4
 	media-libs/alsa-lib
 	sys-libs/glibc:2.2
-	x11-libs/libX11
-	x11-libs/qt-core:4
-	x11-libs/qt-dbus:4
-	x11-libs/qt-gui:4"
+	virtual/libusb:0
+	x11-libs/libX11 "
 DEPEND="${DEPEND}"
 
 src_prepare() {
 	epatch "${FILESDIR}/${P}-fixtureeditor-Werror.patch"
 	epatch "${FILESDIR}/${P}-unistd.patch"
-	
+
 	#fix parallel build
 	sed -e '1iCONFIG += ordered' \
 		-e "1iINSTALL_ROOT = ${D}" \
