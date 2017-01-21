@@ -11,6 +11,7 @@ if [[ ${PV} == "9999" ]] ; then
 else
 	SRC_URI="https://github.com/zfsonlinux/zfs/releases/download/zfs-${PV/_/-}/${P/_/-}.tar.gz"
 	KEYWORDS=" ~amd64"
+	S="${WORKDIR}/${P/_rc*/}"
 fi
 
 inherit flag-o-matic linux-info linux-mod autotools-utils
@@ -34,8 +35,6 @@ RDEPEND="${COMMON_DEPEND}
 AT_M4DIR="config"
 AUTOTOOLS_IN_SOURCE_BUILD="1"
 DOCS=( AUTHORS DISCLAIMER )
-
-S="${WORKDIR}/${P/_rc*/}"
 
 pkg_setup() {
 	linux-info_pkg_setup
