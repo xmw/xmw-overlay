@@ -16,3 +16,8 @@ HOMEPAGE="https://github.com/raspberrypi/linux"
 SRC_URI=https://github.com/raspberrypi/linux/archive/raspberrypi-kernel_1.20170303-1.tar.gz
 
 KEYWORDS="~arm ~arm64"
+
+src_unpack() {
+	default
+	mv -v linux-raspberrypi-kernel_1.20170303-1 linux-4.4.50_p20170303-raspberrypi || die
+}
