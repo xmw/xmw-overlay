@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer>
+<maintainer type="person">
 <email>xmw@gentoo.org</email>
 <name>Michael Weber</name>
 </maintainer>
+<use>
+	<flag name="kernel-armv6j">Install armv6j kernel/modules</flag>
+	<flag name="kernel-armv7a">Install armv7a kernel/modules</flag>
+	<flag name="dtb">Install Device Tree overlays</flag>
+	<flag name="userland">Install userland tools</flag>
+	<flag name="userland_hardfp">Install hardfp userland tools</flag>
+</use>
 </pkgmetadata>
