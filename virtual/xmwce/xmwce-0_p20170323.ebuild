@@ -1,4 +1,4 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
@@ -48,7 +48,10 @@ RDEPEND="
 	sys-process/parallel
 	dev? (
 		app-portage/gentoolkit
-		app-portage/gentoolkit-dev
+		|| (
+			>=app-portage/gentoolkit-0.4.0
+			app-portage/gentoolkit-dev
+		)
 	)
 	kernel? (
 		app-admin/eclean-kernel
