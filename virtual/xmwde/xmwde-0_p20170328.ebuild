@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=6
 
@@ -58,7 +57,7 @@ RDEPEND="
 		sci-electronics/geda
 		sci-electronics/osqoop
 		sci-geosciences/googleearth
-		www-client/firefox
+		|| ( www-client/firefox www-client/firefox-bin )
 		www-client/google-chrome-unstable
 		www-plugins/adobe-flash
 		x11-terms/xterm
