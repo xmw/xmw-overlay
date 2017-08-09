@@ -1,0 +1,17 @@
+--- qloud-1.2/src/src.pro
++++ qloud-1.2/src/src.pro
+@@ -83,12 +83,12 @@
+ 
+ CONFIG -= debug
+ 
+-INCLUDEPATH += /usr/include/qwt \
++INCLUDEPATH += /usr/include/qwt6 \
+ /usr/include \
+ /usr/include/qt4
+ LIBS += -lsndfile \
+ -lfftw3 \
+ -ljack \
+--lqwt
++-lqwt6-qt4
+ 
+ QMAKE_CXXFLAGS += -std=c++11
