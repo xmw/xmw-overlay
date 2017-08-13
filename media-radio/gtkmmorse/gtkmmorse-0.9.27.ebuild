@@ -5,7 +5,7 @@ EAPI=5
 
 DESCRIPTION="morse code learning tool for Koch and clasic method"
 HOMEPAGE="http://gtkmmorse.nongnu.org/"
-SRC_URI="http://savannah.nongnu.org/download/${PN}/${P}.tar.bz2"
+SRC_URI="https://savannah.nongnu.org/download/${PN}/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
