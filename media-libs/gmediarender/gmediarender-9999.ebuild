@@ -3,7 +3,7 @@
 
 EAPI=4
 
-inherit autotools-utils cvs
+inherit autotools cvs
 
 DESCRIPTION="UPnP media renderer for POSIX-compliant systems"
 HOMEPAGE="http://gmrender.nongnu.org/"

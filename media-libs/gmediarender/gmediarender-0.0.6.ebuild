@@ -5,7 +5,7 @@ EAPI=4
 
 DESCRIPTION="UPnP media renderer for POSIX-compliant systems"
 HOMEPAGE="http://gmrender.nongnu.org/"
-SRC_URI="http://savannah.nongnu.org/download/gmrender/${P}.tar.bz2"
+SRC_URI="https://savannah.nongnu.org/download/gmrender/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
