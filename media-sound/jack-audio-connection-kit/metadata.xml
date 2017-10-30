@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<maintainer type="person">
+<email>xmw@gentoo.org</email>
+<name>Michael Weber</name>
+</maintainer>
+<use>
+<flag name="celt">Use <pkg>media-libs/celt</pkg></flag>
+<flag name="opus">build with compression support using media-libs/opus in netjack</flag>
+</use>
+</pkgmetadata>
