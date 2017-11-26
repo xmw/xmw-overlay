@@ -1,0 +1,19 @@
+--- jackcpp-9999/Makefile
++++ jackcpp-9999/Makefile
+@@ -16,13 +16,11 @@
+ OBJ = ${SRC:.cpp=.o}
+ 
+ .cpp.o:
+-	@echo CC $<
+-	@${CC} -c ${CFLAGS} -o $*.o $<
++	${CC} -c ${CFLAGS} -o $*.o $<
+ 
+ ${LIBNAME}: ${OBJ}
+-	@echo AR $@
+-	@${AR} $@ ${OBJ}
+-	@${RANLIB} $@
++	${AR} $@ ${OBJ}
++	${RANLIB} $@
+ 
+ .PHONY: test doc
+ 
