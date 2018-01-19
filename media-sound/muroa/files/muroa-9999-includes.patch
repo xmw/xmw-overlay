@@ -1,0 +1,19 @@
+--- muroa-9999/libmuroadaemon/CSettings.cpp
++++ muroa-9999/libmuroadaemon/CSettings.cpp
+@@ -28,6 +28,8 @@
+ #include "CAlsaSrcDesc.h"
+ 
+ #include <getopt.h>
++#include <sys/stat.h>
++#include <fcntl.h>
+ #include <log4cplus/loggingmacros.h>
+ 
+ #include "boost/filesystem/operations.hpp"
+@@ -36,6 +38,7 @@
+ #include <boost/foreach.hpp>
+ #include <utility>
+ #include <map>
++#include <iostream>
+ 
+ 
+ using namespace std;

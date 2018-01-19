@@ -1,0 +1,15 @@
+--- muroa-9999/libmcommons/CUtils.cpp
++++ muroa-9999/libmcommons/CUtils.cpp
+@@ -40,10 +40,10 @@
+ 
+ string CUtils::file2string(const string &fileName)
+ {
+-    ifstream ifs(fileName.c_str(), ios::in | ios::binary | ios::ate);
++    boost::filesystem::ifstream ifs(fileName.c_str(), ios::in | ios::binary | ios::ate);
+ 
+     if(ifs.is_open()) {
+-    	ifstream::pos_type fileSize = ifs.tellg();
++    	boost::filesystem::ifstream::pos_type fileSize = ifs.tellg();
+     	ifs.seekg(0, ios::beg);
+ 
+     	vector<char> bytes(fileSize);
