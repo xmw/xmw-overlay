@@ -6,7 +6,7 @@ PYTHON_COMPAT=( python2_7 python3_{4,5,6} )
 
 inherit git-r3 distutils-r1
 
-DESCRIPTION="Python package with bindings to the Virtual Instrument Software Architecture VISA library"
+DESCRIPTION="Python bindings to the Virtual Instrument Software Architecture VISA library"
 HOMEPAGE="https://pyvisa.readthedocs.org"
 EGIT_REPO_URI="https://github.com/pyvisa/pyvisa.git"
 
