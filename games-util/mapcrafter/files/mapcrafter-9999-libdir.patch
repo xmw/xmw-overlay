@@ -1,0 +1,11 @@
+--- mapcrafter-9999/src/mapcraftercore/CMakeLists.txt
++++ mapcrafter-9999/src/mapcraftercore/CMakeLists.txt
+@@ -88,7 +88,7 @@
+     endif()
+ endif()
+ 
+-install(TARGETS mapcraftercore DESTINATION lib)
++install(TARGETS mapcraftercore DESTINATION ${LIB_INSTALL_DIR})
+ 
+ if(OPT_INSTALL_HEADERS)
+     foreach(HEADER ${HEADERS})
