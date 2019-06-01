@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2019 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -26,7 +26,7 @@ RDEPEND="
 	dev-util/strace
 	dev-vcs/git
 	media-gfx/exif
-	net-analyzer/netcat6
+	|| ( net-analyzer/openbsd-netcat net-analyzer/netcat6 )
 	net-analyzer/nmap
 	net-dns/bind-tools
 	net-fs/sshfs
