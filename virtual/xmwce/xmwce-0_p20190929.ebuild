@@ -79,7 +79,8 @@ RDEPEND="
 		net-misc/ntp
 		sys-apps/ethtool
 		sys-apps/hwloc
-		sys-apps/lm_sensors
+		|| ( sys-apps/lm_sensors
+			sys-apps/lm-sensors )
 		sys-apps/lshw
 		sys-apps/pciutils
 		sys-apps/usbutils
